@@ -20,6 +20,7 @@
     "file-loader": "^1.1.7",
     "jest-expo": "~27.0.0",
     "prettier": "^1.13.7",
+    "react-native-config": "^0.11.5",
     "react-native-scripts": "latest",
     "react-native-scripts-ts": "1.15.0",
     "react-native-typescript-transformer": "^1.2.3",
@@ -70,6 +71,10 @@
   },
   "dependencies": {
     "apollo-boost": "^0.1.10",
+    "apollo-cache-inmemory": "^1.2.5",
+    "apollo-client": "^2.3.5",
+    "apollo-link-context": "^1.0.8",
+    "apollo-link-http": "^1.5.4",
     "expo": "^27.0.1",
     "expo-web": "^0.0.12",
     "graphql": "^0.13.2",
