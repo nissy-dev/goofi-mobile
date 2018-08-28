@@ -43,7 +43,8 @@
     "ios": "react-native-scripts-ts ios",
     "test": "jest",
     "web": "webpack-dev-server -d --config ./webpack.config.js  --inline --hot --colors --content-base public/ --history-api-fallback",
-    "build": "NODE_ENV=production webpack -p --config ./webpack.config.js"
+    "build": "NODE_ENV=production webpack -p --config ./webpack.config.js",
+    "lint": "node_modules/.bin/tslint -p tsconfig.json"
   },
   "jest": {
     "globals": {

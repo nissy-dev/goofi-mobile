@@ -10,6 +10,9 @@ $ yarn
 
 // start server
 $ yarn start
+
+// lint
+$ yarn lint
 ```
 
 ## Technical Infomation
@@ -30,6 +33,10 @@ $ yarn start
 
   - Atomic Design
   - styled-component
+
+- Test
+
+  - Jest
 
 - Code Formatter
 
