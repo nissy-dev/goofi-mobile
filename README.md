@@ -40,4 +40,5 @@ $ yarn lint
 
 - Code Formatter
 
+  - tslint
   - prettier
