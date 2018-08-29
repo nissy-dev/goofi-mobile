@@ -45,4 +45,4 @@ $ yarn lint
 
 **CI**
 
-- Travis CI (WIP)
+- Circle CI
