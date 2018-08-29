@@ -17,28 +17,25 @@ $ yarn lint
 
 ## Technical Infomation
 
-- Type Checking
+`Type Checking`
+- Typescript
 
-  - Typescript
+`Client`
+- Apollo
 
-- Client
+`Server`
+ - GraphQL (Github API)
 
-  - Apollo
+`Design`
+- Atomic Design
+- styled-component
 
-- Server
+`Test`
+- Jest
 
-  - GraphQL (Github API)
+`Code Formatter`
+- tslint
+- prettier
 
-- Design
-
-  - Atomic Design
-  - styled-component
-
-- Test
-
-  - Jest
-
-- Code Formatter
-
-  - tslint
-  - prettier
+`CI`
+- Travis CI (WIP)
