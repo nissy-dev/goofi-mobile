@@ -2,7 +2,7 @@
 
 Let's contribute OSS!!
 
-# Introduction
+## Introduction
 
 ```
 // instal package
@@ -17,28 +17,32 @@ $ yarn lint
 
 ## Technical Infomation
 
-- Type Checking
+**Type Checking**
 
-  - Typescript
+- Typescript
 
-- Client
+**Client**
 
-  - Apollo
+- Apollo
 
-- Server
+**Server**
 
-  - GraphQL (Github API)
+- GraphQL (Github API)
 
-- Design
+**Design**
 
-  - Atomic Design
-  - styled-component
+- Atomic Design
+- styled-component
 
-- Test
+**Test**
 
-  - Jest
+- Jest
 
-- Code Formatter
+**Code Formatter**
 
-  - tslint
-  - prettier
+- tslint
+- prettier
+
+**CI**
+
+- Travis CI (WIP)
