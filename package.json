@@ -64,7 +64,7 @@
     ],
     "preset": "jest-expo",
     "testMatch": [
-      "**/tests/**/*.[tj]s?(x)",
+      "**/test/**/*.[tj]s?(x)",
       "**/?(*.)(spec|test).[tj]s?(x)"
     ],
     "transform": {
