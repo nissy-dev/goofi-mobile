@@ -7,7 +7,7 @@ declare module "ex-react-native-i18n" {
   var locale: string;
   function initAsync(): any;
   function currentLocale(): string;
-  function t(key: "greeting"): string;
+  function t(key: "favorite"): string;
 }
 
 declare module "*.json" {
