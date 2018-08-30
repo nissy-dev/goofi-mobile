@@ -8,6 +8,9 @@ declare module "ex-react-native-i18n" {
   function initAsync(): any;
   function currentLocale(): string;
   function t(key: "favorite"): string;
+  function t(key: "js"): string;
+  function t(key: "py"): string;
+  function t(key: "ruby"): string;
 }
 
 declare module "*.json" {

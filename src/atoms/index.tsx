@@ -1,2 +1,5 @@
+export * from './headings'
 export * from './icons'
 export { default as Container } from './Container'
+export { default as InputBox } from './InputBox'
+export { default as TouchableView } from './TouchableView'

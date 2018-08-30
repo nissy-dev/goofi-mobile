@@ -1,2 +1,3 @@
-export { default as StarIcon } from './StarIcon'
-export { default as SearchIcon } from './SearchIcon'
+export { default as CloseIcon } from './Close'
+export { default as StarIcon } from './Star'
+export { default as SearchIcon } from './Search'

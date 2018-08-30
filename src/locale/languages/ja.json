@@ -1,3 +1,6 @@
 {
-  "greeting": "こんにちは"
+  "favorite": "お気に入り",
+  "js": "javascript",
+  "py": "python",
+  "ruby": "ruby"
 }

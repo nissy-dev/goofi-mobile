@@ -1,8 +1,8 @@
 import styled from 'styled-components/native'
 
-const Container = styled.View`
+const TouchableView = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `
 
-export default Container
+export default TouchableView

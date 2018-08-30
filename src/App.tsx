@@ -1,12 +1,13 @@
 import * as React from 'react'
+import { Font } from 'expo'
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
 import { createBottomTabNavigator } from 'react-navigation'
-import { SearchIcon, StarIcon } from './atoms'
-import { TestA, TestB } from './pages'
+import { SearchIcon, StarIcon, H1 } from './atoms'
+import { SearchPage, FavoritePage } from './pages'
 import I18n from './locale'
 
 const httpLink = createHttpLink({
@@ -29,8 +30,8 @@ const client = new ApolloClient({
 
 const Root = createBottomTabNavigator(
   {
-    search: TestA,
-    favorite: TestB
+    search: SearchPage,
+    favorite: FavoritePage
   },
   {
     initialRouteName: 'search',
@@ -48,7 +49,7 @@ const Root = createBottomTabNavigator(
       }
     }),
     tabBarOptions: {
-      activeTintColor: '#e91e63'
+      activeTintColor: '#2ecc71'
     }
   }
 )
@@ -65,13 +66,18 @@ export default class App extends React.Component<{}, State> {
     }
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     this.loadAssetsAsync()
   }
 
   loadAssetsAsync = async () => {
     try {
       await I18n.initAsync()
+      await Font.loadAsync({
+        regular: require('../assets/fonts/Comfortaa-Regular.ttf'),
+        light: require('../assets/fonts/Comfortaa-Light.ttf'),
+        bold: require('../assets/fonts/Comfortaa-Bold.ttf')
+      })
     } finally {
       this.setState({ isAssetsLoaded: true })
     }
@@ -81,7 +87,7 @@ export default class App extends React.Component<{}, State> {
     // Fix必要
     return (
       <ApolloProvider client={client}>
-        {this.state.isAssetsLoaded ? <Root /> : <Root />}
+        {this.state.isAssetsLoaded ? <Root /> : <H1>{'Text'}</H1>}
       </ApolloProvider>
     )
   }
