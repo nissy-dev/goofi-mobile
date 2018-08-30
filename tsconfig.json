@@ -15,6 +15,6 @@
     "noImplicitReturns": true
   },
   "filesGlob": [
-    "types/i18n/*.d.ts",
+    "types/**/*.d.ts",
   ],
 }

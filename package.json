@@ -22,7 +22,6 @@
     "file-loader": "^1.1.7",
     "jest-expo": "~27.0.0",
     "prettier": "^1.13.7",
-    "react-native-i18n-ts": "^0.1.1",
     "react-native-scripts": "latest",
     "react-native-scripts-ts": "1.15.0",
     "react-native-typescript-transformer": "^1.2.3",
@@ -72,10 +71,6 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
-  },
-  "react-native-i18n-ts": {
-    "model": "./src/locale/languages/ja.json",
-    "outputDir": "./types/i18n"
   },
   "dependencies": {
     "apollo-boost": "^0.1.10",

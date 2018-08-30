@@ -2571,10 +2571,6 @@ commander@^2.12.1, commander@^2.9.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.16.0.tgz#f16390593996ceb4f3eeb020b31d78528f7f8a50"
 
-commander@^2.15.1:
-  version "2.17.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
-
 commander@~2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
@@ -7600,14 +7596,6 @@ react-native-gesture-handler@1.0.0-alpha.41:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
-react-native-i18n-ts@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-i18n-ts/-/react-native-i18n-ts-0.1.1.tgz#9bc522c71dcabf31167910bb37bc61984f9a4a65"
-  dependencies:
-    commander "^2.15.1"
-    mkdirp "^0.5.1"
-    typescript "^2.7.2"
-
 react-native-maps@0.21.0:
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.21.0.tgz#005f58e93d7623ad59667e8002101970ddf235c2"
@@ -9328,7 +9316,7 @@ typescript-eslint-parser@^16.0.1:
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
-typescript@^2.7.2, typescript@^2.8.3:
+typescript@^2.8.3:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
 
