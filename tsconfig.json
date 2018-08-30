@@ -13,5 +13,8 @@
     "importHelpers": true,
     "strict": true,
     "noImplicitReturns": true
-  }
+  },
+  "filesGlob": [
+    "types/i18n/*.d.ts",
+  ],
 }
