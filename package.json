@@ -42,6 +42,7 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry-web.js",
   "scripts": {
+    "bootstrap": "rm -rf node_module && yarn",
     "start": "react-native-scripts-ts start",
     "eject": "react-native-scripts-ts eject",
     "android": "react-native-scripts-ts android",
