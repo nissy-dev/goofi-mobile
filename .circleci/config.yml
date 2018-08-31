@@ -18,10 +18,6 @@ jobs:
 
       - run: yarn install
 
-      - run:
-          name: expo login
-          command: ./node_modules/.bin/exp login -u "$EXPO_ACCOUNT" -p "$EXPO_PASSWORD"
-
       - save_cache:
           paths:
             - node_modules
@@ -36,8 +32,25 @@ jobs:
           name: TSLint
           command: yarn lint
 
-deployment:
-  master_merge:
-    branch: ["master"]
-    commands:
-      - ./node_modules/.bin/exp publish
+  deploy:
+    steps:
+      - checkout
+      - run:
+          name: expo login
+          command: ./node_modules/.bin/exp login -u "$EXPO_ACCOUNT" -p "$EXPO_PASSWORD"
+      - run: 
+          name: expo publish
+          command: ./node_modules/.bin/exp publish
+
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - build
+      - deploy
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - /master/
