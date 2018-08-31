@@ -1,6 +1,7 @@
 {
   "favorite": "favorite",
-  "js": "javascript",
-  "py": "python",
-  "ruby": "ruby"
+  "js": "Javascript",
+  "py": "Python",
+  "ruby": "Ruby",
+  "rust": "Rust"
 }

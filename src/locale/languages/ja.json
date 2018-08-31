@@ -1,6 +1,7 @@
 {
   "favorite": "お気に入り",
-  "js": "javascript",
-  "py": "python",
-  "ruby": "ruby"
+  "js": "Javascript",
+  "py": "Python",
+  "ruby": "Ruby",
+  "rust": "Rust"
 }
