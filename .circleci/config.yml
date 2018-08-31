@@ -52,7 +52,7 @@ workflows:
       - general
       - deploy
           requires:
-            - build
+            - general
           filters:
             branches:
               only:
