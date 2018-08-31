@@ -1,11 +1,13 @@
-version: 2
-jobs:
-  build:
-    docker:
+job_base: &job_base
+  docker:
       - image: circleci/node:8.11.3
 
-    working_directory: ~/repo
+  working_directory: ~/repo
 
+version: 2
+jobs:
+  general:
+    <<: *job_base
     steps:
       - checkout
 
@@ -33,6 +35,7 @@ jobs:
           command: yarn lint
 
   deploy:
+    <<: *job_base
     steps:
       - checkout
       - run:
@@ -46,7 +49,7 @@ workflows:
   version: 2
   build_deploy:
     jobs:
-      - build
+      - general
       - deploy
           requires:
             - build
