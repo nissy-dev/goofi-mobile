@@ -12,7 +12,7 @@ import {
 } from '../atoms'
 import pickerItems from '../utils/createPickerItems'
 
-const LanguageWord = styled(H2)`
+const LanguageWord = styled<{ selected: boolean; color: string }>(H2)`
   ${props =>
     props.selected
       ? `
@@ -28,7 +28,12 @@ const SelectLanguageArea = styled(Container)`
   padding-horizontal: 10;
 `
 
-const LanguageButton = styled(TouchableView)`
+interface LanguageButtonProps {
+  selected: boolean
+  onPress: () => void
+}
+
+const LanguageButton = styled<LanguageButtonProps>(TouchableView)`
   margin-vertical: 5;
   margin-horizontal: 5;
   padding-horizontal: 20;
