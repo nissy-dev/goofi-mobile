@@ -12,14 +12,47 @@ import {
 } from '../atoms'
 import pickerItems from '../utils/createPickerItems'
 
+const LanguageWord = styled(H2)`
+  ${props =>
+    props.selected
+      ? `
+          font-weight: bold;
+        `
+      : ''};
+`
+
+const SelectLanguageArea = styled(Container)`
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-horizontal: 10;
+`
+
+const LanguageButton = styled(TouchableView)`
+  margin-vertical: 5;
+  margin-horizontal: 5;
+  padding-horizontal: 20;
+  padding-vertical: 5;
+  border-radius: 10;
+  border-color: #ffffff;
+  border-width: 1;
+  ${props =>
+    props.selected
+      ? `
+           background-color: #7fc89d;
+           border-width: 0;
+        `
+      : ''};
+`
+
 const ShowQueryArea = styled(Container)`
   flex-direction: row;
   padding-horizontal: 10;
 `
 
 const QueryWord = styled(H2)`
-  margin-horizontal: 10;
-  padding-horizontal: 20;
+  margin-horizontal: 5;
+  padding-horizontal: 10;
   padding-vertical: 5;
   border-radius: 10;
   border-color: #ffffff;
@@ -28,11 +61,15 @@ const QueryWord = styled(H2)`
 
 const SearchButton = styled(TouchableView)`
   margin-left: auto;
+  padding-vertical: 10;
+  padding-horizontal: 10;
 `
 
 const KeyWordBox = styled(InputBox)`
   height: 30;
   padding-horizontal: 10;
+  opacity: 0.5;
+  background-color: #ffffff;
 `
 
 const ItemTitle = styled(H2)`
@@ -48,8 +85,9 @@ const ModalCloseButton = styled(TouchableView)`
 
 const SearchBar = styled(Container)`
   flex-direction: row;
-  padding-top: 10;
-  padding-horizontal: 30;
+  padding-top: 15;
+  padding-left: 15;
+  padding-right: 20;
   width: 100%;
   height: 80;
   background-color: #2ecc71;
@@ -60,7 +98,7 @@ const StyledModal = styled(Modal)`
   flex-direction: column;
   justify-content: flex-start;
   margin-top: 80;
-  margin-bottom: 100;
+  margin-bottom: 270;
   padding-horizontal: 30
   padding-vertical: 30
   border-radius: 30;
@@ -93,7 +131,7 @@ export default class SearchPage extends React.Component<{}, State> {
     this.setState({ modalVisible: visible })
   }
 
-  setPickerValue(value: string): void {
+  setLanguageValue(value: string): void {
     this.setState({ language: value })
   }
 
@@ -138,25 +176,26 @@ export default class SearchPage extends React.Component<{}, State> {
           <ItemTitle style={styles.font} color={'#ffffff'}>
             {'Select Language'}
           </ItemTitle>
-          <Picker
-            selectedValue={this.state.language}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setPickerValue(itemValue)
-            }
-          >
+          <SelectLanguageArea>
             {pickerItems.map(val => {
               // 要リファクタ
               const key = Object.keys(val)[0]
               return (
-                <Picker.Item
-                  color={'#ffffff'}
+                <LanguageButton
+                  selected={val[key] === this.state.language}
+                  onPress={() => this.setLanguageValue(val[key])}
                   key={`item-${key}`}
-                  label={val[key]}
-                  value={val[key]}
-                />
+                >
+                  <LanguageWord
+                    selected={val[key] === this.state.language}
+                    color={'#ffffff'}
+                  >
+                    {val[key]}
+                  </LanguageWord>
+                </LanguageButton>
               )
             })}
-          </Picker>
+          </SelectLanguageArea>
           <ItemTitle style={styles.font} color={'#ffffff'}>
             {'Input Keyword'}
           </ItemTitle>

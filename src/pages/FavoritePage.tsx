@@ -5,9 +5,9 @@ import { Container, H1 } from '../atoms'
 import I18n from '../locale'
 
 const Header = styled(Container)`
-  padding-top: 10;
+  padding-top: 30;
   width: 100%;
-  height: 65;
+  height: 80;
   background-color: #2ecc71;
 `
 
