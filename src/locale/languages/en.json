@@ -3,5 +3,7 @@
   "js": "Javascript",
   "py": "Python",
   "ruby": "Ruby",
-  "rust": "Rust"
+  "rust": "Rust",
+  "selectLanguage": "Select Language",
+  "keywordForm": "Input Keyword"
 }

@@ -12,6 +12,8 @@ declare module "ex-react-native-i18n" {
   function t(key: "py"): string;
   function t(key: "ruby"): string;
   function t(key: "rust"): string;
+  function t(key: "selectLanguage"): string;
+  function t(key: "keywordForm"): string;
 }
 
 declare module "*.json" {
