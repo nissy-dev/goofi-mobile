@@ -1,2 +1,2 @@
-export { default as TestA } from './TestA'
-export { default as TestB } from './TestB'
+export { default as SearchPage } from './SearchPage'
+export { default as FavoritePage } from './FavoritePage'

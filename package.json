@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@types/expo__vector-icons": "^6.2.3",
     "@types/jest": "^22.2.3",
     "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.6",
@@ -64,7 +65,7 @@
     ],
     "preset": "jest-expo",
     "testMatch": [
-      "**/tests/**/*.[tj]s?(x)",
+      "**/test/**/*.[tj]s?(x)",
       "**/?(*.)(spec|test).[tj]s?(x)"
     ],
     "transform": {
@@ -77,14 +78,17 @@
     "apollo-client": "^2.3.5",
     "apollo-link-context": "^1.0.8",
     "apollo-link-http": "^1.5.4",
+    "ex-react-native-i18n": "^0.0.4",
     "expo": "^27.0.1",
     "expo-web": "^0.0.12",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
+    "lodash": "^4.17.10",
     "react": "16.3.1",
     "react-apollo": "^2.1.8",
     "react-dom": "16.0.0",
     "react-native": "~0.55.2",
+    "react-native-modal": "^6.5.0",
     "react-native-web": "^0.4.0",
     "react-navigation": "^2.6.0",
     "styled-components": "^3.3.3",

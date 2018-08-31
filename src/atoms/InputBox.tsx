@@ -1,8 +1,9 @@
 import styled from 'styled-components/native'
 
-const Container = styled.View`
+const InputBox = styled.TextInput`
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
 `
 
-export default Container
+export default InputBox
