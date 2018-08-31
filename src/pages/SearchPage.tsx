@@ -117,6 +117,7 @@ interface State {
   keyword: string
 }
 
+// 要リファクタ
 export default class SearchPage extends React.Component<{}, State> {
   constructor(props: any) {
     super(props)
