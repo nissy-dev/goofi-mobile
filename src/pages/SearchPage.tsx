@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Picker, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import Modal from 'react-native-modal'
 import styled from 'styled-components/native'
 import {
@@ -10,7 +10,9 @@ import {
   TouchableView,
   H2
 } from '../atoms'
-import pickerItems from '../utils/createPickerItems'
+import selectItems from '../utils/createSelectItems'
+import I18n from '../locale'
+import { ListViewGQLWrapper } from '../molecules/ListView'
 
 const LanguageWord = styled<{ selected: boolean; color: string }>(H2)`
   ${props =>
@@ -52,6 +54,7 @@ const LanguageButton = styled<LanguageButtonProps>(TouchableView)`
 
 const ShowQueryArea = styled(Container)`
   flex-direction: row;
+  justify-content: flex-start;
   padding-horizontal: 10;
 `
 
@@ -88,7 +91,11 @@ const ModalCloseButton = styled(TouchableView)`
   border-color: #ffffff;
 `
 
-const SearchBar = styled(Container)`
+const SearchPageContainer = styled(Container)`
+  background-color: #f5f5f5;
+`
+
+const SearchBar = styled(View)`
   flex-direction: row;
   padding-top: 15;
   padding-left: 15;
@@ -122,13 +129,12 @@ interface State {
   keyword: string
 }
 
-// 要リファクタ
 export default class SearchPage extends React.Component<{}, State> {
   constructor(props: any) {
     super(props)
     this.state = {
       modalVisible: false,
-      language: '',
+      language: 'Javascript',
       keyword: ''
     }
   }
@@ -146,8 +152,9 @@ export default class SearchPage extends React.Component<{}, State> {
   }
 
   render() {
+    const { language, keyword } = this.state
     return (
-      <Container>
+      <SearchPageContainer>
         <SearchBar>
           <ShowQueryArea>
             {this.state.language && (
@@ -169,6 +176,7 @@ export default class SearchPage extends React.Component<{}, State> {
             <SearchIcon size={20} color={'#ffffff'} />
           </SearchButton>
         </SearchBar>
+        <ListViewGQLWrapper keyword={keyword} language={language} />
         <StyledModal
           animationIn={'slideInDown'}
           animationOut={'slideOutUp'}
@@ -180,22 +188,20 @@ export default class SearchPage extends React.Component<{}, State> {
           }}
         >
           <ItemTitle style={styles.font} color={'#ffffff'}>
-            {'Select Language'}
+            {I18n.t('selectLanguage')}
           </ItemTitle>
           <SelectLanguageArea>
-            {pickerItems.map(val => {
+            {selectItems.map(val => {
               // 要リファクタ
               const key = Object.keys(val)[0]
+              const isSelected = val[key] === this.state.language
               return (
                 <LanguageButton
-                  selected={val[key] === this.state.language}
+                  selected={isSelected}
                   onPress={() => this.setLanguageValue(val[key])}
                   key={`item-${key}`}
                 >
-                  <LanguageWord
-                    selected={val[key] === this.state.language}
-                    color={'#ffffff'}
-                  >
+                  <LanguageWord selected={isSelected} color={'#ffffff'}>
                     {val[key]}
                   </LanguageWord>
                 </LanguageButton>
@@ -203,10 +209,9 @@ export default class SearchPage extends React.Component<{}, State> {
             })}
           </SelectLanguageArea>
           <ItemTitle style={styles.font} color={'#ffffff'}>
-            {'Input Keyword'}
+            {I18n.t('keywordForm')}
           </ItemTitle>
           <KeyWordBox
-            style={styles.font}
             onChangeText={(text: string) => this.setKeyword(text)}
             value={this.state.keyword}
           />
@@ -218,7 +223,7 @@ export default class SearchPage extends React.Component<{}, State> {
             <ArrowUpIcon color={'#ffffff'} size={40} />
           </ModalCloseButton>
         </StyledModal>
-      </Container>
+      </SearchPageContainer>
     )
   }
 }

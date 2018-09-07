@@ -1,9 +1,8 @@
 import styled from 'styled-components/native'
 
-const Container = styled.View`
-  flex: 1;
+const Image = styled.Image`
   justify-content: center;
   align-items: center;
 `
 
-export default Container
+export default Image

@@ -1,10 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
-import { StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { Container, H1 } from '../atoms'
 import I18n from '../locale'
 
-const Header = styled(Container)`
+const Header = styled(View)`
+  flex-direction: column;
+  align-items: center;
   padding-top: 30;
   width: 100%;
   height: 80;
@@ -18,7 +20,11 @@ const styles = StyleSheet.create({
   }
 })
 
-export default class FavoritePage extends React.Component<{}> {
+interface Props {
+  data: any
+}
+
+export default class FavoritePage extends React.Component<Props, {}> {
   render() {
     return (
       <Container>
@@ -27,6 +33,7 @@ export default class FavoritePage extends React.Component<{}> {
             {I18n.t('favorite')}
           </H1>
         </Header>
+        <Container />
       </Container>
     )
   }

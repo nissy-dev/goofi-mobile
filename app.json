@@ -1,6 +1,7 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
+    "orientation": "portrait",
     "packagerOpts": {
       "sourceExts": ["ts", "tsx"],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"

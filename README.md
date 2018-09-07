@@ -17,6 +17,10 @@ $ yarn lint
 
 ## Technical Infomation
 
+**Main Framework**
+
+- Expo(React Native)
+
 **Type Checking**
 
 - Typescript

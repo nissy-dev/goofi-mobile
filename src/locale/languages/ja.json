@@ -3,5 +3,7 @@
   "js": "Javascript",
   "py": "Python",
   "ruby": "Ruby",
-  "rust": "Rust"
+  "rust": "Rust",
+  "selectLanguage": "言語を選択してください",
+  "keywordForm": "キーワードを入れてください"
 }
