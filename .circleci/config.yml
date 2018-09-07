@@ -59,6 +59,10 @@ jobs:
           command: ./node_modules/.bin/exp login -u "$EXPO_ACCOUNT" -p "$EXPO_PASSWORD"
 
       - run:
+          name: create .env
+          command: echo API_TOKEN=$API_TOKEN >> .env
+
+      - run:
           name: expo publish
           command: ./node_modules/.bin/exp publish
 
