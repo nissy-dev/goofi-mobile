@@ -6,7 +6,7 @@ import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
 import { createBottomTabNavigator } from 'react-navigation'
-import { SearchIcon, StarIcon, H1 } from './atoms'
+import { SearchIcon, StarOIcon } from './atoms'
 import { SearchPage, FavoritePage } from './pages'
 import I18n from './locale'
 
@@ -44,7 +44,7 @@ const Root = createBottomTabNavigator(
         return routeName === 'search' ? (
           <SearchIcon size={iconSize} color={color} />
         ) : (
-          <StarIcon size={iconSize} color={color} />
+          <StarOIcon size={iconSize} color={color} />
         )
       }
     }),
@@ -84,10 +84,10 @@ export default class App extends React.Component<{}, State> {
   }
 
   render() {
-    // Fix必要
+    const { isAssetsLoaded } = this.state
     return (
       <ApolloProvider client={client}>
-        {this.state.isAssetsLoaded ? <Root /> : <H1>{'Text'}</H1>}
+        {isAssetsLoaded ? <Root /> : ''}
       </ApolloProvider>
     )
   }

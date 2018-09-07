@@ -42,26 +42,16 @@ export type Repository = {
 }
 
 export type Response = {
-  organization: {
-    repositories: Repository
-  }
-}
-
-export type InputProps = {
-  language: string
+  search: Repository
 }
 
 export type Variables = {
-  language: string
+  query: string
 }
 
-export const query = gql`
-  query($language: string) {
-    search(
-      first: 10
-      query: "language: $language good-first-issues:>1 stars:>500"
-      type: REPOSITORY
-    ) {
+export const GOOFI_QUERY = gql`
+  query($query: String!) {
+    search(first: 30, query: $query, type: REPOSITORY) {
       repositoryCount
       pageInfo {
         startCursor

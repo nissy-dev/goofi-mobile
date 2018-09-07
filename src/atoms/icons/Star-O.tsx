@@ -6,6 +6,6 @@ interface Props {
   color: string
 }
 
-const StarIcon = (props: Props) => <FontAwesome name="star" {...props} />
+const StarIcon = (props: Props) => <FontAwesome name="star-o" {...props} />
 
 export default StarIcon
