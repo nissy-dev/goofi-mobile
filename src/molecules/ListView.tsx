@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import styled from 'styled-components/native'
 import { Query } from 'react-apollo'
-import { Container, H2, Image, StarIcon, TouchableView } from '../atoms'
+import { Container, H2, Image, StarIcon } from '../atoms'
 import { GOOFI_QUERY, Response, Variables, RepositoryNode } from '../query'
 
 const styles = StyleSheet.create({
@@ -89,23 +89,29 @@ export const ListViewGQLWrapper: React.SFC<ListViewProps> = props => {
             </Container>
           )
         }
-        if (error) return <H2>{'Error'}</H2>
-        if (!data) return <H2>{'No Data'}</H2>
+        if (error) {
+          return (
+            <Container>
+              <H2>{error.networkError && 'Network Error'}</H2>
+              <H2>{error.graphQLErrors.length !== 0 && 'GraphQL Error'}</H2>
+            </Container>
+          )
+        }
 
-        const { search } = data
         return (
           <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
-            {search && search.nodes && search.nodes.length !== 0
-              ? search.nodes.map((val: RepositoryNode) => (
+            {data &&
+            data.search &&
+            data.search.nodes &&
+            data.search.nodes.length !== 0
+              ? data.search.nodes.map((val: RepositoryNode) => (
                   <Card key={`card-${val.id}`}>
                     <CardImage
                       source={{ uri: val.owner.avatarUrl }}
                       style={{ width: 100, height: 100 }}
                     />
                     <Content>
-                      <Subtitle style={styles.boldFont}>
-                        {`${val.owner.login} / ${val.name}`}
-                      </Subtitle>
+                      <Subtitle style={styles.boldFont}>{val.name}</Subtitle>
                       <StarLabel style={styles.font}>
                         <StarIcon color={'#FFDF00'} size={15} />
                         {`  ${val.stargazers.totalCount}`}
