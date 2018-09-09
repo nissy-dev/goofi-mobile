@@ -5,5 +5,8 @@
   "ruby": "Ruby",
   "rust": "Rust",
   "selectLanguage": "言語を選択してください",
-  "keywordForm": "キーワードを入れてください"
+  "networkError": "Network環境にエラーがあります",
+  "graphqlError": "GraphQLのクエリにエラーがあります",
+  "keywordForm": "キーワードを入れてください",
+  "issueListPageTitle": "issues"
 }

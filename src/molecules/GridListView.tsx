@@ -34,9 +34,10 @@ const Card = styled(TouchableOpacity)`
   padding-vertical: 10;
   padding-horizontal: 10;
   width: 157;
-  height: 270;
+  height: 250;
   border-radius: 5;
   background-color: #ffffff;
+  box-shadow: 0 2px 3px #ccc;
 `
 
 const CardImage = styled(Image)`
@@ -45,11 +46,14 @@ const CardImage = styled(Image)`
 `
 
 const IssueLabel = styled(View)`
+  position: relative;
   width: 70%;
   height: 30;
   justify-content: center;
   align-items: center;
   border-radius: 10;
+  margin-top: auto;
+  margin-bottom: 10;
   background-color: #2ecc71;
 `
 
@@ -69,18 +73,19 @@ const Subtitle = styled(H2)`
   font-size: 18;
 `
 
-class ListViewQuery extends Query<Response, Variables> {}
+class GridListViewQuery extends Query<Response, Variables> {}
 
-interface ListViewProps {
+interface GridListViewProps {
   language: string
   keyword: string
+  navigate: any
 }
 
-export const ListViewGQLWrapper: React.SFC<ListViewProps> = props => {
-  const { language, keyword } = props
+export const GridListViewGQLWrapper: React.SFC<GridListViewProps> = props => {
+  const { language, keyword, navigate } = props
   const query = `${keyword} language:${language} good-first-issues:>1 stars:>500`
   return (
-    <ListViewQuery query={GOOFI_QUERY} variables={{ query }}>
+    <GridListViewQuery query={GOOFI_QUERY} variables={{ query }}>
       {({ loading, data, error }) => {
         if (loading) {
           return (
@@ -98,6 +103,8 @@ export const ListViewGQLWrapper: React.SFC<ListViewProps> = props => {
           )
         }
 
+        // null処理はutilsでやらせる, issueなしの表示切り替えを含めて
+        // FlatListでリファクタ
         return (
           <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
             {data &&
@@ -105,7 +112,12 @@ export const ListViewGQLWrapper: React.SFC<ListViewProps> = props => {
             data.search.nodes &&
             data.search.nodes.length !== 0
               ? data.search.nodes.map((val: RepositoryNode) => (
-                  <Card key={`card-${val.id}`}>
+                  <Card
+                    onPress={() =>
+                      navigate('issueList', { issues: val.issues })
+                    }
+                    key={`card-${val.id}`}
+                  >
                     <CardImage
                       source={{ uri: val.owner.avatarUrl }}
                       style={{ width: 100, height: 100 }}
@@ -128,6 +140,6 @@ export const ListViewGQLWrapper: React.SFC<ListViewProps> = props => {
           </ScrollView>
         )
       }}
-    </ListViewQuery>
+    </GridListViewQuery>
   )
 }
