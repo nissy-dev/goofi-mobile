@@ -170,7 +170,7 @@ export default class IssueListPage extends React.Component<Props, State> {
           animationOut={'slideOutUp'}
           backdropOpacity={0.7}
           isVisible={this.state.modalVisible}
-          swipeDirection={'up'}
+          swipeDirection={'right'}
           onSwipe={() => {
             this.setModalVisible(!this.state.modalVisible)
           }}
