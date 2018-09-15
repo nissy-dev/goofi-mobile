@@ -5,5 +5,9 @@
   "ruby": "Ruby",
   "rust": "Rust",
   "selectLanguage": "Select Language",
-  "keywordForm": "Input Keyword"
+  "networkError": "Network Error",
+  "graphqlError": "GraphQL Query Error",
+  "keywordForm": "Input Keyword",
+  "issueListPageTitle": "issues",
+  "issueSubTitle": "recent issues"
 }

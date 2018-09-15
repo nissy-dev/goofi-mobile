@@ -12,7 +12,7 @@ import {
 } from '../atoms'
 import selectItems from '../utils/createSelectItems'
 import I18n from '../locale'
-import { ListViewGQLWrapper } from '../molecules/ListView'
+import { GridListViewGQLWrapper } from '../molecules/GridListView'
 
 const LanguageWord = styled<{ selected: boolean; color: string }>(H2)`
   ${props =>
@@ -123,13 +123,19 @@ const styles = StyleSheet.create({
   }
 })
 
+interface Props {
+  navigation: {
+    navigate: any
+  }
+}
+
 interface State {
   modalVisible: boolean
   language: string
   keyword: string
 }
 
-export default class SearchPage extends React.Component<{}, State> {
+export default class SearchPage extends React.Component<Props, State> {
   constructor(props: any) {
     super(props)
     this.state = {
@@ -152,6 +158,7 @@ export default class SearchPage extends React.Component<{}, State> {
   }
 
   render() {
+    const { navigate } = this.props.navigation
     const { language, keyword } = this.state
     return (
       <SearchPageContainer>
@@ -176,7 +183,11 @@ export default class SearchPage extends React.Component<{}, State> {
             <SearchIcon size={20} color={'#ffffff'} />
           </SearchButton>
         </SearchBar>
-        <ListViewGQLWrapper keyword={keyword} language={language} />
+        <GridListViewGQLWrapper
+          navigate={navigate}
+          keyword={keyword}
+          language={language}
+        />
         <StyledModal
           animationIn={'slideInDown'}
           animationOut={'slideOutUp'}

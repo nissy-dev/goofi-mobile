@@ -5,9 +5,12 @@ import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
-import { createBottomTabNavigator } from 'react-navigation'
+import {
+  createBottomTabNavigator,
+  createStackNavigator
+} from 'react-navigation'
 import { SearchIcon, StarOIcon } from './atoms'
-import { SearchPage, FavoritePage } from './pages'
+import { SearchPage, FavoritePage, IssueListPage } from './pages'
 import I18n from './locale'
 
 const httpLink = createHttpLink({
@@ -30,7 +33,19 @@ const client = new ApolloClient({
 
 const Root = createBottomTabNavigator(
   {
-    search: SearchPage,
+    search: createStackNavigator(
+      {
+        repoList: SearchPage,
+        issueList: IssueListPage
+      },
+      {
+        initialRouteName: 'repoList',
+        navigationOptions: {
+          header: null,
+          gesturesEnabled: false
+        }
+      }
+    ),
     favorite: FavoritePage
   },
   {

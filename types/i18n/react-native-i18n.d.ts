@@ -14,6 +14,10 @@ declare module "ex-react-native-i18n" {
   function t(key: "rust"): string;
   function t(key: "selectLanguage"): string;
   function t(key: "keywordForm"): string;
+  function t(key: "networkError"): string;
+  function t(key: "graphqlError"): string;
+  function t(key: "issueListPageTitle"): string;
+  function t(key: "issueSubTitle"): string;
 }
 
 declare module "*.json" {
