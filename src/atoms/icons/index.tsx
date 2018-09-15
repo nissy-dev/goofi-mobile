@@ -1,3 +1,5 @@
+export { default as ArrowBackIcon } from './ArrowBack'
+export { default as ArrowForwardIcon } from './ArrowForward'
 export { default as ArrowUpIcon } from './ArrowUp'
 export { default as CloseIcon } from './Close'
 export { default as StarIcon } from './Star'

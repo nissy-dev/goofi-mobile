@@ -41,7 +41,8 @@ const Root = createBottomTabNavigator(
       {
         initialRouteName: 'repoList',
         navigationOptions: {
-          header: null
+          header: null,
+          gesturesEnabled: false
         }
       }
     ),

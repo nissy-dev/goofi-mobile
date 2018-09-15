@@ -10,6 +10,7 @@ import styled from 'styled-components/native'
 import { Query } from 'react-apollo'
 import { Container, H2, Image, StarIcon } from '../atoms'
 import { GOOFI_QUERY, Response, Variables, RepositoryNode } from '../query'
+import I18n from '../locale'
 
 const styles = StyleSheet.create({
   listViewContainerStyle: {
@@ -97,8 +98,10 @@ export const GridListViewGQLWrapper: React.SFC<GridListViewProps> = props => {
         if (error) {
           return (
             <Container>
-              <H2>{error.networkError && 'Network Error'}</H2>
-              <H2>{error.graphQLErrors.length !== 0 && 'GraphQL Error'}</H2>
+              <H2>{error.networkError && I18n.t('networkError')}</H2>
+              <H2>
+                {error.graphQLErrors.length !== 0 && I18n.t('graphqlError')}
+              </H2>
             </Container>
           )
         }
