@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-export type IssueNode = {
+export interface IssueNode {
   title: string
   url: string
   author: {
@@ -9,12 +9,12 @@ export type IssueNode = {
   updatedAt: string
 }
 
-export type Issue = {
+export interface Issue {
   totalCount: number
   nodes: Array<IssueNode>
 }
 
-export type RepositoryNode = {
+export interface RepositoryNode {
   owner: {
     id: string
     avatarUrl: string
@@ -31,7 +31,7 @@ export type RepositoryNode = {
   }
 }
 
-export type Repository = {
+export interface Repository {
   repositoryCount: number
   pageInfo: {
     startCursor: string
@@ -41,11 +41,11 @@ export type Repository = {
   nodes: Array<RepositoryNode>
 }
 
-export type Response = {
+export interface Response {
   search: Repository
 }
 
-export type Variables = {
+export interface Variables {
   query: string
 }
 
