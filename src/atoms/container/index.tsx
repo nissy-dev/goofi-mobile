@@ -8,8 +8,6 @@ interface Props {
 const Container = styled.View<Props>`
   flex: ${props => props.flex};
   flex-direction: ${props => (props.row ? 'row' : 'column')};
-  justify-content: center;
-  align-items: center;
 `
 
 Container.defaultProps = {

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
 import { View, StyleSheet } from 'react-native'
-import { Container, H1 } from '../atoms'
-import I18n from '../locale'
+import { Container, H1 } from '../../atoms'
+import I18n from '../../locale'
 
 const Header = styled(View)`
   flex-direction: column;

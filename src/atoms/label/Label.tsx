@@ -7,6 +7,7 @@ const Label = styled(View)`
   height: 30;
   justify-content: center;
   align-items: center;
+  border-width: 1;
   border-radius: 10;
   border-color: ${WHITE};
 `

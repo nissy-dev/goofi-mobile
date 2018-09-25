@@ -1,9 +1,9 @@
 import styled from 'styled-components/native'
 
 interface Props {
-  bold: boolean
-  color: string
-  size: number
+  bold?: boolean
+  color?: string
+  size?: number
 }
 
 const Heading = styled.Text<Props>`

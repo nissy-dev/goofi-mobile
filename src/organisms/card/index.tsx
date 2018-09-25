@@ -31,12 +31,12 @@ const RepoTitleBox = styled(View)`
 `
 
 const StarInfoBox = styled(View)`
-  padding-top: 20;
+  margin-top: auto;
   margin-left: auto;
+  padding-bottom: 10;
 `
 
 const IssueInfoBox = styled(View)`
-  margin-top: auto;
   margin-bottom: 10;
 `
 

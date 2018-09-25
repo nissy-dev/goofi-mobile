@@ -1,3 +1,3 @@
-export { default as IssueListPage } from './IssueListPage'
-export { default as FavoritePage } from './FavoritePage'
-export { default as SearchPage } from './SearchPage'
+export { default as IssueListPage } from './issue'
+export { default as FavoritePage } from './favorite'
+export { default as SearchPage } from './search'

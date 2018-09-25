@@ -9,9 +9,9 @@ import {
   Image,
   ArrowBackIcon,
   ArrowForwardIcon
-} from '../atoms'
-import I18n from '../locale'
-import { IssueNode } from '../query'
+} from '../../atoms'
+import I18n from '../../locale'
+import { IssueNode } from '../../query'
 import Modal from 'react-native-modal'
 
 const Header = styled(View)`
