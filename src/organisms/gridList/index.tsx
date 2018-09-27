@@ -9,15 +9,15 @@ interface Props {
 }
 
 export default class GridList extends React.PureComponent<Props> {
-  _keyExtractor = (item: RepositoryNode) => `card-${item.id}`
+  keyExtractor = (item: RepositoryNode) => `card-${item.id}`
 
-  _onPressItem = (item: RepositoryNode) => {
+  onPressCard = (item: RepositoryNode) => {
     const { navigate } = this.props
     navigate('issueList', { issues: item.issues })
   }
 
-  _renderItem = ({ item }: { item: RepositoryNode }) => {
-    return <Card data={item} onPress={() => this._onPressItem(item)} />
+  renderCard = ({ item }: { item: RepositoryNode }) => {
+    return <Card data={item} onPress={() => this.onPressCard(item)} />
   }
 
   render() {
@@ -25,8 +25,8 @@ export default class GridList extends React.PureComponent<Props> {
       <FlatList
         numColumns={2}
         data={this.props.data}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
+        keyExtractor={this.keyExtractor}
+        renderItem={this.renderCard}
       />
     )
   }

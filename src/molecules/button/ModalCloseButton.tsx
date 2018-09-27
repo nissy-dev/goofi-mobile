@@ -1,25 +1,26 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
-import { SearchIcon, TouchableView } from '../../atoms'
+import { ArrowUpIcon, TouchableView } from '../../atoms'
 import { WHITE } from '../../../assets'
 
 const TouchableArea = styled(TouchableView)`
-  justify-content: center;
-  padding-vertical: 10;
-  padding-horizontal: 10;
+  margin-top: 20;
+  border-radius: 20;
+  border-width: 1;
+  border-color: ${WHITE};
 `
 
 interface Props {
   onPress: () => void
 }
 
-const SearchButton = (props: Props) => {
+const ModalCloseButton = (props: Props) => {
   const { onPress } = props
   return (
     <TouchableArea onPress={() => onPress()}>
-      <SearchIcon size={20} color={WHITE} />
+      <ArrowUpIcon color={WHITE} size={40} />
     </TouchableArea>
   )
 }
 
-export default SearchButton
+export default ModalCloseButton

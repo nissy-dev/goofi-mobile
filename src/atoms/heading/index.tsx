@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-interface Props {
+export interface Props {
   bold?: boolean
   color?: string
   size?: number

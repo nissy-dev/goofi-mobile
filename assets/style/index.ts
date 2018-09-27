@@ -13,6 +13,7 @@ export const SHADOW_COLOR = '#ccc'
  * 固有のカラー
  */
 export const STAR_COLOR = '#FFDF00'
+export const SELECTED_COLOR = '#7fc89d'
 
 /**
  * 画面サイズ

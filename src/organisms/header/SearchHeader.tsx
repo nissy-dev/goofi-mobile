@@ -1,9 +1,9 @@
 import * as React from 'react'
-import styled from 'styled-components/native'
 import { View } from 'react-native'
-import { Container, SearchIcon, TouchableView } from '../../atoms'
-import { QueryWord } from '../../molecules'
-import { WHITE, BASE_COLOR } from '../../../assets'
+import styled from 'styled-components/native'
+import { Container } from '../../atoms'
+import { QueryWord, SearchButton } from '../../molecules'
+import { BASE_COLOR } from '../../../assets'
 
 const QueryBox = styled(Container)`
   justify-content: flex-start;
@@ -11,12 +11,8 @@ const QueryBox = styled(Container)`
   margin-right: auto;
 `
 
-const SearchButton = styled(TouchableView)`
-  padding-vertical: 10;
-  padding-horizontal: 10;
-`
-
-const SearchHeaderContainer = styled(Container)`
+const SearchHeaderContainer = styled(View)`
+  flex-direction: row;
   padding-top: 15;
   padding-left: 15;
   padding-right: 20;
@@ -34,14 +30,12 @@ interface Props {
 const SearchHeader = (props: Props) => {
   const { language, keyword, onPressSearchBtn } = props
   return (
-    <SearchHeaderContainer flex={0} row={true}>
+    <SearchHeaderContainer>
       <QueryBox row={true}>
         {keyword && <QueryWord>{keyword}</QueryWord>}
         {language && <QueryWord>{language}</QueryWord>}
       </QueryBox>
-      <SearchButton onPress={onPressSearchBtn}>
-        <SearchIcon size={20} color={WHITE} />
-      </SearchButton>
+      <SearchButton onPress={() => onPressSearchBtn()} />
     </SearchHeaderContainer>
   )
 }

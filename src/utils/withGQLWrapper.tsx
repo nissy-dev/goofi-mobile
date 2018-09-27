@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { ActivityIndicator } from 'react-native'
 import { Query } from 'react-apollo'
-import { Container, H2 } from '../atoms'
+import { Container, Heading } from '../atoms'
 import { GOOFI_QUERY, Response, Variables } from '../query'
+import { GridList, Loading } from '../organisms'
 import I18n from '../locale'
-import { GridList } from '../organisms'
 
 class GridListViewQuery extends Query<Response, Variables> {}
 
@@ -21,19 +20,15 @@ export const GridListViewGQLWrapper: React.SFC<GridListViewProps> = props => {
     <GridListViewQuery query={GOOFI_QUERY} variables={{ query }}>
       {({ loading, data, error }) => {
         if (loading) {
-          return (
-            <Container>
-              <ActivityIndicator size="large" color="#2ecc71" />
-            </Container>
-          )
+          return <Loading />
         }
         if (error) {
           return (
             <Container>
-              <H2>{error.networkError && I18n.t('networkError')}</H2>
-              <H2>
+              <Heading>{error.networkError && I18n.t('networkError')}</Heading>
+              <Heading>
                 {error.graphQLErrors.length !== 0 && I18n.t('graphqlError')}
-              </H2>
+              </Heading>
             </Container>
           )
         }

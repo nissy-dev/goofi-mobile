@@ -1,8 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
-import { View, StyleSheet } from 'react-native'
-import { Container, H1 } from '../../atoms'
+import { View } from 'react-native'
+import { Container, Heading } from '../../atoms'
 import I18n from '../../locale'
+import { WHITE } from '../../../assets'
 
 const Header = styled(View)`
   flex-direction: column;
@@ -13,13 +14,6 @@ const Header = styled(View)`
   background-color: #2ecc71;
 `
 
-// custom fontがstyled-componentではうまく読み込めないので一旦この方法でしのぐ
-const styles = StyleSheet.create({
-  font: {
-    fontFamily: 'regular'
-  }
-})
-
 interface Props {
   data: any
 }
@@ -29,9 +23,9 @@ export default class FavoritePage extends React.Component<Props, {}> {
     return (
       <Container>
         <Header>
-          <H1 style={styles.font} color={'#ffffff'}>
+          <Heading size={18} color={WHITE}>
             {I18n.t('favorite')}
-          </H1>
+          </Heading>
         </Header>
         <Container />
       </Container>

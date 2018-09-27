@@ -1,19 +1,16 @@
 import styled from 'styled-components/native'
 
 export interface Props {
-  flex?: number
   row?: boolean
+  onPress?: () => void
 }
 
-const Container = styled.View<Props>`
-  flex: ${props => props.flex};
+const TouchableView = styled.TouchableOpacity<Props>`
   flex-direction: ${props => (props.row ? 'row' : 'column')};
   align-items: center;
 `
-
-Container.defaultProps = {
-  flex: 1,
+TouchableView.defaultProps = {
   row: false
 }
 
-export default Container
+export default TouchableView
