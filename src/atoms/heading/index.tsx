@@ -7,9 +7,9 @@ export interface Props {
 }
 
 const Heading = styled.Text<Props>`
-  fontFamily: ${props => (props.bold ? 'bold' : 'regular')}
-  color: ${props => props.color}
-  font-size: ${props => props.size}
+  font-family: ${props => (props.bold ? 'bold' : 'regular')};
+  color: ${props => props.color};
+  font-size: ${props => props.size};
 `
 
 Heading.defaultProps = {

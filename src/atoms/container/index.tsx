@@ -6,7 +6,9 @@ export interface Props {
 }
 
 const Container = styled.View<Props>`
-  flex: ${props => props.flex};
+  display: flex;
+  width: 100%;
+  height: 100%;
   flex-direction: ${props => (props.row ? 'row' : 'column')};
   align-items: center;
 `
