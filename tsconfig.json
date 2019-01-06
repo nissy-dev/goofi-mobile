@@ -1,19 +1,21 @@
 {
   "compilerOptions": {
+    "strict": true,
     "target": "es5",
-    "module": "es2015",
+    "module": "commonjs",
     "outDir": "build/dist",
-    "sourceMap": true,
-    "experimentalDecorators": true,
     "jsx": "react-native",
-    "lib": ["dom", "es2015", "es2016"],
+    "lib": ["esnext"],
+    "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "noEmitHelpers": true,
     "importHelpers": true,
-    "strict": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types", "./types"],
   },
+  "include": ["src"],
   "filesGlob": [
     "types/**/*.d.ts",
   ],

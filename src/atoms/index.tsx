@@ -3,8 +3,6 @@
  * なるべく汎用性のあるものがここにくる
  */
 
-export * from './headings'
-
 export * from './icon'
 export * from './label'
 export { default as Container } from './container'

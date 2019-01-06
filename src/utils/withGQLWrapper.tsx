@@ -35,6 +35,7 @@ export const GridListViewGQLWrapper: React.SFC<GridListViewProps> = props => {
         return (
           <GridList
             navigate={navigate}
+            // @ts-ignore
             data={data && data.search && data.search.nodes}
           />
         )

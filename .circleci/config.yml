@@ -31,6 +31,10 @@ jobs:
           command: yarn test
 
       - run:
+          name: Type check
+          command: yarn tsc
+
+      - run:
           name: TSLint
           command: yarn lint
 
