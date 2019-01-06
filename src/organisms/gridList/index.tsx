@@ -24,6 +24,7 @@ export default class GridList extends React.PureComponent<Props> {
     return (
       <FlatList
         numColumns={2}
+        // @ts-ignore
         data={this.props.data}
         keyExtractor={this.keyExtractor}
         renderItem={this.renderCard}

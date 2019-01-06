@@ -8,12 +8,12 @@ type Props = {
 }
 
 const ColoredLabel = styled.View<Props>`
-  width: ${props => props.width}
-  height: ${props => props.height}
+  width: ${props => props.width};
+  height: ${props => props.height};
   justify-content: center;
   align-items: center;
   border-radius: 10;
-  background-color: ${props => props.color}
+  background-color: ${props => props.color};
 `
 
 ColoredLabel.defaultProps = {
