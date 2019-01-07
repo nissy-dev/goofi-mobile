@@ -10,16 +10,17 @@ import {
   IssueListItem
 } from '../../organisms'
 import { IssueNode } from '../../query'
+import { PAGE_BACK_GROUND } from '../../../assets'
 
 const IssueListPageContainer = styled(Container)`
-  background-color: #f5f5f5;
+  background-color: ${PAGE_BACK_GROUND};
 `
 
 const StyledModal = styled(Modal)`
   flex: 1;
   margin-horizontal: 0;
   margin-vertical: 0;
-  background-color: #f5f5f5;
+  background-color: ${PAGE_BACK_GROUND};
 `
 
 const styles = StyleSheet.create({
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: '#F5F5F5'
+    backgroundColor: PAGE_BACK_GROUND
   }
 })
 
