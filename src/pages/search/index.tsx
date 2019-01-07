@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components/native'
 import { Container } from '../../atoms'
 import { SearchHeader, Modal } from '../../organisms'
-import { GridListViewGQLWrapper } from '../../utils/withGQLWrapper'
+import { GridListViewGQLWrapper } from '../../utils'
 import { PAGE_BACK_GROUND } from '../../../assets'
 
 const SearchPageContainer = styled(Container)`

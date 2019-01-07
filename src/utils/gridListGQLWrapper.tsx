@@ -13,7 +13,7 @@ interface GridListViewProps {
   navigate: (pass: string, param: { [key: string]: any }) => void
 }
 
-export const GridListViewGQLWrapper: React.SFC<GridListViewProps> = props => {
+const GridListViewGQLWrapper: React.SFC<GridListViewProps> = props => {
   const { language, keyword, navigate } = props
   const query = `${keyword} language:${language} good-first-issues:>1 stars:>500`
   return (
@@ -43,3 +43,5 @@ export const GridListViewGQLWrapper: React.SFC<GridListViewProps> = props => {
     </GridListViewQuery>
   )
 }
+
+export default GridListViewGQLWrapper

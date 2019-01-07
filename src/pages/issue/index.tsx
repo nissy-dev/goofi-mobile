@@ -3,27 +3,32 @@ import styled from 'styled-components/native'
 import { ScrollView, StyleSheet, WebView } from 'react-native'
 import Modal from 'react-native-modal'
 import { Container } from '../../atoms'
-import { Loading, IssueHeader, IssueListItem } from '../../organisms'
+import {
+  Loading,
+  IssueHeader,
+  WebViewHeader,
+  IssueListItem
+} from '../../organisms'
 import { IssueNode } from '../../query'
+import { PAGE_BACK_GROUND } from '../../../assets'
 
 const IssueListPageContainer = styled(Container)`
-  background-color: #f5f5f5;
+  background-color: ${PAGE_BACK_GROUND};
 `
 
 const StyledModal = styled(Modal)`
   flex: 1;
   margin-horizontal: 0;
   margin-vertical: 0;
-  background-color: #f5f5f5;
+  background-color: ${PAGE_BACK_GROUND};
 `
 
-// custom fontがstyled-componentではうまく読み込めないので一旦この方法でしのぐ
 const styles = StyleSheet.create({
   listViewContainerStyle: {
     justifyContent: 'flex-start',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: '#F5F5F5'
+    backgroundColor: PAGE_BACK_GROUND
   }
 })
 
@@ -52,12 +57,8 @@ export default class IssueListPage extends React.Component<Props, State> {
     this.setState({ modalVisible: visible })
   }
 
-  setUrl = (url: string): void => {
-    this.setState({ url })
-  }
-
   onPressIssue = (url: string): void => {
-    this.setUrl(url)
+    this.setState({ url })
     this.setModalVisible(!this.state.modalVisible)
   }
 
@@ -80,10 +81,14 @@ export default class IssueListPage extends React.Component<Props, State> {
           animationIn={'slideInDown'}
           animationOut={'slideOutUp'}
           isVisible={this.state.modalVisible}
-          swipeDirection={'right'}
           backdropOpacity={1.0}
-          onSwipe={() => this.setModalVisible(!this.state.modalVisible)}
         >
+          <WebViewHeader
+            onPressBackBtn={() =>
+              this.setModalVisible(!this.state.modalVisible)
+            }
+            onPressFavBtn={() => 'fav'}
+          />
           <WebView
             startInLoadingState
             renderLoading={() => <Loading />}

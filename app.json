@@ -1,5 +1,6 @@
 {
   "expo": {
+    "name": "Goofi Mobile",
     "sdkVersion": "30.0.0",
     "orientation": "portrait",
     "packagerOpts": {

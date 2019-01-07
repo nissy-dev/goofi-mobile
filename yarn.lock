@@ -3228,9 +3228,10 @@ ex-react-native-i18n-ts@^0.0.6:
     mkdirp "^0.5.1"
     typescript "^2.7.2"
 
-ex-react-native-i18n@^0.0.4:
+ex-react-native-i18n@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/ex-react-native-i18n/-/ex-react-native-i18n-0.0.4.tgz#a6685f87652880b6a7e5a6b7c81c40253a81103f"
+  integrity sha512-r2K8ZIZKUe4BukESYBKseEEWfZ6NoE3AJWoXkIn7ocSBVHZoHiQuybKwrXptII5pInC3xn0Yce1+2YL6D9WoAw==
 
 exec-async@^2.2.0:
   version "2.2.0"

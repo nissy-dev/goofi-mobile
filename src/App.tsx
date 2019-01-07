@@ -8,7 +8,7 @@ interface State {
   isAssetsLoaded: boolean
 }
 
-export default class App extends React.Component<{}, State> {
+export default class App extends React.Component<any, State> {
   constructor(props: any) {
     super(props)
     this.state = {
@@ -16,7 +16,7 @@ export default class App extends React.Component<{}, State> {
     }
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     this.loadAssetsAsync()
   }
 
@@ -35,6 +35,8 @@ export default class App extends React.Component<{}, State> {
 
   render() {
     const { isAssetsLoaded } = this.state
-    return <Provider client={client}>{isAssetsLoaded ? <Root /> : ''}</Provider>
+    return (
+      <Provider client={client}>{isAssetsLoaded ? <Root /> : null}</Provider>
+    )
   }
 }
