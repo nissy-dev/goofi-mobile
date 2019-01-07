@@ -1,18 +1,22 @@
-# Goofi Client
-
+# Goofi Mobile
+[![CircleCI](https://circleci.com/gh/nd-02110114/goofi-client.svg?style=svg)](https://circleci.com/gh/nd-02110114/goofi-client)
 Let's contribute OSS!!
 
 ## Introduction
 
 ```
-// instal package
-$ yarn
+// bootstrap
+$ yarn bootstrap
 
-// start server
-$ yarn start
+// start ios/android
+$ yarn ios
+$ yarn android
 
 // lint
 $ yarn lint
+
+// type check
+$ yarn tsc
 ```
 
 ## Technical Infomation
@@ -21,7 +25,7 @@ $ yarn lint
 
 - Expo(React Native)
 
-**Type Checking**
+**Annotation**
 
 - Typescript
 
@@ -40,9 +44,9 @@ $ yarn lint
 
 **Test**
 
-- Jest
+- e2e(detox)
 
-**Code Formatter**
+**linter**
 
 - tslint
 - prettier

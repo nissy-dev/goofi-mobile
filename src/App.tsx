@@ -35,6 +35,8 @@ export default class App extends React.Component<any, State> {
 
   render() {
     const { isAssetsLoaded } = this.state
-    return <Provider client={client}>{isAssetsLoaded ? <Root /> : ''}</Provider>
+    return (
+      <Provider client={client}>{isAssetsLoaded ? <Root /> : null}</Provider>
+    )
   }
 }
