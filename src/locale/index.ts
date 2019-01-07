@@ -1,9 +1,10 @@
 import I18n from 'ex-react-native-i18n'
-import en from './languages/en.json'
-import ja from './languages/ja.json'
 
 I18n.fallbacks = true
 
-I18n.translations = { en, ja }
+I18n.translations = {
+  en: require('./languages/en.json'),
+  ja: require('./languages/ja.json')
+}
 
 export default I18n

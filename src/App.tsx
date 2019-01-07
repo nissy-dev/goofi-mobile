@@ -8,7 +8,7 @@ interface State {
   isAssetsLoaded: boolean
 }
 
-export default class App extends React.Component<{}, State> {
+export default class App extends React.Component<any, State> {
   constructor(props: any) {
     super(props)
     this.state = {
@@ -16,7 +16,7 @@ export default class App extends React.Component<{}, State> {
     }
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     this.loadAssetsAsync()
   }
 

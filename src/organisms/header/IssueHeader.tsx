@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 import { TouchableView, Heading, ArrowBackIcon } from '../../atoms'
 import I18n from '../../locale'
+import { BASE_COLOR } from '../../../assets'
 
 const Header = styled(View)`
   flex-direction: row;
@@ -11,7 +12,7 @@ const Header = styled(View)`
   padding-top: 30;
   width: 100%;
   height: 80;
-  background-color: #2ecc71;
+  background-color: ${BASE_COLOR};
 `
 
 const BackButton = styled(TouchableView)`

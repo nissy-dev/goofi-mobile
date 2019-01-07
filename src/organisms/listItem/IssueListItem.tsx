@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
-import { TouchableView, Heading, ArrowForwardIcon, Image } from '../../atoms'
+import { TouchableView, Heading, Image } from '../../atoms'
 import { IssueNode } from '../../query'
+import { WHITE, PAGE_BACK_GROUND } from '../../../assets'
 
 const IssueTitle = styled(Heading)`
-  width: 88%;
+  width: 90%;
   flex-wrap: wrap;
-  padding-right: 10;
 `
 
 const ListItem = styled(TouchableView)`
@@ -15,11 +15,11 @@ const ListItem = styled(TouchableView)`
   height: 100;
   width: 100%;
   justify-content: flex-start;
-  background-color: #ffffff;
+  background-color: ${WHITE};
   padding-horizontal: 10;
   padding-vertical: 10;
   border-bottom-width: 3;
-  border-bottom-color: #f5f5f5;
+  border-bottom-color: ${PAGE_BACK_GROUND};
 `
 
 const LabelArea = styled(View)`
@@ -54,8 +54,9 @@ const IssueListItem = (props: Props) => {
         style={{ width: 50, height: 50 }}
       />
       <LabelArea>
-        <IssueTitle style={styles.font}>{item.title}</IssueTitle>
-        <ArrowForwardIcon color={'#bdbdbd'} size={30} />
+        <IssueTitle size={15} style={styles.font}>
+          {item.title}
+        </IssueTitle>
       </LabelArea>
     </ListItem>
   )

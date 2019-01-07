@@ -3,7 +3,12 @@ import styled from 'styled-components/native'
 import { ScrollView, StyleSheet, WebView } from 'react-native'
 import Modal from 'react-native-modal'
 import { Container } from '../../atoms'
-import { Loading, IssueHeader, IssueListItem } from '../../organisms'
+import {
+  Loading,
+  IssueHeader,
+  WebViewHeader,
+  IssueListItem
+} from '../../organisms'
 import { IssueNode } from '../../query'
 
 const IssueListPageContainer = styled(Container)`
@@ -17,7 +22,6 @@ const StyledModal = styled(Modal)`
   background-color: #f5f5f5;
 `
 
-// custom fontがstyled-componentではうまく読み込めないので一旦この方法でしのぐ
 const styles = StyleSheet.create({
   listViewContainerStyle: {
     justifyContent: 'flex-start',
@@ -52,12 +56,8 @@ export default class IssueListPage extends React.Component<Props, State> {
     this.setState({ modalVisible: visible })
   }
 
-  setUrl = (url: string): void => {
-    this.setState({ url })
-  }
-
   onPressIssue = (url: string): void => {
-    this.setUrl(url)
+    this.setState({ url })
     this.setModalVisible(!this.state.modalVisible)
   }
 
@@ -80,10 +80,14 @@ export default class IssueListPage extends React.Component<Props, State> {
           animationIn={'slideInDown'}
           animationOut={'slideOutUp'}
           isVisible={this.state.modalVisible}
-          swipeDirection={'right'}
           backdropOpacity={1.0}
-          onSwipe={() => this.setModalVisible(!this.state.modalVisible)}
         >
+          <WebViewHeader
+            onPressBackBtn={() =>
+              this.setModalVisible(!this.state.modalVisible)
+            }
+            onPressFavBtn={() => 'fav'}
+          />
           <WebView
             startInLoadingState
             renderLoading={() => <Loading />}

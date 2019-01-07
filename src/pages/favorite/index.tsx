@@ -23,7 +23,7 @@ export default class FavoritePage extends React.Component<Props, {}> {
     return (
       <Container>
         <Header>
-          <Heading size={18} color={WHITE}>
+          <Heading size={25} color={WHITE}>
             {I18n.t('favorite')}
           </Heading>
         </Header>

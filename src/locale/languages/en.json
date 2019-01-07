@@ -8,6 +8,5 @@
   "networkError": "Network Error",
   "graphqlError": "GraphQL Query Error",
   "keywordForm": "Input Keyword",
-  "issueListPageTitle": "issues",
-  "issueSubTitle": "recent issues"
+  "issueListPageTitle": "issues"
 }
