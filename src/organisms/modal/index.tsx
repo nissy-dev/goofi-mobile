@@ -5,7 +5,7 @@ import styled from 'styled-components/native'
 import { Container, InputBox, Heading } from '../../atoms'
 import { ModalCloseButton, SelectiveButton } from '../../molecules'
 import I18n from '../../locale'
-import selectItems from '../../utils/createSelectItems'
+import { selectItems } from '../../utils'
 import { BASE_COLOR, WHITE } from '../../../assets'
 
 const SelectLanguageBox = styled(Container)`
