@@ -1,25 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
-import { ScrollView, StyleSheet, WebView } from 'react-native'
-import Modal from 'react-native-modal'
+import { ScrollView, StyleSheet } from 'react-native'
 import { Container } from '../../atoms'
-import {
-  Loading,
-  IssueHeader,
-  WebViewHeader,
-  IssueListItem
-} from '../../organisms'
+import { IssueHeader, WebViewModal, IssueListItem } from '../../organisms'
 import { IssueNode } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
 
 const IssueListPageContainer = styled(Container)`
-  background-color: ${PAGE_BACK_GROUND};
-`
-
-const StyledModal = styled(Modal)`
-  flex: 1;
-  margin-horizontal: 0;
-  margin-vertical: 0;
   background-color: ${PAGE_BACK_GROUND};
 `
 
@@ -64,13 +51,13 @@ export default class IssueListPage extends React.Component<Props, State> {
 
   render() {
     const { navigation } = this.props
-    const { selectedIssueItem } = this.state
-    const issues = navigation.getParam('issues')
+    const { selectedIssueItem, modalVisible } = this.state
+    const { nodes } = navigation.getParam('issues')
     return (
       <IssueListPageContainer>
         <IssueHeader navigation={navigation} />
         <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
-          {issues.nodes.map((item: IssueNode) => (
+          {nodes.map((item: IssueNode) => (
             <IssueListItem
               key={`issue-${item.updatedAt}`}
               item={item}
@@ -78,27 +65,12 @@ export default class IssueListPage extends React.Component<Props, State> {
             />
           ))}
         </ScrollView>
-        <StyledModal
-          animationIn={'slideInDown'}
-          animationOut={'slideOutUp'}
-          isVisible={this.state.modalVisible}
-          backdropOpacity={1.0}
-        >
-          <WebViewHeader
-            onPressBackBtn={() =>
-              this.setModalVisible(!this.state.modalVisible)
-            }
-            onPressFavBtn={() => 'fav'}
-          />
-          <WebView
-            startInLoadingState
-            renderLoading={() => <Loading />}
-            source={{
-              uri:
-                selectedIssueItem !== null ? selectedIssueItem.url : undefined
-            }}
-          />
-        </StyledModal>
+        <WebViewModal
+          isVisible={modalVisible}
+          selectedIssueItem={selectedIssueItem}
+          onPressBackBtn={this.setModalVisible}
+          onPressFavBtn={() => 'test'}
+        />
       </IssueListPageContainer>
     )
   }

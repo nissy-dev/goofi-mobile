@@ -41,14 +41,6 @@ export interface Repository {
   nodes: Array<RepositoryNode>
 }
 
-export interface Response {
-  search: Repository
-}
-
-export interface Variables {
-  query: string
-}
-
 export const GET_REPO_ALL_DATA = gql`
   query($query: String!) {
     search(first: 30, query: $query, type: REPOSITORY) {
