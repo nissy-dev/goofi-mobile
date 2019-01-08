@@ -94,3 +94,12 @@ export const GET_REPO_ALL_DATA = gql`
     }
   }
 `
+
+export const GET_FAV_ITEMS = gql`
+  query GetFavItems {
+    favItems @client {
+      id
+      item
+    }
+  }
+`

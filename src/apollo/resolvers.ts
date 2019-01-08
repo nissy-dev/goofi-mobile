@@ -1,6 +1,5 @@
-import gql from 'graphql-tag'
 import { ApolloCache } from 'apollo-cache'
-import { IssueNode } from '../query'
+import { IssueNode, GET_FAV_ITEMS } from '../query'
 
 interface FavItem {
   id: number
@@ -24,15 +23,7 @@ let nextFavItemId = 0
 export const resolvers = {
   Mutation: {
     addFavItem: (_: any, { item }: { item: IssueNode }, { cache }: Cache) => {
-      const query = gql`
-        query GetFavItems {
-          favItems @client {
-            id
-            item
-          }
-        }
-      `
-      const previous: State | null = cache.readQuery({ query })
+      const previous: State | null = cache.readQuery({ query: GET_FAV_ITEMS })
       const newFavItem = {
         id: nextFavItemId++,
         item,
@@ -53,15 +44,7 @@ export const resolvers = {
       return newFavItem
     },
     deleteFavItem: (_: any, variables: { id: number }, { cache }: Cache) => {
-      const query = gql`
-        query GetFavItems {
-          favItems @client {
-            id
-            item
-          }
-        }
-      `
-      const previous: State | null = cache.readQuery({ query })
+      const previous: State | null = cache.readQuery({ query: GET_FAV_ITEMS })
       const data = {
         favItems:
           previous &&
