@@ -1,2 +1,4 @@
 export { default as selectItems } from './createSelectItems'
-export { default as GridListViewGQLWrapper } from './gridListGQLWrapper'
+export { default as GridListViewQueryWrapper } from './gridListViewQueryWrapper'
+export { default as MutaionWrapper } from './mutationWrapper'
+export { default as QueryWrapper } from './queryWrapper'

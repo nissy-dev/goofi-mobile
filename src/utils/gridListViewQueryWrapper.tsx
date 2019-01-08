@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Query } from 'react-apollo'
 import { Container, Heading } from '../atoms'
-import { GOOFI_QUERY, Response, Variables } from '../query'
+import { GET_REPO_ALL_DATA, Response, Variables } from '../query'
 import { GridList, Loading } from '../organisms'
 import I18n from '../locale'
 
@@ -17,7 +17,7 @@ const GridListViewGQLWrapper: React.SFC<GridListViewProps> = props => {
   const { language, keyword, navigate } = props
   const query = `${keyword} language:${language} good-first-issues:>1 stars:>500`
   return (
-    <GridListViewQuery query={GOOFI_QUERY} variables={{ query }}>
+    <GridListViewQuery query={GET_REPO_ALL_DATA} variables={{ query }}>
       {({ loading, data, error }) => {
         if (loading) {
           return <Loading />

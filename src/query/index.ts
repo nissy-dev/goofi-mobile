@@ -49,7 +49,7 @@ export interface Variables {
   query: string
 }
 
-export const GOOFI_QUERY = gql`
+export const GET_REPO_ALL_DATA = gql`
   query($query: String!) {
     search(first: 30, query: $query, type: REPOSITORY) {
       repositoryCount
@@ -71,7 +71,7 @@ export const GOOFI_QUERY = gql`
           name
           url
           issues(
-            first: 20
+            first: 30
             labels: ["good first issue"]
             states: OPEN
             orderBy: { field: UPDATED_AT, direction: DESC }

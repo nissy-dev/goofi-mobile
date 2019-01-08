@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components/native'
 import { Container } from '../../atoms'
 import { SearchHeader, Modal } from '../../organisms'
-import { GridListViewGQLWrapper } from '../../utils'
+import { GridListViewQueryWrapper } from '../../utils'
 import { PAGE_BACK_GROUND } from '../../../assets'
 
 const SearchPageContainer = styled(Container)`
@@ -53,7 +53,7 @@ export default class SearchPage extends React.Component<Props, State> {
           keyword={keyword}
           onPressSearchBtn={this.setModalVisible}
         />
-        <GridListViewGQLWrapper
+        <GridListViewQueryWrapper
           navigate={navigate}
           keyword={keyword}
           language={language}
