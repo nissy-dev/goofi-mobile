@@ -1,10 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
 import { ScrollView, StyleSheet } from 'react-native'
+import { Query } from 'react-apollo'
 import { Container } from '../../atoms'
 import { IssueHeader, WebViewModal, IssueListItem } from '../../organisms'
-import { IssueNode } from '../../query'
+import { GET_FAV_ITEMS, IssueNode } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
+import { judgeIsFavItem } from '../../utils'
 
 const IssueListPageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
@@ -28,7 +30,13 @@ interface Props {
 
 interface State {
   modalVisible: boolean
-  selectedIssueItem: IssueNode | null
+  selectedIssueItem: IssueNode
+}
+
+const initialIssueItem = {
+  title: '',
+  url: '',
+  updatedAt: ''
 }
 
 export default class IssueListPage extends React.Component<Props, State> {
@@ -36,7 +44,7 @@ export default class IssueListPage extends React.Component<Props, State> {
     super(props)
     this.state = {
       modalVisible: false,
-      selectedIssueItem: null
+      selectedIssueItem: initialIssueItem
     }
   }
 
@@ -65,12 +73,22 @@ export default class IssueListPage extends React.Component<Props, State> {
             />
           ))}
         </ScrollView>
-        <WebViewModal
-          isVisible={modalVisible}
-          selectedIssueItem={selectedIssueItem}
-          onPressBackBtn={this.setModalVisible}
-          onPressFavBtn={() => 'test'}
-        />
+        <Query query={GET_FAV_ITEMS}>
+          {({ data }) => {
+            const { favItems } = data
+            const favStatus =
+              favItems && judgeIsFavItem(selectedIssueItem, favItems)
+            return (
+              <WebViewModal
+                favStatus={favStatus}
+                isVisible={modalVisible}
+                selectedIssueItem={selectedIssueItem}
+                onPressBackBtn={this.setModalVisible}
+                onPressFavBtn={() => 'test'}
+              />
+            )
+          }}
+        </Query>
       </IssueListPageContainer>
     )
   }

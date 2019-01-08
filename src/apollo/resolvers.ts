@@ -1,7 +1,8 @@
 import { ApolloCache } from 'apollo-cache'
 import { IssueNode, GET_FAV_ITEMS } from '../query'
+import { judgeIsFavItem } from '../utils'
 
-interface FavItem {
+export interface FavItem {
   id: number
   item: IssueNode
 }
@@ -29,16 +30,13 @@ export const resolvers = {
         item,
         __typename: 'FavItems'
       }
+      // validate
       const deplicatedItem =
-        previous &&
-        previous.favItems.filter(
-          (favItem: FavItem) => favItem.item.title === item.title
-        ).length > 0
+        previous && judgeIsFavItem(newFavItem.item, previous.favItems)
+      if (deplicatedItem) return null
+
       const data = {
-        favItems:
-          previous && !deplicatedItem
-            ? previous.favItems.concat([newFavItem])
-            : previous
+        favItems: previous && previous.favItems.concat([newFavItem])
       }
       cache.writeData({ data })
       return newFavItem

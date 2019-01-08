@@ -16,13 +16,20 @@ const StyledModal = styled(Modal)`
 
 interface Props {
   isVisible: boolean
-  selectedIssueItem: IssueNode | null
+  selectedIssueItem: IssueNode
+  favStatus: boolean
   onPressBackBtn: (visible: boolean) => void
   onPressFavBtn: () => void
 }
 
 const WebViewModal = (props: Props) => {
-  const { isVisible, onPressBackBtn, onPressFavBtn, selectedIssueItem } = props
+  const {
+    isVisible,
+    onPressBackBtn,
+    favStatus,
+    onPressFavBtn,
+    selectedIssueItem
+  } = props
   return (
     <StyledModal
       animationIn={'slideInDown'}
@@ -31,15 +38,14 @@ const WebViewModal = (props: Props) => {
       backdropOpacity={1.0}
     >
       <WebViewHeader
+        favStatus
         onPressBackBtn={() => onPressBackBtn(!isVisible)}
         onPressFavBtn={() => 'fav'}
       />
       <WebView
         startInLoadingState
         renderLoading={() => <Loading />}
-        source={{
-          uri: selectedIssueItem !== null ? selectedIssueItem.url : undefined
-        }}
+        source={{ uri: selectedIssueItem.url }}
       />
     </StyledModal>
   )
