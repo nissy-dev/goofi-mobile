@@ -1,16 +1,22 @@
 import * as React from 'react'
+import { Query } from 'react-apollo'
 import styled from 'styled-components/native'
-import { Container } from '../../atoms'
-import { SearchHeader, Modal } from '../../organisms'
-import { GridListViewQueryWrapper } from '../../utils'
+import { Container, Heading } from '../../atoms'
+import {
+  SearchHeader,
+  SearchFormModal,
+  Loading,
+  GridList
+} from '../../organisms'
 import { PAGE_BACK_GROUND } from '../../../assets'
+import { GET_REPO_ALL_DATA } from '../../query'
+import I18n from '../../locale'
 
 const SearchPageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
 `
 interface Props {
   navigation: {
-    // TODO: 後でFixする
     navigate: any
   }
 }
@@ -46,6 +52,7 @@ export default class SearchPage extends React.Component<Props, State> {
   render() {
     const { navigate } = this.props.navigation
     const { modalVisible, language, keyword } = this.state
+    const query = `${keyword} language:${language} good-first-issues:>1 stars:>500`
     return (
       <SearchPageContainer>
         <SearchHeader
@@ -53,12 +60,27 @@ export default class SearchPage extends React.Component<Props, State> {
           keyword={keyword}
           onPressSearchBtn={this.setModalVisible}
         />
-        <GridListViewQueryWrapper
-          navigate={navigate}
-          keyword={keyword}
-          language={language}
-        />
-        <Modal
+        <Query query={GET_REPO_ALL_DATA} variables={{ query }}>
+          {({ loading, data, error }) => {
+            if (loading) {
+              return <Loading />
+            }
+            if (error) {
+              return (
+                <Container>
+                  <Heading>
+                    {error.networkError && I18n.t('networkError')}
+                  </Heading>
+                  <Heading>
+                    {error.graphQLErrors.length !== 0 && I18n.t('graphqlError')}
+                  </Heading>
+                </Container>
+              )
+            }
+            return <GridList navigate={navigate} data={data.search.nodes} />
+          }}
+        </Query>
+        <SearchFormModal
           isVisible={modalVisible}
           keyword={keyword}
           language={language}

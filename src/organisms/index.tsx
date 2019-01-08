@@ -5,7 +5,7 @@
 
 export * from './header'
 export * from './listItem'
+export * from './modal'
 export { default as Card } from './card'
 export { default as GridList } from './gridList'
 export { default as Loading } from './loading'
-export { default as Modal } from './modal'

@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
 
 interface Props {
   item: IssueNode
-  onPress: (url: string) => void
+  onPress: (item: IssueNode) => void
 }
 
 const IssueListItem = (props: Props) => {
   const { onPress, item } = props
   return (
-    <ListItem onPress={() => onPress(item.url)} key={`issue-${item.updatedAt}`}>
+    <ListItem onPress={() => onPress(item)} key={`issue-${item.updatedAt}`}>
       <ListItemImage
         source={{ uri: item.author != null ? item.author.avatarUrl : '' }}
         style={{ width: 50, height: 50 }}

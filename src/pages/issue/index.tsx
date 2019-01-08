@@ -41,7 +41,7 @@ interface Props {
 
 interface State {
   modalVisible: boolean
-  url: string
+  selectedIssueItem: IssueNode | null
 }
 
 export default class IssueListPage extends React.Component<Props, State> {
@@ -49,7 +49,7 @@ export default class IssueListPage extends React.Component<Props, State> {
     super(props)
     this.state = {
       modalVisible: false,
-      url: ''
+      selectedIssueItem: null
     }
   }
 
@@ -57,13 +57,14 @@ export default class IssueListPage extends React.Component<Props, State> {
     this.setState({ modalVisible: visible })
   }
 
-  onPressIssue = (url: string): void => {
-    this.setState({ url })
+  onPressIssue = (item: IssueNode): void => {
+    this.setState({ selectedIssueItem: item })
     this.setModalVisible(!this.state.modalVisible)
   }
 
   render() {
     const { navigation } = this.props
+    const { selectedIssueItem } = this.state
     const issues = navigation.getParam('issues')
     return (
       <IssueListPageContainer>
@@ -92,7 +93,10 @@ export default class IssueListPage extends React.Component<Props, State> {
           <WebView
             startInLoadingState
             renderLoading={() => <Loading />}
-            source={{ uri: this.state.url }}
+            source={{
+              uri:
+                selectedIssueItem !== null ? selectedIssueItem.url : undefined
+            }}
           />
         </StyledModal>
       </IssueListPageContainer>
