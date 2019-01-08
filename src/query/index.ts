@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 export interface IssueNode {
   title: string
   url: string
-  author: {
+  author?: {
     avatarUrl: string
   }
   updatedAt: string

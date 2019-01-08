@@ -1,24 +1,25 @@
 import { ApolloProvider } from 'react-apollo'
-import { ApolloClient } from 'apollo-client'
-import { createHttpLink } from 'apollo-link-http'
-import { setContext } from 'apollo-link-context'
-import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloClient, InMemoryCache, ApolloLink, HttpLink } from 'apollo-boost'
+import { withClientState } from 'apollo-link-state'
+import { resolvers, initialState } from './resolvers'
 
-const httpLink = createHttpLink({
-  uri: 'https://api.github.com/graphql'
+const cache = new InMemoryCache()
+const stateLink = withClientState({
+  cache,
+  defaults: initialState,
+  resolvers
 })
 
-const authLink = setContext((_, { headers }) => {
-  return {
-    headers: {
-      ...headers,
-      authorization: `Bearer ${process.env.API_TOKEN}`
-    }
+const httpLink = new HttpLink({
+  uri: 'https://api.github.com/graphql',
+  headers: {
+    authorization: `Bearer ${process.env.API_TOKEN}`
   }
 })
 
+const link = ApolloLink.from([stateLink, httpLink])
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link,
   cache: new InMemoryCache()
 })
 

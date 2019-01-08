@@ -50,7 +50,7 @@ const IssueListItem = (props: Props) => {
   return (
     <ListItem onPress={() => onPress(item.url)} key={`issue-${item.updatedAt}`}>
       <ListItemImage
-        source={{ uri: item.author.avatarUrl }}
+        source={{ uri: item.author != null ? item.author.avatarUrl : '' }}
         style={{ width: 50, height: 50 }}
       />
       <LabelArea>
