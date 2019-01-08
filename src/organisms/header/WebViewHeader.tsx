@@ -35,7 +35,7 @@ const WebViewHeader = (props: Props) => {
       <BackButton onPress={() => onPressBackBtn()}>
         <ArrowUpIcon size={40} color={BASE_COLOR} />
       </BackButton>
-      <FavoriteButton favStatus onPress={() => console.log('fav')} />
+      <FavoriteButton favStatus={favStatus} onPress={() => onPressFavBtn()} />
     </Header>
   )
 }

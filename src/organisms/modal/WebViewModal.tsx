@@ -38,9 +38,9 @@ const WebViewModal = (props: Props) => {
       backdropOpacity={1.0}
     >
       <WebViewHeader
-        favStatus
+        favStatus={favStatus}
         onPressBackBtn={() => onPressBackBtn(!isVisible)}
-        onPressFavBtn={() => 'fav'}
+        onPressFavBtn={onPressFavBtn}
       />
       <WebView
         startInLoadingState

@@ -18,9 +18,6 @@ const httpLink = new HttpLink({
 })
 
 const link = ApolloLink.from([stateLink, httpLink])
-const client = new ApolloClient({
-  link,
-  cache: new InMemoryCache()
-})
+const client = new ApolloClient({ link, cache })
 
 export { client, ApolloProvider as Provider }

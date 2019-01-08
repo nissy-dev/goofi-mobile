@@ -95,3 +95,14 @@ export const GET_FAV_ITEMS = gql`
     }
   }
 `
+
+export const ADD_FAV_ITEM = gql`
+  mutation AddFavItem($item: Item!) {
+    addFavItem(item: $item) @client
+  }
+`
+export const DELETE_FAV_ITEM = gql`
+  mutation DeleteFavItem($item: Item!) {
+    deleteFavItem(item: $item) @client
+  }
+`

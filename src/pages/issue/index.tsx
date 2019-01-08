@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
 import { ScrollView, StyleSheet } from 'react-native'
-import { Query } from 'react-apollo'
+import { Query, Mutation } from 'react-apollo'
 import { Container } from '../../atoms'
 import { IssueHeader, WebViewModal, IssueListItem } from '../../organisms'
-import { GET_FAV_ITEMS, IssueNode } from '../../query'
+import { GET_FAV_ITEMS, ADD_FAV_ITEM, IssueNode } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { judgeIsFavItem } from '../../utils'
 
@@ -76,16 +76,25 @@ export default class IssueListPage extends React.Component<Props, State> {
         <Query query={GET_FAV_ITEMS}>
           {({ data }) => {
             const { favItems } = data
+            console.log(favItems)
             const favStatus =
               favItems && judgeIsFavItem(selectedIssueItem, favItems)
+            console.log(favStatus)
             return (
-              <WebViewModal
-                favStatus={favStatus}
-                isVisible={modalVisible}
-                selectedIssueItem={selectedIssueItem}
-                onPressBackBtn={this.setModalVisible}
-                onPressFavBtn={() => 'test'}
-              />
+              <Mutation
+                mutation={favStatus ? ADD_FAV_ITEM : ADD_FAV_ITEM}
+                variables={{ item: selectedIssueItem }}
+              >
+                {mutate => (
+                  <WebViewModal
+                    favStatus={favStatus}
+                    isVisible={modalVisible}
+                    selectedIssueItem={selectedIssueItem}
+                    onPressBackBtn={this.setModalVisible}
+                    onPressFavBtn={mutate}
+                  />
+                )}
+              </Mutation>
             )
           }}
         </Query>

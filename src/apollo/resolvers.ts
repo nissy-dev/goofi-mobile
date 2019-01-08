@@ -41,13 +41,17 @@ export const resolvers = {
       cache.writeData({ data })
       return newFavItem
     },
-    deleteFavItem: (_: any, variables: { id: number }, { cache }: Cache) => {
+    deleteFavItem: (
+      _: any,
+      variables: { item: IssueNode },
+      { cache }: Cache
+    ) => {
       const previous: State | null = cache.readQuery({ query: GET_FAV_ITEMS })
       const data = {
         favItems:
           previous &&
           previous.favItems.filter(
-            (favItem: FavItem) => favItem.id !== variables.id
+            (favItem: FavItem) => favItem.item.title !== variables.item.title
           )
       }
       cache.writeData({ data })

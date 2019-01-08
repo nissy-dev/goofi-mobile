@@ -19,9 +19,9 @@ const FavoriteButton = (props: Props) => {
   return (
     <TouchableArea onPress={() => onPress()}>
       {favStatus ? (
-        <StarOIcon size={30} color={STAR_COLOR} />
-      ) : (
         <StarIcon size={30} color={STAR_COLOR} />
+      ) : (
+        <StarOIcon size={30} color={STAR_COLOR} />
       )}
     </TouchableArea>
   )
