@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 export interface IssueNode {
   title: string
   url: string
-  author: {
+  author?: {
     avatarUrl: string
   }
   updatedAt: string
@@ -31,25 +31,7 @@ export interface RepositoryNode {
   }
 }
 
-export interface Repository {
-  repositoryCount: number
-  pageInfo: {
-    startCursor: string
-    endCursor: string
-    hasNextPage: boolean
-  }
-  nodes: Array<RepositoryNode>
-}
-
-export interface Response {
-  search: Repository
-}
-
-export interface Variables {
-  query: string
-}
-
-export const GOOFI_QUERY = gql`
+export const GET_REPO_ALL_DATA = gql`
   query($query: String!) {
     search(first: 30, query: $query, type: REPOSITORY) {
       repositoryCount
@@ -71,7 +53,7 @@ export const GOOFI_QUERY = gql`
           name
           url
           issues(
-            first: 20
+            first: 30
             labels: ["good first issue"]
             states: OPEN
             orderBy: { field: UPDATED_AT, direction: DESC }
@@ -91,6 +73,33 @@ export const GOOFI_QUERY = gql`
           }
         }
       }
+    }
+  }
+`
+
+export const GET_FAV_ITEMS = gql`
+  query GetFavItems {
+    favItems @client {
+      id
+      title
+      url
+      avatarUrl
+    }
+  }
+`
+
+export const ADD_FAV_ITEM = gql`
+  mutation AddFavItem($title: String!, $url: String!, $avatarUrl: String!) {
+    addFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client {
+      id
+    }
+  }
+`
+
+export const DELETE_FAV_ITEM = gql`
+  mutation DeleteFavItem($title: String!, $url: String!, $avatarUrl: String!) {
+    deleteFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client {
+      id
     }
   }
 `

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
-import { StarIcon, TouchableView } from '../../atoms'
+import { StarOIcon, StarIcon, TouchableView } from '../../atoms'
 import { STAR_COLOR } from '../../../assets'
 
 const TouchableArea = styled(TouchableView)`
@@ -10,14 +10,19 @@ const TouchableArea = styled(TouchableView)`
 `
 
 interface Props {
+  favStatus: boolean
   onPress: () => void
 }
 
 const FavoriteButton = (props: Props) => {
-  const { onPress } = props
+  const { favStatus, onPress } = props
   return (
     <TouchableArea onPress={() => onPress()}>
-      <StarIcon size={20} color={STAR_COLOR} />
+      {favStatus ? (
+        <StarIcon size={30} color={STAR_COLOR} />
+      ) : (
+        <StarOIcon size={30} color={STAR_COLOR} />
+      )}
     </TouchableArea>
   )
 }

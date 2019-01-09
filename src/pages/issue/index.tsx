@@ -1,25 +1,19 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
-import { ScrollView, StyleSheet, WebView } from 'react-native'
-import Modal from 'react-native-modal'
+import { ScrollView, StyleSheet } from 'react-native'
+import { Query, Mutation } from 'react-apollo'
 import { Container } from '../../atoms'
+import { IssueHeader, WebViewModal, IssueListItem } from '../../organisms'
 import {
-  Loading,
-  IssueHeader,
-  WebViewHeader,
-  IssueListItem
-} from '../../organisms'
-import { IssueNode } from '../../query'
+  GET_FAV_ITEMS,
+  ADD_FAV_ITEM,
+  IssueNode,
+  DELETE_FAV_ITEM
+} from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
+import { judgeIsFavItem, createVariables } from '../../utils'
 
 const IssueListPageContainer = styled(Container)`
-  background-color: ${PAGE_BACK_GROUND};
-`
-
-const StyledModal = styled(Modal)`
-  flex: 1;
-  margin-horizontal: 0;
-  margin-vertical: 0;
   background-color: ${PAGE_BACK_GROUND};
 `
 
@@ -41,7 +35,13 @@ interface Props {
 
 interface State {
   modalVisible: boolean
-  url: string
+  selectedIssueItem: IssueNode
+}
+
+const initialIssueItem = {
+  title: '',
+  url: '',
+  updatedAt: ''
 }
 
 export default class IssueListPage extends React.Component<Props, State> {
@@ -49,7 +49,7 @@ export default class IssueListPage extends React.Component<Props, State> {
     super(props)
     this.state = {
       modalVisible: false,
-      url: ''
+      selectedIssueItem: initialIssueItem
     }
   }
 
@@ -57,19 +57,20 @@ export default class IssueListPage extends React.Component<Props, State> {
     this.setState({ modalVisible: visible })
   }
 
-  onPressIssue = (url: string): void => {
-    this.setState({ url })
+  onPressIssue = (item: IssueNode): void => {
+    this.setState({ selectedIssueItem: item })
     this.setModalVisible(!this.state.modalVisible)
   }
 
   render() {
     const { navigation } = this.props
-    const issues = navigation.getParam('issues')
+    const { selectedIssueItem, modalVisible } = this.state
+    const { nodes } = navigation.getParam('issues')
     return (
       <IssueListPageContainer>
         <IssueHeader navigation={navigation} />
         <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
-          {issues.nodes.map((item: IssueNode) => (
+          {nodes.map((item: IssueNode) => (
             <IssueListItem
               key={`issue-${item.updatedAt}`}
               item={item}
@@ -77,24 +78,30 @@ export default class IssueListPage extends React.Component<Props, State> {
             />
           ))}
         </ScrollView>
-        <StyledModal
-          animationIn={'slideInDown'}
-          animationOut={'slideOutUp'}
-          isVisible={this.state.modalVisible}
-          backdropOpacity={1.0}
-        >
-          <WebViewHeader
-            onPressBackBtn={() =>
-              this.setModalVisible(!this.state.modalVisible)
-            }
-            onPressFavBtn={() => 'fav'}
-          />
-          <WebView
-            startInLoadingState
-            renderLoading={() => <Loading />}
-            source={{ uri: this.state.url }}
-          />
-        </StyledModal>
+        <Query query={GET_FAV_ITEMS}>
+          {({ data }) => {
+            const { favItems } = data
+            const favStatus =
+              favItems && judgeIsFavItem(selectedIssueItem, favItems)
+            const variables = createVariables(selectedIssueItem)
+            return (
+              <Mutation
+                mutation={favStatus ? DELETE_FAV_ITEM : ADD_FAV_ITEM}
+                variables={variables}
+              >
+                {mutate => (
+                  <WebViewModal
+                    favStatus={favStatus}
+                    isVisible={modalVisible}
+                    selectedIssueItem={selectedIssueItem}
+                    onPressBackBtn={this.setModalVisible}
+                    onPressFavBtn={mutate}
+                  />
+                )}
+              </Mutation>
+            )
+          }}
+        </Query>
       </IssueListPageContainer>
     )
   }

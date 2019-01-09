@@ -23,18 +23,19 @@ const BackButton = styled(TouchableView)`
 `
 
 interface Props {
+  favStatus: boolean
   onPressBackBtn: () => void
   onPressFavBtn: () => void
 }
 
 const WebViewHeader = (props: Props) => {
-  const { onPressBackBtn, onPressFavBtn } = props
+  const { favStatus, onPressBackBtn, onPressFavBtn } = props
   return (
     <Header>
       <BackButton onPress={() => onPressBackBtn()}>
         <ArrowUpIcon size={40} color={BASE_COLOR} />
       </BackButton>
-      <FavoriteButton onPress={() => console.log('fav')} />
+      <FavoriteButton favStatus={favStatus} onPress={() => onPressFavBtn()} />
     </Header>
   )
 }

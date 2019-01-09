@@ -48,7 +48,7 @@ const IssueHeader = (props: Props) => {
       <BackButton onPress={() => navigation.goBack()}>
         <ArrowBackIcon size={32} color={WHITE} />
       </BackButton>
-      <HeaderTitle style={styles.font} color={WHITE}>
+      <HeaderTitle size={25} style={styles.font} color={WHITE}>
         {I18n.t('issueListPageTitle')}
       </HeaderTitle>
     </Header>
