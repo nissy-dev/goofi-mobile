@@ -4,9 +4,14 @@ import { ScrollView, StyleSheet } from 'react-native'
 import { Query, Mutation } from 'react-apollo'
 import { Container } from '../../atoms'
 import { IssueHeader, WebViewModal, IssueListItem } from '../../organisms'
-import { GET_FAV_ITEMS, ADD_FAV_ITEM, IssueNode } from '../../query'
+import {
+  GET_FAV_ITEMS,
+  ADD_FAV_ITEM,
+  IssueNode,
+  DELETE_FAV_ITEM
+} from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
-import { judgeIsFavItem } from '../../utils'
+import { judgeIsFavItem, createVariables } from '../../utils'
 
 const IssueListPageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
@@ -76,14 +81,13 @@ export default class IssueListPage extends React.Component<Props, State> {
         <Query query={GET_FAV_ITEMS}>
           {({ data }) => {
             const { favItems } = data
-            console.log(favItems)
             const favStatus =
               favItems && judgeIsFavItem(selectedIssueItem, favItems)
-            console.log(favStatus)
+            const variables = createVariables(selectedIssueItem)
             return (
               <Mutation
-                mutation={favStatus ? ADD_FAV_ITEM : ADD_FAV_ITEM}
-                variables={{ item: selectedIssueItem }}
+                mutation={favStatus ? DELETE_FAV_ITEM : ADD_FAV_ITEM}
+                variables={variables}
               >
                 {mutate => (
                   <WebViewModal

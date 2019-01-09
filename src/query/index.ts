@@ -31,16 +31,6 @@ export interface RepositoryNode {
   }
 }
 
-export interface Repository {
-  repositoryCount: number
-  pageInfo: {
-    startCursor: string
-    endCursor: string
-    hasNextPage: boolean
-  }
-  nodes: Array<RepositoryNode>
-}
-
 export const GET_REPO_ALL_DATA = gql`
   query($query: String!) {
     search(first: 30, query: $query, type: REPOSITORY) {
@@ -91,18 +81,25 @@ export const GET_FAV_ITEMS = gql`
   query GetFavItems {
     favItems @client {
       id
-      item
+      title
+      url
+      avatarUrl
     }
   }
 `
 
 export const ADD_FAV_ITEM = gql`
-  mutation AddFavItem($item: Item!) {
-    addFavItem(item: $item) @client
+  mutation AddFavItem($title: String!, $url: String!, $avatarUrl: String!) {
+    addFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client {
+      id
+    }
   }
 `
+
 export const DELETE_FAV_ITEM = gql`
-  mutation DeleteFavItem($item: Item!) {
-    deleteFavItem(item: $item) @client
+  mutation DeleteFavItem($title: String!, $url: String!, $avatarUrl: String!) {
+    deleteFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client {
+      id
+    }
   }
 `

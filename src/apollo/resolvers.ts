@@ -1,10 +1,12 @@
 import { ApolloCache } from 'apollo-cache'
-import { IssueNode, GET_FAV_ITEMS } from '../query'
+import { GET_FAV_ITEMS } from '../query'
 import { judgeIsFavItem } from '../utils'
 
 export interface FavItem {
   id: number
-  item: IssueNode
+  title: string
+  url: string
+  avatarUrl: string
 }
 
 interface State {
@@ -15,6 +17,12 @@ interface Cache {
   cache: ApolloCache<any>
 }
 
+interface Variables {
+  title: string
+  url: string
+  avatarUrl: string
+}
+
 export const initialState: State = {
   favItems: []
 }
@@ -23,17 +31,23 @@ let nextFavItemId = 0
 
 export const resolvers = {
   Mutation: {
-    addFavItem: (_: any, { item }: { item: IssueNode }, { cache }: Cache) => {
+    addFavItem: (
+      _: any,
+      { title, url, avatarUrl }: Variables,
+      { cache }: Cache
+    ) => {
       const previous: State | null = cache.readQuery({ query: GET_FAV_ITEMS })
       const newFavItem = {
         id: nextFavItemId++,
-        item,
-        __typename: 'FavItems'
+        title,
+        url,
+        avatarUrl,
+        __typename: 'FavItem'
       }
       // validate
-      const deplicatedItem =
-        previous && judgeIsFavItem(newFavItem.item, previous.favItems)
-      if (deplicatedItem) return null
+      const isDeplicatedItem =
+        previous && judgeIsFavItem(newFavItem, previous.favItems)
+      if (isDeplicatedItem) return newFavItem
 
       const data = {
         favItems: previous && previous.favItems.concat([newFavItem])
@@ -41,17 +55,13 @@ export const resolvers = {
       cache.writeData({ data })
       return newFavItem
     },
-    deleteFavItem: (
-      _: any,
-      variables: { item: IssueNode },
-      { cache }: Cache
-    ) => {
+    deleteFavItem: (_: any, { title }: Variables, { cache }: Cache) => {
       const previous: State | null = cache.readQuery({ query: GET_FAV_ITEMS })
       const data = {
         favItems:
           previous &&
           previous.favItems.filter(
-            (favItem: FavItem) => favItem.item.title !== variables.item.title
+            (favItem: FavItem) => favItem.title !== title
           )
       }
       cache.writeData({ data })
