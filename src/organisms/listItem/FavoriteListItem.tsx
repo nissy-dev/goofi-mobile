@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 import { TouchableView, Heading, Image } from '../../atoms'
 import { WHITE, PAGE_BACK_GROUND } from '../../../assets'
-import { FavItem } from '../../apollo/resolvers'
+import { IssueItem } from '../../apollo'
 
 const IssueTitle = styled(Heading)`
   width: 90%;
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
 })
 
 interface Props {
-  item: FavItem
-  onPress: (item: FavItem) => void
+  item: IssueItem
+  onPress: (item: IssueItem) => void
 }
 
 const FavoriteListItem = (props: Props) => {

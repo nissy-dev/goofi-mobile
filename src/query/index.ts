@@ -90,16 +90,12 @@ export const GET_FAV_ITEMS = gql`
 
 export const ADD_FAV_ITEM = gql`
   mutation AddFavItem($title: String!, $url: String!, $avatarUrl: String!) {
-    addFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client {
-      id
-    }
+    addFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client
   }
 `
 
 export const DELETE_FAV_ITEM = gql`
   mutation DeleteFavItem($title: String!, $url: String!, $avatarUrl: String!) {
-    deleteFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client {
-      id
-    }
+    deleteFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client
   }
 `

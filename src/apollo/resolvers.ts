@@ -2,7 +2,7 @@ import { ApolloCache } from 'apollo-cache'
 import { GET_FAV_ITEMS } from '../query'
 import { judgeIsFavItem } from '../utils'
 
-export interface FavItem {
+export interface IssueItem {
   id: number
   title: string
   url: string
@@ -10,7 +10,7 @@ export interface FavItem {
 }
 
 interface State {
-  favItems: FavItem[]
+  favItems: IssueItem[]
 }
 
 interface Cache {
@@ -61,7 +61,7 @@ export const resolvers = {
         favItems:
           previous &&
           previous.favItems.filter(
-            (favItem: FavItem) => favItem.title !== title
+            (favItem: IssueItem) => favItem.title !== title
           )
       }
       cache.writeData({ data })
