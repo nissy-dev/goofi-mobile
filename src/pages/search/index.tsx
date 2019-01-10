@@ -32,7 +32,7 @@ export default class SearchPage extends React.Component<Props, State> {
     super(props)
     this.state = {
       modalVisible: false,
-      language: 'Javascript',
+      language: '',
       keyword: ''
     }
   }
@@ -52,7 +52,8 @@ export default class SearchPage extends React.Component<Props, State> {
   render() {
     const { navigate } = this.props.navigation
     const { modalVisible, language, keyword } = this.state
-    const query = `${keyword} language:${language} good-first-issues:>1 stars:>500`
+    const languageQuery = language ? 'language:' + language : ''
+    const query = `${keyword} ${languageQuery} good-first-issues:>1 stars:>500`
     return (
       <SearchPageContainer>
         <SearchHeader

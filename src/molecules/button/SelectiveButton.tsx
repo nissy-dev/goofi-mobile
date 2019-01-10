@@ -39,7 +39,10 @@ interface Props {
 const SelectiveButton = (props: Props) => {
   const { label, selected, onPress } = props
   return (
-    <SelectiveArea selected={selected} onPress={() => onPress(label)}>
+    <SelectiveArea
+      selected={selected}
+      onPress={selected ? () => onPress('') : () => onPress(label)}
+    >
       <SelectiveItem size={15} selected={selected} color={WHITE}>
         {label}
       </SelectiveItem>
