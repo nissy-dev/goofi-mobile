@@ -67,7 +67,10 @@
     ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
-    }
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|ex-react-native-i18n|expo(nent)?|@expo(nent)?/.*|react-navigation))"
+    ]
   },
   "dependencies": {
     "apollo-boost": "^0.1.23",

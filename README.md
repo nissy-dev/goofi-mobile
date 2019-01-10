@@ -27,7 +27,7 @@ $ yarn tsc
 
 **Main Framework**
 
-- Expo(React Native)
+- Expo (React Native@0.55.4)
 
 **Annotation**
 
@@ -39,7 +39,7 @@ $ yarn tsc
 
 **Server**
 
-- GraphQL (Github API)
+- Github API (GraphQL)
 
 **Design**
 
@@ -48,6 +48,7 @@ $ yarn tsc
 
 **Test**
 
+- jest
 - e2e(detox)
 
 **linter**
