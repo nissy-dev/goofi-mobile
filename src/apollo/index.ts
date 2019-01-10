@@ -1,4 +1,4 @@
-import { ApolloProvider } from 'react-apollo'
+import { ApolloProvider, Query, Mutation } from 'react-apollo'
 import { ApolloClient, InMemoryCache, ApolloLink, HttpLink } from 'apollo-boost'
 import { withClientState } from 'apollo-link-state'
 import { resolvers, initialState, IssueItem } from './resolvers'
@@ -20,5 +20,5 @@ const httpLink = new HttpLink({
 const link = ApolloLink.from([stateLink, httpLink])
 const client = new ApolloClient({ link, cache })
 
-export { client, ApolloProvider as Provider }
+export { client, ApolloProvider as Provider, Query, Mutation }
 export { IssueItem }

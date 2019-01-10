@@ -1,13 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
 import { ScrollView, StyleSheet } from 'react-native'
-import { Query, Mutation } from 'react-apollo'
 import { Container } from '../../atoms'
 import { FavoriteHeader, WebViewModal, FavoriteListItem } from '../../organisms'
 import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { judgeIsFavItem } from '../../utils'
-import { IssueItem } from '../../apollo'
+import { Query, Mutation, IssueItem } from '../../apollo'
 
 const FavoritePageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};

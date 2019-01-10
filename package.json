@@ -40,6 +40,7 @@
     "android": "react-native-scripts-ts android",
     "ios": "react-native-scripts-ts ios",
     "test": "jest",
+    "test:e2e": "true",
     "tsc": "node_modules/.bin/tsc",
     "lint": "node_modules/.bin/tslint 'src/**/*.ts{,x}'",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Query } from 'react-apollo'
 import styled from 'styled-components/native'
 import { Container, Heading } from '../../atoms'
 import {
@@ -11,6 +10,7 @@ import {
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { GET_REPO_ALL_DATA } from '../../query'
 import I18n from '../../locale'
+import { Query } from '../../apollo'
 
 const SearchPageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};

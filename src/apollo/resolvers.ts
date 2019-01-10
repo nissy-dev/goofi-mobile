@@ -25,7 +25,6 @@ export const initialState: State = {
 export const resolvers = {
   Mutation: {
     addFavItem: (_: any, variables: IssueItem, { cache }: Cache) => {
-      console.log(variables)
       const previous: State | null = cache.readQuery({ query: GET_FAV_ITEMS })
       const newFavItem = { ...variables, __typename: 'FavItem' }
       // validate
