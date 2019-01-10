@@ -4,15 +4,10 @@ import { ScrollView, StyleSheet } from 'react-native'
 import { Query, Mutation } from 'react-apollo'
 import { Container } from '../../atoms'
 import { FavoriteHeader, WebViewModal, FavoriteListItem } from '../../organisms'
-import {
-  GET_FAV_ITEMS,
-  ADD_FAV_ITEM,
-  IssueNode,
-  DELETE_FAV_ITEM
-} from '../../query'
+import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { judgeIsFavItem } from '../../utils'
-import { FavItem } from '../../apollo/resolvers'
+import { IssueItem } from '../../apollo/resolvers'
 
 const FavoritePageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
@@ -29,11 +24,11 @@ const styles = StyleSheet.create({
 
 interface State {
   modalVisible: boolean
-  selectedFavItem: FavItem
+  selectedFavItem: IssueItem
 }
 
 const initialIssueItem = {
-  id: 0,
+  id: '',
   title: '',
   url: '',
   avatarUrl: ''
@@ -52,7 +47,7 @@ export default class FavoritePage extends React.Component<void, State> {
     this.setState({ modalVisible: visible })
   }
 
-  onPressIssue = (item: FavItem): void => {
+  onPressIssue = (item: IssueItem): void => {
     this.setState({ selectedFavItem: item })
     this.setModalVisible(!this.state.modalVisible)
   }
@@ -66,7 +61,7 @@ export default class FavoritePage extends React.Component<void, State> {
           <Query query={GET_FAV_ITEMS}>
             {({ data }) => {
               const { favItems } = data
-              return favItems.map((item: FavItem) => (
+              return favItems.map((item: IssueItem) => (
                 <FavoriteListItem
                   key={`issue-${item.id}`}
                   item={item}
@@ -81,11 +76,10 @@ export default class FavoritePage extends React.Component<void, State> {
             const { favItems } = data
             const favStatus =
               favItems && judgeIsFavItem(selectedFavItem, favItems)
-            const { title, url, avatarUrl } = selectedFavItem
             return (
               <Mutation
                 mutation={favStatus ? DELETE_FAV_ITEM : ADD_FAV_ITEM}
-                variables={{ title, url, avatarUrl }}
+                variables={{ ...selectedFavItem }}
               >
                 {mutate => (
                   <WebViewModal

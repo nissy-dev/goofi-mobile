@@ -2,48 +2,32 @@ import { ApolloCache } from 'apollo-cache'
 import { GET_FAV_ITEMS } from '../query'
 import { judgeIsFavItem } from '../utils'
 
-export interface FavItem {
-  id: number
+export interface IssueItem {
+  id: string
   title: string
   url: string
   avatarUrl: string
+  __typename?: string // for favItem
 }
 
 interface State {
-  favItems: FavItem[]
+  favItems: IssueItem[]
 }
 
 interface Cache {
   cache: ApolloCache<any>
 }
 
-interface Variables {
-  title: string
-  url: string
-  avatarUrl: string
-}
-
 export const initialState: State = {
   favItems: []
 }
 
-let nextFavItemId = 0
-
 export const resolvers = {
   Mutation: {
-    addFavItem: (
-      _: any,
-      { title, url, avatarUrl }: Variables,
-      { cache }: Cache
-    ) => {
+    addFavItem: (_: any, variables: IssueItem, { cache }: Cache) => {
+      console.log(variables)
       const previous: State | null = cache.readQuery({ query: GET_FAV_ITEMS })
-      const newFavItem = {
-        id: nextFavItemId++,
-        title,
-        url,
-        avatarUrl,
-        __typename: 'FavItem'
-      }
+      const newFavItem = { ...variables, __typename: 'FavItem' }
       // validate
       const isDeplicatedItem =
         previous && judgeIsFavItem(newFavItem, previous.favItems)
@@ -55,14 +39,12 @@ export const resolvers = {
       cache.writeData({ data })
       return newFavItem
     },
-    deleteFavItem: (_: any, { title }: Variables, { cache }: Cache) => {
+    deleteFavItem: (_: any, variables: IssueItem, { cache }: Cache) => {
       const previous: State | null = cache.readQuery({ query: GET_FAV_ITEMS })
       const data = {
         favItems:
           previous &&
-          previous.favItems.filter(
-            (favItem: FavItem) => favItem.title !== title
-          )
+          previous.favItems.filter(favItem => favItem.id !== variables.id)
       }
       cache.writeData({ data })
       return null

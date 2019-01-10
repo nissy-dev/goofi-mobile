@@ -5,8 +5,7 @@ import styled from 'styled-components/native'
 import Loading from '../loading'
 import { WebViewHeader } from '../header'
 import { PAGE_BACK_GROUND } from '../../../assets'
-import { IssueNode } from '../../query'
-import { FavItem } from '../../apollo/resolvers'
+import { IssueItem } from '../../apollo'
 
 const StyledModal = styled(Modal)`
   flex: 1;
@@ -17,7 +16,7 @@ const StyledModal = styled(Modal)`
 
 interface Props {
   isVisible: boolean
-  selectedIssueItem: IssueNode | FavItem
+  selectedIssueItem: IssueItem
   favStatus: boolean
   onPressBackBtn: (visible: boolean) => void
   onPressFavBtn: () => void
