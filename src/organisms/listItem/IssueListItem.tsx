@@ -2,8 +2,8 @@ import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 import { TouchableView, Heading, Image } from '../../atoms'
-import { IssueNode } from '../../query'
 import { WHITE, PAGE_BACK_GROUND } from '../../../assets'
+import { IssueItem } from '../../apollo'
 
 const IssueTitle = styled(Heading)`
   width: 90%;
@@ -41,16 +41,16 @@ const styles = StyleSheet.create({
 })
 
 interface Props {
-  item: IssueNode
-  onPress: (item: IssueNode) => void
+  item: IssueItem
+  onPress: (item: IssueItem) => void
 }
 
 const IssueListItem = (props: Props) => {
   const { onPress, item } = props
   return (
-    <ListItem onPress={() => onPress(item)} key={`issue-${item.updatedAt}`}>
+    <ListItem onPress={() => onPress(item)} key={`issue-${item.id}`}>
       <ListItemImage
-        source={{ uri: item.author != null ? item.author.avatarUrl : '' }}
+        source={{ uri: item.avatarUrl }}
         style={{ width: 50, height: 50 }}
       />
       <LabelArea>

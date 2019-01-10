@@ -4,14 +4,10 @@ import { ScrollView, StyleSheet } from 'react-native'
 import { Query, Mutation } from 'react-apollo'
 import { Container } from '../../atoms'
 import { IssueHeader, WebViewModal, IssueListItem } from '../../organisms'
-import {
-  GET_FAV_ITEMS,
-  ADD_FAV_ITEM,
-  IssueNode,
-  DELETE_FAV_ITEM
-} from '../../query'
+import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
-import { judgeIsFavItem, createVariables } from '../../utils'
+import { judgeIsFavItem, createIssueItems } from '../../utils'
+import { IssueItem } from '../../apollo'
 
 const IssueListPageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
@@ -35,13 +31,14 @@ interface Props {
 
 interface State {
   modalVisible: boolean
-  selectedIssueItem: IssueNode
+  selectedIssueItem: IssueItem
 }
 
 const initialIssueItem = {
+  id: '',
   title: '',
   url: '',
-  updatedAt: ''
+  avatarUrl: ''
 }
 
 export default class IssueListPage extends React.Component<Props, State> {
@@ -57,7 +54,7 @@ export default class IssueListPage extends React.Component<Props, State> {
     this.setState({ modalVisible: visible })
   }
 
-  onPressIssue = (item: IssueNode): void => {
+  onPressIssue = (item: IssueItem): void => {
     this.setState({ selectedIssueItem: item })
     this.setModalVisible(!this.state.modalVisible)
   }
@@ -66,13 +63,14 @@ export default class IssueListPage extends React.Component<Props, State> {
     const { navigation } = this.props
     const { selectedIssueItem, modalVisible } = this.state
     const { nodes } = navigation.getParam('issues')
+    const issueItems = createIssueItems(nodes)
     return (
       <IssueListPageContainer>
         <IssueHeader navigation={navigation} />
         <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
-          {nodes.map((item: IssueNode) => (
+          {issueItems.map(item => (
             <IssueListItem
-              key={`issue-${item.updatedAt}`}
+              key={`issue-${item.id}`}
               item={item}
               onPress={this.onPressIssue}
             />
@@ -83,11 +81,10 @@ export default class IssueListPage extends React.Component<Props, State> {
             const { favItems } = data
             const favStatus =
               favItems && judgeIsFavItem(selectedIssueItem, favItems)
-            const variables = createVariables(selectedIssueItem)
             return (
               <Mutation
                 mutation={favStatus ? DELETE_FAV_ITEM : ADD_FAV_ITEM}
-                variables={variables}
+                variables={{ ...selectedIssueItem }}
               >
                 {mutate => (
                   <WebViewModal

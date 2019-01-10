@@ -1,6 +1,7 @@
 import gql from 'graphql-tag'
 
 export interface IssueNode {
+  id: string
   title: string
   url: string
   author?: {
@@ -60,6 +61,7 @@ export const GET_REPO_ALL_DATA = gql`
           ) {
             totalCount
             nodes {
+              id
               title
               url
               author {
@@ -89,13 +91,24 @@ export const GET_FAV_ITEMS = gql`
 `
 
 export const ADD_FAV_ITEM = gql`
-  mutation AddFavItem($title: String!, $url: String!, $avatarUrl: String!) {
-    addFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client
+  mutation AddFavItem(
+    $id: String!
+    $title: String!
+    $url: String!
+    $avatarUrl: String!
+  ) {
+    addFavItem(id: $id, title: $title, url: $url, avatarUrl: $avatarUrl) @client
   }
 `
 
 export const DELETE_FAV_ITEM = gql`
-  mutation DeleteFavItem($title: String!, $url: String!, $avatarUrl: String!) {
-    deleteFavItem(title: $title, url: $url, avatarUrl: $avatarUrl) @client
+  mutation DeleteFavItem(
+    $id: String!
+    $title: String!
+    $url: String!
+    $avatarUrl: String!
+  ) {
+    deleteFavItem(id: $id, title: $title, url: $url, avatarUrl: $avatarUrl)
+      @client
   }
 `

@@ -1,11 +1,7 @@
-import { IssueNode } from '../query'
-import { FavItem } from '../apollo/resolvers'
+import { IssueItem } from '../apollo/resolvers'
 
-const judgeIsFavItem = (
-  checkedItem: IssueNode | FavItem,
-  favItems: FavItem[]
-) =>
-  favItems.filter((favItem: FavItem) => favItem.title === checkedItem.title)
+const judgeIsFavItem = (checkedItem: IssueItem, favItems: IssueItem[]) =>
+  favItems.filter((favItem: IssueItem) => favItem.id === checkedItem.id)
     .length > 0
 
 export default judgeIsFavItem

@@ -4,12 +4,7 @@ import { ScrollView, StyleSheet } from 'react-native'
 import { Query, Mutation } from 'react-apollo'
 import { Container } from '../../atoms'
 import { FavoriteHeader, WebViewModal, FavoriteListItem } from '../../organisms'
-import {
-  GET_FAV_ITEMS,
-  ADD_FAV_ITEM,
-  IssueNode,
-  DELETE_FAV_ITEM
-} from '../../query'
+import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { judgeIsFavItem } from '../../utils'
 import { IssueItem } from '../../apollo/resolvers'
@@ -33,7 +28,7 @@ interface State {
 }
 
 const initialIssueItem = {
-  id: 0,
+  id: '',
   title: '',
   url: '',
   avatarUrl: ''
@@ -81,11 +76,10 @@ export default class FavoritePage extends React.Component<void, State> {
             const { favItems } = data
             const favStatus =
               favItems && judgeIsFavItem(selectedFavItem, favItems)
-            const { title, url, avatarUrl } = selectedFavItem
             return (
               <Mutation
                 mutation={favStatus ? DELETE_FAV_ITEM : ADD_FAV_ITEM}
-                variables={{ title, url, avatarUrl }}
+                variables={{ ...selectedFavItem }}
               >
                 {mutate => (
                   <WebViewModal
