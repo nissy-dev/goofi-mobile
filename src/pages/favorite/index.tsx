@@ -7,7 +7,7 @@ import { FavoriteHeader, WebViewModal, FavoriteListItem } from '../../organisms'
 import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { judgeIsFavItem } from '../../utils'
-import { IssueItem } from '../../apollo/resolvers'
+import { IssueItem } from '../../apollo'
 
 const FavoritePageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
