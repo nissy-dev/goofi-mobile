@@ -6,7 +6,6 @@ import { WHITE } from '../../../assets'
 const StyledLabel = styled(Label)`
   margin-horizontal: 5;
   padding-horizontal: 10;
-  padding-vertical: 5;
 `
 
 interface Props {

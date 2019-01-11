@@ -8,7 +8,7 @@ interface Props {
 
 const IssueInfo = (props: Props) => (
   <ColoredLabel width={100}>
-    <Heading size={15} color={WHITE}>
+    <Heading bold size={15} color={WHITE}>
       {`${props.count.toString()} Issues`}
     </Heading>
   </ColoredLabel>

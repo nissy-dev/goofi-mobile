@@ -24,9 +24,9 @@ export default class App extends React.Component<any, State> {
     try {
       await I18n.initAsync()
       await Font.loadAsync({
-        regular: require('../assets/fonts/Comfortaa-Regular.ttf'),
-        light: require('../assets/fonts/Comfortaa-Light.ttf'),
-        bold: require('../assets/fonts/Comfortaa-Bold.ttf')
+        regular: require('../assets/fonts/OpenSans-Regular.ttf'),
+        light: require('../assets/fonts/OpenSans-Light.ttf'),
+        bold: require('../assets/fonts/OpenSans-Bold.ttf')
       })
     } finally {
       this.setState({ isAssetsLoaded: true })

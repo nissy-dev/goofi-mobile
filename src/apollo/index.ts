@@ -1,9 +1,14 @@
+import { AsyncStorage } from 'react-native'
 import { ApolloProvider, Query, Mutation } from 'react-apollo'
 import { ApolloClient, InMemoryCache, ApolloLink, HttpLink } from 'apollo-boost'
 import { withClientState } from 'apollo-link-state'
+import { persistCache } from 'apollo-cache-persist'
 import { resolvers, initialState, IssueItem } from './resolvers'
 
 const cache = new InMemoryCache()
+// @ts-ignore
+persistCache({ cache, storage: AsyncStorage })
+
 const stateLink = withClientState({
   cache,
   defaults: initialState,

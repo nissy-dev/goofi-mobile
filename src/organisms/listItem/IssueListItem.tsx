@@ -24,8 +24,8 @@ const ListItem = styled(TouchableView)`
 
 const LabelArea = styled(View)`
   flex-direction: row;
-  padding-horizontal: 10;
-  padding-vertical: 10;
+  padding-horizontal: 15;
+  padding-vertical: 5;
 `
 
 const ListItemImage = styled(Image)`

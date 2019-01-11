@@ -10,6 +10,7 @@ interface Props {
 
 const StarContainer = styled(View)`
   flex-direction: row;
+  align-items: center;
 `
 
 const StarCount = styled(View)`
