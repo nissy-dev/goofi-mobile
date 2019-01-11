@@ -13,7 +13,7 @@ const CardConteiner = styled(TouchableOpacity)`
   padding-vertical: 10;
   padding-horizontal: 10;
   width: 157;
-  height: 250;
+  height: 280;
   border-radius: 5;
   background-color: ${WHITE};
   box-shadow: 0 2px 3px ${SHADOW_COLOR};
@@ -27,7 +27,8 @@ const CardImage = styled(Image)`
 `
 
 const RepoTitleBox = styled(View)`
-  padding-top: 10;
+  flex: 1;
+  justify-content: center;
 `
 
 const StarInfoBox = styled(View)`
