@@ -31,7 +31,8 @@ const StyledModal = styled(Modal)`
   margin-top: 80;
   margin-bottom: 270;
   padding-horizontal: 30;
-  padding-vertical: 30;
+  padding-top: 10;
+  padding-bottom: 30;
   border-radius: 30;
   background-color: ${BASE_COLOR};
 `
