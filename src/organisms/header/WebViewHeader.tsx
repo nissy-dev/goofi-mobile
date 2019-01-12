@@ -31,8 +31,11 @@ interface Props {
 const WebViewHeader = (props: Props) => {
   const { favStatus, onPressBackBtn, onPressFavBtn } = props
   return (
-    <Header>
-      <BackButton onPress={() => onPressBackBtn()}>
+    <Header testID={'WebViewHeader'}>
+      <BackButton
+        testID={'webivew-modal-close-btn'}
+        onPress={() => onPressBackBtn()}
+      >
         <ArrowUpIcon size={40} color={BASE_COLOR} />
       </BackButton>
       <FavoriteButton favStatus={favStatus} onPress={() => onPressFavBtn()} />

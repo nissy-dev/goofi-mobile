@@ -6,7 +6,7 @@ import { STAR_COLOR } from '../../../assets'
 const TouchableArea = styled(TouchableView)`
   justify-content: center;
   padding-vertical: 10;
-  padding-horizontal: 10;
+  padding-horizontal: 20;
 `
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 const FavoriteButton = (props: Props) => {
   const { favStatus, onPress } = props
   return (
-    <TouchableArea onPress={() => onPress()}>
+    <TouchableArea testID={'favbtn'} onPress={() => onPress()}>
       {favStatus ? (
         <StarIcon size={30} color={STAR_COLOR} />
       ) : (

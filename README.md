@@ -13,6 +13,8 @@ Please check the detail [Detox: Install dependencies](https://github.com/wix/Det
 ```
 $ brew tap wix/brew
 $ brew install applesimutils
+// create Exponentapp directory
+$ ./tool/e2e-setup.sh 2.8.0(change your version)
 ```
 
 **npm script**

@@ -62,7 +62,6 @@
     "expo": "^30.0.0",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
-    "lodash": "^4.17.10",
     "react": "16.3.1",
     "react-apollo": "^2.3.3",
     "react-native": "~0.55.4",

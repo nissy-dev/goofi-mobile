@@ -39,7 +39,9 @@ interface Props {
 const SelectiveButton = (props: Props) => {
   const { label, selected, onPress } = props
   return (
+    // @ts-ignore
     <SelectiveArea
+      testID={`select-lang-btn-${label}`}
       selected={selected}
       onPress={selected ? () => onPress('') : () => onPress(label)}
     >

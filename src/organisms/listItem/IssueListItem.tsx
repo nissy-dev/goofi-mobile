@@ -41,14 +41,19 @@ const styles = StyleSheet.create({
 })
 
 interface Props {
+  index: number
   item: IssueItem
   onPress: (item: IssueItem) => void
 }
 
 const IssueListItem = (props: Props) => {
-  const { onPress, item } = props
+  const { index, onPress, item } = props
   return (
-    <ListItem onPress={() => onPress(item)} key={`issue-${item.id}`}>
+    <ListItem
+      testID={`issueItem-${index}`}
+      onPress={() => onPress(item)}
+      key={`issue-${item.id}`}
+    >
       <ListItemImage
         source={{ uri: item.avatarUrl }}
         style={{ width: 50, height: 50 }}

@@ -15,7 +15,7 @@ interface Props {
 const QueryWord = (props: Props) => {
   const { children } = props
   return (
-    <StyledLabel>
+    <StyledLabel testID={`query-${children}`}>
       <Heading size={18} color={WHITE}>
         {children}
       </Heading>

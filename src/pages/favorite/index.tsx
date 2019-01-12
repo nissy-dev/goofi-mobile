@@ -54,14 +54,15 @@ export default class FavoritePage extends React.Component<void, State> {
   render() {
     const { selectedFavItem, modalVisible } = this.state
     return (
-      <FavoritePageContainer>
+      <FavoritePageContainer testID="favoritePage">
         <FavoriteHeader />
         <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
           <Query query={GET_FAV_ITEMS}>
             {({ data }) => {
               const { favItems } = data
-              return favItems.map((item: IssueItem) => (
+              return favItems.map((item: IssueItem, index: number) => (
                 <FavoriteListItem
+                  index={index}
                   key={`issue-${item.id}`}
                   item={item}
                   onPress={this.onPressIssue}

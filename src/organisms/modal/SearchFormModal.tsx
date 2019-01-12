@@ -89,6 +89,7 @@ const SearchForm = (props: Props) => {
         </Heading>
       </FormFieldTitleBox>
       <KeyWordBox
+        testID={'keyword-box'}
         autoCapitalize={'none'}
         onChangeText={(text: string) => setKeyword(text)}
         value={keyword}

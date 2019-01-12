@@ -64,11 +64,12 @@ export default class IssueListPage extends React.Component<Props, State> {
     const { nodes } = navigation.getParam('issues')
     const issueItems = createIssueItems(nodes)
     return (
-      <IssueListPageContainer>
+      <IssueListPageContainer testID="issueListPage">
         <IssueHeader navigation={navigation} />
         <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
-          {issueItems.map(item => (
+          {issueItems.map((item, index) => (
             <IssueListItem
+              index={index}
               key={`issue-${item.id}`}
               item={item}
               onPress={this.onPressIssue}

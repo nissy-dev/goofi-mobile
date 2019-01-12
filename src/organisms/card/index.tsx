@@ -42,14 +42,15 @@ const IssueInfoBox = styled(View)`
 `
 
 interface Props {
+  index: number
   data: RepositoryNode
   onPress: () => void
 }
 
 const Card = (props: Props) => {
-  const { data, onPress } = props
+  const { index, data, onPress } = props
   return (
-    <CardConteiner onPress={onPress}>
+    <CardConteiner testID={`card-${index}`} onPress={onPress}>
       <CardImage source={{ uri: data.owner.avatarUrl }} />
       <Container>
         <RepoTitleBox>

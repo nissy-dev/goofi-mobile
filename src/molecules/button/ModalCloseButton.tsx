@@ -17,7 +17,7 @@ interface Props {
 const ModalCloseButton = (props: Props) => {
   const { onPress } = props
   return (
-    <TouchableArea onPress={() => onPress()}>
+    <TouchableArea testID={'search-modal-close-btn'} onPress={() => onPress()}>
       <ArrowUpIcon color={WHITE} size={40} />
     </TouchableArea>
   )

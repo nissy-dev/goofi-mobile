@@ -39,7 +39,9 @@ const Root = createBottomTabNavigator(
         ) : (
           <StarOIcon size={iconSize} color={color} />
         )
-      }
+      },
+      tabBarTestID:
+        navigation.state.routeName === 'search' ? 'search-tab' : 'favorite-tab'
     }),
     tabBarOptions: {
       activeTintColor: BASE_COLOR
