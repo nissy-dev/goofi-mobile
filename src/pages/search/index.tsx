@@ -55,7 +55,7 @@ export default class SearchPage extends React.Component<Props, State> {
     const languageQuery = language ? 'language:' + language : ''
     const query = `${keyword} ${languageQuery} good-first-issues:>1 stars:>500`
     return (
-      <SearchPageContainer>
+      <SearchPageContainer testID="seachPage">
         <SearchHeader
           language={language}
           keyword={keyword}
