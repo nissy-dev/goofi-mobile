@@ -45,7 +45,10 @@ const IssueHeader = (props: Props) => {
   const { navigation } = props
   return (
     <Header>
-      <BackButton onPress={() => navigation.goBack()}>
+      <BackButton
+        testID={'back-to-search-page-btn'}
+        onPress={() => navigation.goBack()}
+      >
         <ArrowBackIcon size={32} color={WHITE} />
       </BackButton>
       <HeaderTitle size={25} style={styles.font} color={WHITE}>

@@ -1,13 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
 import { ScrollView, StyleSheet } from 'react-native'
-import { Query, Mutation } from 'react-apollo'
 import { Container } from '../../atoms'
 import { FavoriteHeader, WebViewModal, FavoriteListItem } from '../../organisms'
 import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { judgeIsFavItem } from '../../utils'
-import { IssueItem } from '../../apollo/resolvers'
+import { Query, Mutation, IssueItem } from '../../apollo'
 
 const FavoritePageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
@@ -55,14 +54,15 @@ export default class FavoritePage extends React.Component<void, State> {
   render() {
     const { selectedFavItem, modalVisible } = this.state
     return (
-      <FavoritePageContainer>
+      <FavoritePageContainer testID="favoritePage">
         <FavoriteHeader />
         <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
           <Query query={GET_FAV_ITEMS}>
             {({ data }) => {
               const { favItems } = data
-              return favItems.map((item: IssueItem) => (
+              return favItems.map((item: IssueItem, index: number) => (
                 <FavoriteListItem
+                  index={index}
                   key={`issue-${item.id}`}
                   item={item}
                   onPress={this.onPressIssue}

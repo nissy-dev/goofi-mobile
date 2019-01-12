@@ -16,8 +16,10 @@ export default class GridList extends React.PureComponent<Props> {
     navigate('issueList', { issues: item.issues })
   }
 
-  renderCard = ({ item }: { item: RepositoryNode }) => {
-    return <Card data={item} onPress={() => this.onPressCard(item)} />
+  renderCard = ({ item, index }: { item: RepositoryNode; index: number }) => {
+    return (
+      <Card index={index} data={item} onPress={() => this.onPressCard(item)} />
+    )
   }
 
   render() {

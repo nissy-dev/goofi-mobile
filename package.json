@@ -2,6 +2,21 @@
   "name": "goofi-client",
   "version": "0.1.0",
   "private": true,
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry-web.js",
+  "scripts": {
+    "bootstrap": "rm -rf node_modules && yarn",
+    "start": "react-native-scripts-ts start",
+    "eject": "react-native-scripts-ts eject",
+    "android": "react-native-scripts-ts android",
+    "ios": "react-native-scripts-ts ios",
+    "test": "jest",
+    "e2e": "./node_modules/.bin/detox test --configuration ios.sim",
+    "tsc": "node_modules/.bin/tsc",
+    "lint": "node_modules/.bin/tslint 'src/**/*.ts{,x}'",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "i18n-ts": "ex-react-native-i18n-ts",
+    "i18n-ts:watch": "ex-react-native-i18n-ts -w"
+  },
   "devDependencies": {
     "@types/expo": "30.0.2",
     "@types/expo__vector-icons": "^6.2.3",
@@ -14,9 +29,13 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-imports": "^1.4.1",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "detox": "^9.1.2",
+    "detox-expo-helpers": "^0.6.0",
     "eslint": "^5.12.0",
     "ex-react-native-i18n-ts": "^0.0.6",
     "exp": "^57.2.1",
+    "expo-cli": "^2.6.14",
+    "expo-detox-hook": "^1.0.10",
     "jest-expo": "30.0.0",
     "prettier": "^1.13.7",
     "react-native-scripts": "latest",
@@ -32,19 +51,23 @@
     "typescript": "^3.2.2",
     "typescript-eslint-parser": "21.0.2"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry-web.js",
-  "scripts": {
-    "bootstrap": "rm -rf node_modules && yarn",
-    "start": "react-native-scripts-ts start",
-    "eject": "react-native-scripts-ts eject",
-    "android": "react-native-scripts-ts android",
-    "ios": "react-native-scripts-ts ios",
-    "test": "jest",
-    "tsc": "node_modules/.bin/tsc",
-    "lint": "node_modules/.bin/tslint 'src/**/*.ts{,x}'",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "i18n-ts": "ex-react-native-i18n-ts",
-    "i18n-ts:watch": "ex-react-native-i18n-ts -w"
+  "dependencies": {
+    "apollo-boost": "^0.1.23",
+    "apollo-cache-inmemory": "^1.3.12",
+    "apollo-cache-persist": "^0.1.1",
+    "apollo-client": "^2.4.8",
+    "apollo-link-context": "^1.0.12",
+    "apollo-link-http": "^1.5.9",
+    "ex-react-native-i18n": "0.0.4",
+    "expo": "^30.0.0",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
+    "react": "16.3.1",
+    "react-apollo": "^2.3.3",
+    "react-native": "~0.55.4",
+    "react-native-modal": "^6.5.0",
+    "react-navigation": "^2.18.0",
+    "styled-components": "^3.3.3"
   },
   "jest": {
     "globals": {
@@ -53,17 +76,16 @@
       }
     },
     "moduleFileExtensions": [
-      "ts",
-      "tsx",
       "js",
       "jsx",
+      "ts",
+      "tsx",
       "json",
       "node"
     ],
     "preset": "jest-expo",
     "testMatch": [
-      "**/test/**/*.[tj]s?(x)",
-      "**/?(*.)(spec|test).[tj]s?(x)"
+      "**/test/utils/*.ts?(x)"
     ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
@@ -72,23 +94,16 @@
       "node_modules/(?!((jest-)?react-native|ex-react-native-i18n|expo(nent)?|@expo(nent)?/.*|react-navigation))"
     ]
   },
-  "dependencies": {
-    "apollo-boost": "^0.1.23",
-    "apollo-cache-inmemory": "^1.3.12",
-    "apollo-client": "^2.4.8",
-    "apollo-link-context": "^1.0.12",
-    "apollo-link-http": "^1.5.9",
-    "expo": "^30.0.0",
-    "ex-react-native-i18n": "0.0.4",
-    "graphql": "^14.0.2",
-    "graphql-tag": "^2.10.0",
-    "lodash": "^4.17.10",
-    "react": "16.3.1",
-    "react-apollo": "^2.3.3",
-    "react-native": "~0.55.4",
-    "react-native-modal": "^6.5.0",
-    "react-navigation": "^2.18.0",
-    "styled-components": "^3.3.3"
+  "detox": {
+    "test-runner": "jest",
+    "runner-config": "test/e2e/config.json",
+    "configurations": {
+      "ios.sim": {
+        "binaryPath": "bin/Exponent-2.9.0.app",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
+      }
+    }
   },
   "ex-react-native-i18n-ts": {
     "model": "./src/locale/languages/ja.json",

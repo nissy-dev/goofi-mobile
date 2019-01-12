@@ -6,7 +6,6 @@ import { WHITE } from '../../../assets'
 const StyledLabel = styled(Label)`
   margin-horizontal: 5;
   padding-horizontal: 10;
-  padding-vertical: 5;
 `
 
 interface Props {
@@ -16,7 +15,7 @@ interface Props {
 const QueryWord = (props: Props) => {
   const { children } = props
   return (
-    <StyledLabel>
+    <StyledLabel testID={`query-${children}`}>
       <Heading size={18} color={WHITE}>
         {children}
       </Heading>

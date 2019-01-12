@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Query } from 'react-apollo'
 import styled from 'styled-components/native'
 import { Container, Heading } from '../../atoms'
 import {
@@ -11,6 +10,7 @@ import {
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { GET_REPO_ALL_DATA } from '../../query'
 import I18n from '../../locale'
+import { Query } from '../../apollo'
 
 const SearchPageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
@@ -32,7 +32,7 @@ export default class SearchPage extends React.Component<Props, State> {
     super(props)
     this.state = {
       modalVisible: false,
-      language: 'Javascript',
+      language: '',
       keyword: ''
     }
   }
@@ -52,9 +52,10 @@ export default class SearchPage extends React.Component<Props, State> {
   render() {
     const { navigate } = this.props.navigation
     const { modalVisible, language, keyword } = this.state
-    const query = `${keyword} language:${language} good-first-issues:>1 stars:>500`
+    const languageQuery = language ? 'language:' + language : ''
+    const query = `${keyword} ${languageQuery} good-first-issues:>1 stars:>500`
     return (
-      <SearchPageContainer>
+      <SearchPageContainer testID="searchPage">
         <SearchHeader
           language={language}
           keyword={keyword}
