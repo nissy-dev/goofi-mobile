@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Font } from 'expo'
 import { Provider, client } from './apollo'
 import Root from './navigation'
+import { Loading } from './organisms'
 import I18n from './locale'
 
 interface State {
@@ -35,6 +36,10 @@ export default class App extends React.Component<any, State> {
 
   render() {
     const { isAssetsLoaded } = this.state
-    return <Provider client={client}>{isAssetsLoaded ? <Root /> : ''}</Provider>
+    return (
+      <Provider client={client}>
+        {isAssetsLoaded ? <Root /> : <Loading />}
+      </Provider>
+    )
   }
 }
