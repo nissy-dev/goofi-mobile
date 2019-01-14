@@ -1,11 +1,20 @@
 {
   "expo": {
     "name": "Goofi Mobile",
+    "version": "1.0.0",
     "sdkVersion": "30.0.0",
     "orientation": "portrait",
+    "description": "Mobile app for searching good first issues in OSS",
+    "githubUrl": "https://github.com/nd-02110114/goofi-mobile",
+    "icon": "./assets/image/icon.png",
     "packagerOpts": {
       "sourceExts": ["ts", "tsx"],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"
+    },
+    "splash": {
+      "backgroundColor": "#F5F5F5",
+      "resizeMode": "contain",
+      "image": "./assets/image/splash.png"
     }
   }
 }

@@ -14,6 +14,7 @@ export const SHADOW_COLOR = '#ccc'
  */
 export const STAR_COLOR = '#FFDF00'
 export const SELECTED_COLOR = '#7fc89d'
+export const FAV_DELETE_BTN_COLOR = '#dd2c00'
 
 /**
  * 画面サイズ

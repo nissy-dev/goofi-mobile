@@ -42,15 +42,16 @@ const styles = StyleSheet.create({
 
 interface Props {
   index: number
+  favorite?: boolean
   item: IssueItem
   onPress: (item: IssueItem) => void
 }
 
 const IssueListItem = (props: Props) => {
-  const { index, onPress, item } = props
+  const { index, onPress, item, favorite } = props
   return (
     <ListItem
-      testID={`issueItem-${index}`}
+      testID={favorite ? `favItem-${index}` : `issueItem-${index}`}
       onPress={() => onPress(item)}
       key={`issue-${item.id}`}
     >

@@ -17,6 +17,7 @@ declare module "ex-react-native-i18n" {
     function t(key: "graphqlError"): string;
     function t(key: "keywordForm"): string;
     function t(key: "issueListPageTitle"): string;
+    function t(key: "delete"): string;
 }
 
 declare module "*.json" {

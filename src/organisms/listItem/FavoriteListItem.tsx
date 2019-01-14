@@ -1,70 +1,53 @@
 import * as React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { Animated } from 'react-native'
+import { Swipeable, RectButton } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
-import { TouchableView, Heading, Image } from '../../atoms'
-import { WHITE, PAGE_BACK_GROUND } from '../../../assets'
+import IssueListItem from './IssueListItem'
 import { IssueItem } from '../../apollo'
+import I18n from '../../locale'
+import { Heading } from '../../atoms'
+import { FAV_DELETE_BTN_COLOR, WHITE } from '../../../assets'
 
-const IssueTitle = styled(Heading)`
-  width: 90%;
-  flex-wrap: wrap;
+const DeleteButton = styled(RectButton)`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: ${FAV_DELETE_BTN_COLOR};
 `
-
-const ListItem = styled(TouchableView)`
-  flex-direction: row;
-  height: 100;
-  width: 100%;
-  justify-content: flex-start;
-  background-color: ${WHITE};
-  padding-horizontal: 10;
-  padding-vertical: 10;
-  border-bottom-width: 3;
-  border-bottom-color: ${PAGE_BACK_GROUND};
-`
-
-const LabelArea = styled(View)`
-  flex-direction: row;
-  padding-horizontal: 15;
-  padding-vertical: 5;
-`
-
-const ListItemImage = styled(Image)`
-  align-self: center;
-  border-radius: 10;
-`
-
-// custom fontがstyled-componentではうまく読み込めないので一旦この方法でしのぐ
-const styles = StyleSheet.create({
-  font: {
-    fontFamily: 'regular'
-  }
-})
 
 interface Props {
   index: number
   item: IssueItem
   onPress: (item: IssueItem) => void
+  onPressDelteBtn: () => void
 }
 
-const FavoriteListItem = (props: Props) => {
-  const { index, onPress, item } = props
-  return (
-    <ListItem
-      testID={`favItem-${index}`}
-      onPress={() => onPress(item)}
-      key={`issue-${item.id}`}
-    >
-      <ListItemImage
-        source={{ uri: item.avatarUrl }}
-        style={{ width: 50, height: 50 }}
-      />
-      <LabelArea>
-        <IssueTitle size={15} style={styles.font}>
-          {item.title}
-        </IssueTitle>
-      </LabelArea>
-    </ListItem>
-  )
-}
+export default class FavoriteListItem extends React.Component<Props> {
+  renderRightActions = (progress: any) => {
+    const trans = progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [64, 1],
+      extrapolate: 'clamp'
+    })
+    const pressHandler = () => {
+      this.props.onPressDelteBtn()
+    }
 
-export default FavoriteListItem
+    return (
+      <Animated.View style={{ width: 120, transform: [{ translateX: trans }] }}>
+        <DeleteButton onPress={() => pressHandler()}>
+          <Heading color={WHITE}>{I18n.t('delete')}</Heading>
+        </DeleteButton>
+      </Animated.View>
+    )
+  }
+
+  render() {
+    const { onPressDelteBtn, ...otherProps } = this.props
+    return (
+      <Swipeable friction={1} renderRightActions={this.renderRightActions}>
+        <IssueListItem favorite {...otherProps} />
+      </Swipeable>
+    )
+  }
+}

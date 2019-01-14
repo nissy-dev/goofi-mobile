@@ -8,5 +8,6 @@
   "networkError": "Network環境にエラーがあります",
   "graphqlError": "GraphQLのクエリにエラーがあります",
   "keywordForm": "キーワードを入れてください",
-  "issueListPageTitle": "issues"
+  "issueListPageTitle": "issues",
+  "delete": "削除"
 }
