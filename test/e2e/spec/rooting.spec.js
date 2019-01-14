@@ -5,7 +5,7 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 describe('Routing Test', () => {
   beforeEach(async () => {
     await reloadApp();
-    await sleep(10000);
+    await sleep(1000);
   });
 
   it('routing test (Searchpage <-> IssueList <-> WebView)', async () => {
