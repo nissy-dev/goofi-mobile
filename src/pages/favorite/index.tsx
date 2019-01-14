@@ -61,12 +61,20 @@ export default class FavoritePage extends React.Component<void, State> {
             {({ data }) => {
               const { favItems } = data
               return favItems.map((item: IssueItem, index: number) => (
-                <FavoriteListItem
-                  index={index}
+                <Mutation
                   key={`issue-${item.id}`}
-                  item={item}
-                  onPress={this.onPressIssue}
-                />
+                  mutation={DELETE_FAV_ITEM}
+                  variables={{ ...item }}
+                >
+                  {mutate => (
+                    <FavoriteListItem
+                      index={index}
+                      item={item}
+                      onPress={this.onPressIssue}
+                      onPressDelteBtn={mutate}
+                    />
+                  )}
+                </Mutation>
               ))
             }}
           </Query>
