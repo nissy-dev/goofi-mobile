@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "Goofi Mobile",
-    "version": "1.0.0",
+    "version": "1.0.1",
+    "privacy": "public",
     "sdkVersion": "30.0.0",
     "orientation": "portrait",
     "description": "Mobile app for searching good first issues in OSS",

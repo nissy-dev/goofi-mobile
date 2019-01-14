@@ -1,7 +1,6 @@
 {
   "name": "goofi-client",
   "version": "0.1.0",
-  "private": true,
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry-web.js",
   "scripts": {
     "bootstrap": "rm -rf node_modules && yarn",
