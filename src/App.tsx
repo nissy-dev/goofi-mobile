@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Font } from 'expo'
 import { Provider, client } from './apollo'
 import Root from './navigation'
-import { Loading } from './organisms'
+import { Loading } from './molecules'
 import I18n from './locale'
 
 interface State {

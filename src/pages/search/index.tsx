@@ -1,12 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
 import { Container, Heading } from '../../atoms'
-import {
-  SearchHeader,
-  SearchFormModal,
-  Loading,
-  GridList
-} from '../../organisms'
+import { Loading } from '../../molecules'
+import { SearchHeader, SearchFormModal, GridList } from '../../organisms'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { GET_REPO_ALL_DATA } from '../../query'
 import I18n from '../../locale'
