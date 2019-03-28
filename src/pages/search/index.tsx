@@ -46,6 +46,30 @@ export default class SearchPage extends React.Component<Props, State> {
     this.setState({ keyword: value })
   }
 
+  updateQuery = (previousResult: any, fetchMoreResult: any): void => {
+    const prevRepoList = previousResult.search
+    const newRepoList = fetchMoreResult.search
+    // workaround: FlatlistのonEndReached Eventが発火しすぎる問題を回避する
+    const newNodes = removeDuplicateItem(
+      [...prevRepoList.nodes, ...newRepoList.nodes],
+      'id'
+    )
+    const newPageInfo = {
+      ...newRepoList.pageInfo,
+      hasNextPage: newNodes.length + 10 <= 50
+    }
+
+    return newNodes.length && prevRepoList.pageInfo.hasNextPage
+      ? {
+          search: {
+            __typename: prevRepoList.__typename,
+            nodes: newNodes,
+            pageInfo: newPageInfo
+          }
+        }
+      : previousResult
+  }
+
   render() {
     const { navigate } = this.props.navigation
     const { modalVisible, language, keyword } = this.state
@@ -93,28 +117,7 @@ export default class SearchPage extends React.Component<Props, State> {
                       cursor: repoList.pageInfo.endCursor
                     },
                     updateQuery: (previousResult, { fetchMoreResult }) => {
-                      const prevRepoList = previousResult.search
-                      const newRepoList = fetchMoreResult.search
-                      // workaround: FlatlistのonEndReached Eventが発火しすぎる問題を回避する
-                      const newNodes = removeDuplicateItem(
-                        [...prevRepoList.nodes, ...newRepoList.nodes],
-                        'id'
-                      )
-                      const newPageInfo = {
-                        ...newRepoList.pageInfo,
-                        hasNextPage: newNodes.length + 10 <= 50
-                      }
-
-                      return newNodes.length &&
-                        prevRepoList.pageInfo.hasNextPage
-                        ? {
-                            search: {
-                              __typename: prevRepoList.__typename,
-                              nodes: newNodes,
-                              pageInfo: newPageInfo
-                            }
-                          }
-                        : previousResult
+                      return this.updateQuery(previousResult, fetchMoreResult)
                     }
                   })
                 }
