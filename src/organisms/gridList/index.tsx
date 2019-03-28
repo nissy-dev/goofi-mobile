@@ -5,8 +5,9 @@ import Card from '../card'
 
 interface Props {
   data: RepositoryNode[]
-  navigate: (pass: string, param: { [key: string]: any }) => void,
-  onLoadMore: () => void,
+  navigate: (pass: string, param: { [key: string]: any }) => void
+  onLoadMore: () => void
+  onRefresh: () => void
 }
 
 export default class GridList extends React.PureComponent<Props> {
@@ -24,13 +25,15 @@ export default class GridList extends React.PureComponent<Props> {
   }
 
   render() {
-    const { data, onLoadMore } = this.props
+    const { data, onLoadMore, onRefresh } = this.props
     return (
       <FlatList
         numColumns={2}
         data={data}
         keyExtractor={this.keyExtractor}
         renderItem={this.renderCard}
+        refreshing={false}
+        onRefresh={() => onRefresh()}
         onEndReached={() => onLoadMore()}
       />
     )

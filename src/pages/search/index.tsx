@@ -58,9 +58,14 @@ export default class SearchPage extends React.Component<Props, State> {
           keyword={keyword}
           onPressSearchBtn={this.setModalVisible}
         />
-        <Query query={GET_REPO_ALL_DATA} variables={{ query }} fetchPolicy="network-only">
-          {({ loading, data: { search: repoList }, error, fetchMore }) => {
-            console.log(repoList)
+        <Query query={GET_REPO_ALL_DATA} variables={{ query }}>
+          {({
+            loading,
+            data: { search: repoList },
+            error,
+            fetchMore,
+            refetch
+          }) => {
             if (loading) {
               return <Loading />
             }
@@ -78,8 +83,9 @@ export default class SearchPage extends React.Component<Props, State> {
             }
             return (
               <GridList
-                navigate={navigate}
                 data={repoList.nodes}
+                navigate={navigate}
+                onRefresh={() => refetch({ query })}
                 onLoadMore={() =>
                   fetchMore({
                     variables: {
@@ -95,19 +101,20 @@ export default class SearchPage extends React.Component<Props, State> {
                         'id'
                       )
                       const newPageInfo = {
-                        ...newRepoList.pageInfo, 
-                        hasNextPage: (newNodes.length + 10) <= 50
+                        ...newRepoList.pageInfo,
+                        hasNextPage: newNodes.length + 10 <= 50
                       }
 
-                      return newNodes.length && prevRepoList.pageInfo.hasNextPage
+                      return newNodes.length &&
+                        prevRepoList.pageInfo.hasNextPage
                         ? {
                             search: {
                               __typename: prevRepoList.__typename,
                               nodes: newNodes,
-                              pageInfo: newPageInfo,
+                              pageInfo: newPageInfo
                             }
                           }
-                        : previousResult;
+                        : previousResult
                     }
                   })
                 }
