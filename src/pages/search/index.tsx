@@ -5,6 +5,7 @@ import { Loading } from '../../molecules'
 import { SearchHeader, SearchFormModal, GridList } from '../../organisms'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { GET_REPO_ALL_DATA } from '../../query'
+import { removeDuplicateItem } from '../../utils'
 import I18n from '../../locale'
 import { Query } from '../../apollo'
 
@@ -24,7 +25,7 @@ interface State {
 }
 
 export default class SearchPage extends React.Component<Props, State> {
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props)
     this.state = {
       modalVisible: false,
@@ -57,8 +58,9 @@ export default class SearchPage extends React.Component<Props, State> {
           keyword={keyword}
           onPressSearchBtn={this.setModalVisible}
         />
-        <Query query={GET_REPO_ALL_DATA} variables={{ query }}>
-          {({ loading, data, error }) => {
+        <Query query={GET_REPO_ALL_DATA} variables={{ query }} fetchPolicy="network-only">
+          {({ loading, data: { search: repoList }, error, fetchMore }) => {
+            console.log(repoList)
             if (loading) {
               return <Loading />
             }
@@ -74,7 +76,43 @@ export default class SearchPage extends React.Component<Props, State> {
                 </Container>
               )
             }
-            return <GridList navigate={navigate} data={data.search.nodes} />
+            return (
+              <GridList
+                navigate={navigate}
+                data={repoList.nodes}
+                onLoadMore={() =>
+                  fetchMore({
+                    variables: {
+                      query,
+                      cursor: repoList.pageInfo.endCursor
+                    },
+                    updateQuery: (previousResult, { fetchMoreResult }) => {
+                      const prevRepoList = previousResult.search
+                      const newRepoList = fetchMoreResult.search
+                      // workaround: FlatlistのonEndReached Eventが発火しすぎる問題を回避する
+                      const newNodes = removeDuplicateItem(
+                        [...prevRepoList.nodes, ...newRepoList.nodes],
+                        'id'
+                      )
+                      const newPageInfo = {
+                        ...newRepoList.pageInfo, 
+                        hasNextPage: (newNodes.length + 10) <= 50
+                      }
+
+                      return newNodes.length && prevRepoList.pageInfo.hasNextPage
+                        ? {
+                            search: {
+                              __typename: prevRepoList.__typename,
+                              nodes: newNodes,
+                              pageInfo: newPageInfo,
+                            }
+                          }
+                        : previousResult;
+                    }
+                  })
+                }
+              />
+            )
           }}
         </Query>
         <SearchFormModal

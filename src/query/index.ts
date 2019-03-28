@@ -33,11 +33,10 @@ export interface RepositoryNode {
 }
 
 export const GET_REPO_ALL_DATA = gql`
-  query($query: String!) {
-    search(first: 30, query: $query, type: REPOSITORY) {
+  query($query: String!, $cursor: String) {
+    search(first: 10, query: $query, after: $cursor, type: REPOSITORY) {
       repositoryCount
       pageInfo {
-        startCursor
         endCursor
         hasNextPage
       }
