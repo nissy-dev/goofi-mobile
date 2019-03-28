@@ -4,12 +4,14 @@ import { RepositoryNode } from '../../query'
 import Card from '../card'
 
 interface Props {
-  data: RepositoryNode
+  data: RepositoryNode[]
   navigate: (pass: string, param: { [key: string]: any }) => void
+  onLoadMore: () => void
+  onRefresh: () => void
 }
 
 export default class GridList extends React.PureComponent<Props> {
-  keyExtractor = (item: RepositoryNode) => `card-${item.id}`
+  keyExtractor = (item: RepositoryNode) => `card-${item.id}-${item.name}`
 
   onPressCard = (item: RepositoryNode) => {
     const { navigate } = this.props
@@ -23,13 +25,16 @@ export default class GridList extends React.PureComponent<Props> {
   }
 
   render() {
+    const { data, onLoadMore, onRefresh } = this.props
     return (
       <FlatList
         numColumns={2}
-        // @ts-ignore
-        data={this.props.data}
+        data={data}
         keyExtractor={this.keyExtractor}
         renderItem={this.renderCard}
+        refreshing={false}
+        onRefresh={() => onRefresh()}
+        onEndReached={() => onLoadMore()}
       />
     )
   }
