@@ -18,6 +18,7 @@ const stateLink = withClientState({
 const httpLink = new HttpLink({
   uri: 'https://api.github.com/graphql',
   headers: {
+    // @ts-ignore
     authorization: `Bearer ${process.env.API_TOKEN}`
   }
 })

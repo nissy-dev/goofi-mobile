@@ -28,8 +28,8 @@ const Root = createBottomTabNavigator(
   },
   {
     initialRouteName: 'search',
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
+    navigationOptions: ({ navigation }: any) => ({
+      tabBarIcon: ({ focused, tintColor }: any) => {
         const { routeName } = navigation.state
         // tintColorとFontawsomeのcolor propertyの型が異なるための処理
         const color = tintColor !== null ? tintColor : ''

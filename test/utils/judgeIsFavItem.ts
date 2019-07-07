@@ -20,7 +20,7 @@ const favItems = [
     url: 'url3',
     avatarUrl: 'avatarUrl3'
   }
-] as Array<IssueItem>
+] as IssueItem[]
 
 describe('judgeIsFavItem', () => {
   it('judge IsFavItem is false', () => {

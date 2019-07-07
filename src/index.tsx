@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Font } from 'expo'
+import * as Font from 'expo-font'
 import { Provider, client } from './apollo'
 import Root from './navigation'
 import { Loading } from './molecules'

@@ -1,20 +1,16 @@
 {
   "compilerOptions": {
     "strict": true,
-    "target": "es5",
-    "module": "commonjs",
-    "outDir": "build/dist",
+    "noImplicitAny": false,
+    "target": "esnext",
     "jsx": "react-native",
     "lib": ["esnext"],
-    "noImplicitAny": true,
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "moduleResolution": "node",
-    "importHelpers": true,
-    "noImplicitReturns": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types", "./types"],
-    "noEmit": true
+    "noEmit": true,
   },
   "include": ["src"],
   "filesGlob": [

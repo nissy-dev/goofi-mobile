@@ -56,6 +56,7 @@ const SearchForm = (props: Props) => {
     setKeyword
   } = props
   return (
+    // @ts-ignore
     <StyledModal
       animationIn={'slideInDown'}
       animationOut={'slideOutUp'}

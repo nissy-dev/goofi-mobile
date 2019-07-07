@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Animated } from 'react-native'
+// @ts-ignore
 import { Swipeable, RectButton } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 import IssueListItem from './IssueListItem'

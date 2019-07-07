@@ -1,7 +1,7 @@
 import { IssueNode } from '../query'
 import { IssueItem } from '../apollo'
 
-const createIssueItems = (nodes: Array<IssueNode>): Array<IssueItem> => {
+const createIssueItems = (nodes: IssueNode[]): IssueItem[] => {
   return nodes.map(node => {
     const { id, title, url, author } = node
     return {

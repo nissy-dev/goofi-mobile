@@ -8,14 +8,16 @@ import {
 } from '../../atoms'
 import { WHITE, SELECTED_COLOR } from '../../../assets'
 
-type Selected = {
+interface Selected {
   selected?: boolean
 }
 
+// @ts-ignore
 const SelectiveItem = styled<HeadingProps & Selected>(Heading)`
   ${props => (props.selected ? 'font-weight: bold;' : '')};
 `
 
+// @ts-ignore
 const SelectiveArea = styled<TouchableViewProps & Selected>(TouchableView)`
   margin-vertical: 5;
   margin-horizontal: 5;

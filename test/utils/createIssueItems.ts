@@ -31,7 +31,7 @@ describe('createIssueItems', () => {
         },
         updatedAt: '2019/01/14'
       }
-    ] as Array<IssueNode>
+    ] as IssueNode[]
     const expected = [
       {
         id: '1',

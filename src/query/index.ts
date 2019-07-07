@@ -12,7 +12,7 @@ export interface IssueNode {
 
 export interface Issue {
   totalCount: number
-  nodes: Array<IssueNode>
+  nodes: IssueNode[]
 }
 
 export interface RepositoryNode {
