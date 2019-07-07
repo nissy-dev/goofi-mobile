@@ -33,7 +33,6 @@
     "jest": "^24.8.0",
     "jest-expo": "^33.0.0",
     "prettier": "^1.18.2",
-    "ts-jest": "^24.0.2",
     "typescript": "^3.5.2"
   },
   "dependencies": {
@@ -46,7 +45,6 @@
     "ex-react-native-i18n": "0.0.6",
     "expo": "^33.0.7",
     "expo-font": "~5.0.1",
-    "global": "^4.4.0",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "react": "16.8.3",
@@ -55,17 +53,6 @@
     "react-native-modal": "^11.1.0",
     "react-navigation": "^3.11.0",
     "styled-components": "^4.3.2"
-  },
-  "detox": {
-    "test-runner": "jest",
-    "runner-config": "test/e2e/config.json",
-    "configurations": {
-      "ios.sim": {
-        "binaryPath": "bin/Exponent-2.9.0.app",
-        "type": "ios.simulator",
-        "name": "iPhone 7"
-      }
-    }
   },
   "ex-react-native-i18n-ts": {
     "model": "./src/locale/languages/ja.json",
