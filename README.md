@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/nd-02110114/goofi-mobile/tree/master.svg?style=svg)](https://circleci.com/gh/nd-02110114/goofi-mobile/tree/master)
 [![License: MIT](https://img.shields.io/github/license/nd-02110114/goofi-mobile.svg)](https://opensource.org/licenses/MIT)
 
-Mobile app for searching good first issues in OSS  
+Mobile app for searching good first issues in OSS.  
 Let's contribute OSS!!
 
 [https://expo.io/@nd-02110114/goofi-mobile](https://expo.io/@nd-02110114/goofi-mobile)
@@ -20,6 +20,8 @@ $ ./tool/e2e-setup.sh 2.8.0(change your version)
 
 ### Setup
 ```
+$ git clone git@github.com:nd-02110114/goofi-mobile.git
+$ cd goofi-mobile
 $ yarn bootstrap
 ```
 
@@ -41,15 +43,15 @@ $ yarn lint
 $ yarn tsc
 ```
 
-## Technical Infomation
+## Technical Information
 
 |  |  |
 |:-----------|:------------|
-| Main Framework | Expo (React Native@0.57) |
+| Main Framework | Expo (React Native@0.59.8) |
 | Type Annotation | TypeScript |
 | Client | React Apollo |
 | Server | Github API (GraphQL) |
-| Design | Atomic Design (use styled-component) |
-| Test | Jest(unit test) |
-| linter | ESLint, Prettier |
+| Design | Atomic Design (styled-component) |
+| Test | Jest (unit test) |
+| Linter | ESLint, Prettier |
 | CI | Circle CI |
