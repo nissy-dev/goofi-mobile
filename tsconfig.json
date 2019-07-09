@@ -13,7 +13,4 @@
     "typeRoots": ["./node_modules/@types", "./types"],
   },
   "include": ["src", "test"],
-  "filesGlob": [
-    "types/**/*.d.ts",
-  ],
 }

@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.15",
     "@types/react": "16.8.23",
-    "@types/react-native": "0.57.65",
+    "@types/react-native": "~0.57.65",
     "@types/react-navigation": "^3.0.7",
     "@types/styled-components": "^4.1.16",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
@@ -31,7 +31,7 @@
     "eslint-plugin-react-hooks": "^1.6.1",
     "ex-react-native-i18n-ts": "^0.0.6",
     "jest": "^24.8.0",
-    "jest-expo": "^33.0.0",
+    "jest-expo": "^33.0.2",
     "prettier": "^1.18.2",
     "typescript": "^3.5.2"
   },
