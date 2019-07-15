@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {
+  createAppContainer,
   createBottomTabNavigator,
   createStackNavigator
 } from 'react-navigation'
@@ -49,4 +50,4 @@ const Root = createBottomTabNavigator(
   }
 )
 
-export default Root
+export default createAppContainer(Root)

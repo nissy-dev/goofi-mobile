@@ -32,8 +32,8 @@ const SearchHeader = (props: Props) => {
   return (
     <SearchHeaderContainer>
       <QueryBox row={true}>
-        {keyword && <QueryWord>{keyword}</QueryWord>}
-        {language && <QueryWord>{language}</QueryWord>}
+        {!!keyword && <QueryWord>{keyword}</QueryWord>}
+        {!!language && <QueryWord>{language}</QueryWord>}
       </QueryBox>
       <SearchButton onPress={() => onPressSearchBtn()} />
     </SearchHeaderContainer>

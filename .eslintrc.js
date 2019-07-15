@@ -13,7 +13,10 @@ module.exports = {
   },
   rules: {
     "react/display-name": "warn",
-    "@typescript-eslint/explicit-member-accessibility": "warn",
+    // too noisy
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react-hooks/rules-of-hooks": "error",
   },
   env: {
     node: true,

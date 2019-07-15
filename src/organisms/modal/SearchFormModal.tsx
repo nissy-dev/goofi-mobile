@@ -63,7 +63,7 @@ const SearchForm = (props: Props) => {
       backdropOpacity={0.7}
       isVisible={isVisible}
       swipeDirection={'up'}
-      onSwipe={() => switchModalVisible()}
+      onSwipeComplete={() => switchModalVisible()}
     >
       <FormFieldTitleBox>
         <Heading size={18} color={WHITE}>
