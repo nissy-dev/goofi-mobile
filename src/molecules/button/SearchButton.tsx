@@ -17,7 +17,7 @@ const SearchButton = (props: Props) => {
   const { onPress } = props
   return (
     <TouchableArea testID={'search-btn'} onPress={() => onPress()}>
-      {/* <SearchIcon size={20} color={WHITE} /> */}
+      <SearchIcon size={20} color={WHITE} />
     </TouchableArea>
   )
 }

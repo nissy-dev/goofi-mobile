@@ -85,12 +85,11 @@ export default class SearchPage extends React.Component<Props, State> {
         <Query query={GET_REPO_ALL_DATA} variables={{ query }}>
           {({
             loading,
-            data,
+            data: { search: repoList },
             error,
             fetchMore,
             refetch
           }) => {
-            console.log(data)
             if (loading) {
               return <Loading />
             }
