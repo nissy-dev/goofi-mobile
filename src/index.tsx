@@ -6,7 +6,7 @@ import { Loading } from './molecules'
 import I18n from './locale'
 
 export default function App() {
-  const [isAssetsLoaded, setState] = useState(false);
+  const [isAssetsLoaded, setState] = useState(false)
 
   useEffect(() => {
     // useEffect doesn't allow us to return async function
@@ -23,7 +23,7 @@ export default function App() {
       }
     }
     loadAssetsAsync()
-  }, []);
+  }, [])
 
   return (
     <Provider client={client}>
