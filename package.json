@@ -38,8 +38,6 @@
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-cache-persist": "^0.1.1",
     "apollo-client": "^2.6.3",
-    "apollo-link": "^1.2.12",
-    "apollo-link-state": "^0.4.2",
     "apollo-link-http": "^1.5.15",
     "ex-react-native-i18n": "0.0.6",
     "expo": "^33.0.7",

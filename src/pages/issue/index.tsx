@@ -45,8 +45,12 @@ export default function IssueListPage(props: Props) {
     initialIssueItem
   )
   const { data } = useQuery(GET_FAV_ITEMS)
-  const [addFavItem] = useMutation(ADD_FAV_ITEM)
-  const [deleteFavItem] = useMutation(DELETE_FAV_ITEM)
+  const [addFavItem] = useMutation(ADD_FAV_ITEM, {
+    variables: { ...selectedIssueItem }
+  })
+  const [deleteFavItem] = useMutation(DELETE_FAV_ITEM, {
+    variables: { ...selectedIssueItem }
+  })
 
   const onPressIssue = (item: IssueItem): void => {
     setSelectedIssueItem(item)

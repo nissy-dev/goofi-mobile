@@ -38,8 +38,12 @@ export default function FavoritePage() {
     initialIssueItem
   )
   const { data } = useQuery(GET_FAV_ITEMS)
-  const [addFavItem] = useMutation(ADD_FAV_ITEM)
-  const [deleteFavItem] = useMutation(DELETE_FAV_ITEM)
+  const [addFavItem] = useMutation(ADD_FAV_ITEM, {
+    variables: { ...selectedFavItem }
+  })
+  const [deleteFavItem] = useMutation(DELETE_FAV_ITEM, {
+    variables: { ...selectedFavItem }
+  })
 
   const onPressIssue = (item: IssueItem): void => {
     setSelectedFavItem(item)
