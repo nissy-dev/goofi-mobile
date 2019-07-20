@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
+
 import {
   TouchableView,
   Heading,
@@ -16,7 +17,6 @@ interface Selected {
 const SelectiveItem = styled<HeadingProps & Selected>(Heading)`
   ${props => (props.selected ? 'font-weight: bold;' : '')};
 `
-
 // @ts-ignore
 const SelectiveArea = styled<TouchableViewProps & Selected>(TouchableView)`
   margin-vertical: 5;
@@ -38,10 +38,9 @@ interface Props {
   onPress: (value: string) => void
 }
 
-const SelectiveButton = (props: Props) => {
+const SelectiveButton: React.FC<Props> = props => {
   const { label, selected, onPress } = props
   return (
-    // @ts-ignore: props don't consider testID
     <SelectiveArea
       testID={`select-lang-btn-${label}`}
       selected={selected}

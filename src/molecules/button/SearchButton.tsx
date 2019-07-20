@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
+
 import { SearchIcon, TouchableView } from '../../atoms'
 import { WHITE } from '../../../assets'
 
@@ -13,7 +14,7 @@ interface Props {
   onPress: () => void
 }
 
-const SearchButton = (props: Props) => {
+const SearchButton: React.FC<Props> = props => {
   const { onPress } = props
   return (
     <TouchableArea testID={'search-btn'} onPress={() => onPress()}>

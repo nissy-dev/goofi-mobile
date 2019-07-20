@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
+
 import { TouchableView, ArrowUpIcon } from '../../atoms'
 import { FavoriteButton } from '../../molecules'
 import { BASE_COLOR, PAGE_BACK_GROUND } from '../../../assets'
@@ -28,7 +29,7 @@ interface Props {
   onPressFavBtn: () => void
 }
 
-const WebViewHeader = (props: Props) => {
+const WebViewHeader: React.FC<Props> = props => {
   const { favStatus, onPressBackBtn, onPressFavBtn } = props
   return (
     <Header testID={'WebViewHeader'}>

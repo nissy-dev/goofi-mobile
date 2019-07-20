@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
+
 import { TouchableView, Heading, ArrowBackIcon } from '../../atoms'
-import I18n from '../../locale'
 import { BASE_COLOR, WHITE } from '../../../assets'
+import I18n from '../../locale'
 
 const Header = styled(View)`
   flex-direction: row;

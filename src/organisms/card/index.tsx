@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
+
 import { Container, Image, Heading } from '../../atoms'
 import { IssueInfo, StarInfo } from '../../molecules'
-import { RepositoryNode } from '../../query'
 import { WHITE, SHADOW_COLOR } from '../../../assets'
+
+import { RepositoryNode } from '../../types'
 
 const CardConteiner = styled(TouchableOpacity)`
   flex-direction: column;
@@ -47,7 +49,7 @@ interface Props {
   onPress: () => void
 }
 
-const Card = (props: Props) => {
+const Card: React.FC<Props> = props => {
   const { index, data, onPress } = props
   return (
     <CardConteiner testID={`card-${index}`} onPress={onPress}>

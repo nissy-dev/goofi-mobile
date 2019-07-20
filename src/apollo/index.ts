@@ -1,12 +1,18 @@
 import { AsyncStorage } from 'react-native'
-import { ApolloProvider, Query, Mutation } from 'react-apollo'
+import {
+  ApolloProvider,
+  Query,
+  Mutation,
+  useQuery,
+  useMutation
+} from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
 import { withClientState } from 'apollo-link-state'
 import { persistCache } from 'apollo-cache-persist'
-import { resolvers, initialState, IssueItem } from './resolvers'
+import { resolvers, initialState } from './resolvers'
 
 const cache = new InMemoryCache()
 // @ts-ignore
@@ -21,7 +27,6 @@ const stateLink = withClientState({
 const httpLink = new HttpLink({
   uri: 'https://api.github.com/graphql',
   headers: {
-    // @ts-ignore
     authorization: `Bearer ${process.env.API_TOKEN}`
   }
 })
@@ -29,5 +34,11 @@ const httpLink = new HttpLink({
 const link = ApolloLink.from([stateLink, httpLink])
 const client = new ApolloClient({ link, cache })
 
-export { client, ApolloProvider as Provider, Query, Mutation }
-export { IssueItem }
+export {
+  client,
+  ApolloProvider as Provider,
+  Query,
+  Mutation,
+  useQuery,
+  useMutation
+}

@@ -1,37 +1,5 @@
 import gql from 'graphql-tag'
 
-export interface IssueNode {
-  id: string
-  title: string
-  url: string
-  author?: {
-    avatarUrl: string
-  }
-  updatedAt: string
-}
-
-export interface Issue {
-  totalCount: number
-  nodes: IssueNode[]
-}
-
-export interface RepositoryNode {
-  owner: {
-    id: string
-    avatarUrl: string
-    login: string
-    url: string
-  }
-  id: string
-  description: string
-  name: string
-  url: string
-  issues: Issue
-  stargazers: {
-    totalCount: number
-  }
-}
-
 export const GET_REPO_ALL_DATA = gql`
   query($query: String!, $cursor: String) {
     search(first: 10, query: $query, after: $cursor, type: REPOSITORY) {

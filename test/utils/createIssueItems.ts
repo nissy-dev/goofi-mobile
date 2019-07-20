@@ -1,5 +1,5 @@
 import { createIssueItems } from '../../src/utils'
-import { IssueNode } from '../../src/query'
+import { IssueNode } from '../../src/types'
 
 describe('createIssueItems', () => {
   it('convert from IssueNode to IssueItem', () => {

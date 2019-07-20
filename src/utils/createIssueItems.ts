@@ -1,5 +1,4 @@
-import { IssueNode } from '../query'
-import { IssueItem } from '../apollo'
+import { IssueItem, IssueNode } from '../types'
 
 const createIssueItems = (nodes: IssueNode[]): IssueItem[] => {
   return nodes.map(node => {

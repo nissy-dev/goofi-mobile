@@ -6,7 +6,7 @@ interface Props {
   count: number
 }
 
-const IssueInfo = (props: Props) => (
+const IssueInfo: React.FC<Props> = props => (
   <ColoredLabel width={100}>
     <Heading bold size={15} color={WHITE}>
       {`${props.count.toString()} Issues`}

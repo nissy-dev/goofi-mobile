@@ -1,4 +1,4 @@
-import { IssueItem } from '../apollo/resolvers'
+import { IssueItem } from '../types'
 
 const judgeIsFavItem = (checkedItem: IssueItem, favItems: IssueItem[]) =>
   favItems.filter((favItem: IssueItem) => favItem.id === checkedItem.id)

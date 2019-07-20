@@ -4,6 +4,7 @@ import {
   createBottomTabNavigator,
   createStackNavigator
 } from 'react-navigation'
+
 import { SearchIcon, StarOIcon } from '../atoms'
 import { SearchPage, FavoritePage, IssueListPage } from '../pages'
 import { BASE_COLOR } from '../../assets'
@@ -14,11 +15,7 @@ const SearchScreen = createStackNavigator(
     issueList: IssueListPage
   },
   {
-    initialRouteName: 'repoList',
-    navigationOptions: {
-      header: null,
-      gesturesEnabled: false
-    }
+    initialRouteName: 'repoList'
   }
 )
 

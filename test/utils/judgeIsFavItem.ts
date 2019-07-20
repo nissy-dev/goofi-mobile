@@ -1,5 +1,5 @@
 import { judgeIsFavItem } from '../../src/utils'
-import { IssueItem } from '../../src/apollo'
+import { IssueItem } from '../../src/types'
 
 const favItems = [
   {

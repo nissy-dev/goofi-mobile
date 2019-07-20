@@ -137,3 +137,98 @@ export default class SearchPage extends React.Component<Props, State> {
     )
   }
 }
+
+// export default function SearchPage(props) {
+//   const [modalVisible, setModalVisible] = useState(false)
+//   const [language, setLanguage] = useState('')
+//   const [keyword, setKeyword] = useState('')
+
+//   const languageQuery = language ? 'language:' + language : ''
+//   const query = `${keyword} ${languageQuery} good-first-issues:>1 stars:>500`
+//   const { loading, data, error, fetchMore, refetch } = useQuery(GET_REPO_ALL_DATA, { query: 'good-first-issues:>1 stars:>500' })
+
+//   const updateQuery = (previousResult: any, fetchMoreResult: any): void => {
+//     const prevRepoList = previousResult.search
+//     const newRepoList = fetchMoreResult.search
+//     // workaround: FlatlistのonEndReached Eventが発火しすぎる問題を回避する
+//     const newNodes = removeDuplicateItem(
+//       [...prevRepoList.nodes, ...newRepoList.nodes],
+//       'id'
+//     )
+//     const newPageInfo = {
+//       ...newRepoList.pageInfo,
+//       hasNextPage: newNodes.length + 10 <= 50
+//     }
+
+//     return newNodes.length && prevRepoList.pageInfo.hasNextPage
+//       ? {
+//           search: {
+//             __typename: prevRepoList.__typename,
+//             nodes: newNodes,
+//             pageInfo: newPageInfo
+//           }
+//         }
+//       : previousResult
+//   }
+
+//   const { navigate } = props.navigation
+
+//   if (loading) {
+//     return (
+//       <SearchPageContainer testID="searchPage">
+//         <SearchHeader
+//           language={language}
+//           keyword={keyword}
+//           onPressSearchBtn={setModalVisible}
+//         />
+//         <Loading />
+//         <SearchFormModal
+//           isVisible={modalVisible}
+//           keyword={keyword}
+//           language={language}
+//           switchModalVisible={setModalVisible}
+//           setLanguage={setLanguage}
+//           setKeyword={setKeyword}
+//         />
+//       </SearchPageContainer>
+//     )
+//   }
+
+//   return (
+//     <SearchPageContainer testID="searchPage">
+//       <SearchHeader
+//         language={language}
+//         keyword={keyword}
+//         onPressSearchBtn={setModalVisible}
+//       />
+//       <GridList
+//         data={data && data.search && data.search.nodes}
+//         navigate={navigate}
+//         onRefresh={() => refetch({ query })}
+//         onLoadMore={() =>
+//           fetchMore({
+//             variables: {
+//               query,
+//               cursor: data.search.pageInfo.endCursor
+//             },
+//             updateQuery: (previousResult, { fetchMoreResult }) => {
+//               return updateQuery(previousResult, fetchMoreResult)
+//             }
+//           })
+//         }
+//       />
+//       <SearchFormModal
+//         isVisible={modalVisible}
+//         keyword={keyword}
+//         language={language}
+//         switchModalVisible={setModalVisible}
+//         setLanguage={setLanguage}
+//         setKeyword={setKeyword}
+//       />
+//     </SearchPageContainer>
+//   )
+// }
+
+// SearchPage.navigationOptions = {
+//   header: null
+// }

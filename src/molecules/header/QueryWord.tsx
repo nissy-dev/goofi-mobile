@@ -8,11 +8,7 @@ const StyledLabel = styled(Label)`
   padding-horizontal: 10;
 `
 
-interface Props {
-  children: string
-}
-
-const QueryWord = (props: Props) => {
+const QueryWord: React.FC = props => {
   const { children } = props
   return (
     <StyledLabel testID={`query-${children}`}>

@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { Animated } from 'react-native'
-// @ts-ignore
-import { Swipeable, RectButton } from 'react-native-gesture-handler'
+import { RectButton } from 'react-native-gesture-handler'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
 import styled from 'styled-components/native'
-import IssueListItem from './IssueListItem'
-import { IssueItem } from '../../apollo'
-import I18n from '../../locale'
+
 import { Heading } from '../../atoms'
+import IssueListItem from './IssueListItem'
+import { IssueItem } from '../../types'
+import I18n from '../../locale'
 import { FAV_DELETE_BTN_COLOR, WHITE } from '../../../assets'
 
 const DeleteButton = styled(RectButton)`

@@ -13,6 +13,7 @@ module.exports = {
   },
   rules: {
     "react/display-name": "warn",
+    "react/prop-types": "off",
     // too noisy
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/explicit-function-return-type": "off",

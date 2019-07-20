@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { FlatList } from 'react-native'
-import { RepositoryNode } from '../../query'
 import Card from '../card'
+import { RepositoryNode } from '../../types'
 
 interface Props {
   data: RepositoryNode[]
@@ -10,32 +10,35 @@ interface Props {
   onRefresh: () => void
 }
 
-export default class GridList extends React.PureComponent<Props> {
-  keyExtractor = (item: RepositoryNode) => `card-${item.id}-${item.name}`
+export default function GridList(props: Props) {
+  const { data, onLoadMore, onRefresh, navigate } = props
 
-  onPressCard = (item: RepositoryNode) => {
-    const { navigate } = this.props
+  const keyExtractor = (item: RepositoryNode) => `card-${item.id}-${item.name}`
+
+  const onPressCard = (item: RepositoryNode) => {
+    const { navigate } = props
     navigate('issueList', { issues: item.issues })
   }
 
-  renderCard = ({ item, index }: { item: RepositoryNode; index: number }) => {
-    return (
-      <Card index={index} data={item} onPress={() => this.onPressCard(item)} />
-    )
+  const renderCard = ({
+    item,
+    index
+  }: {
+    item: RepositoryNode
+    index: number
+  }) => {
+    return <Card index={index} data={item} onPress={() => onPressCard(item)} />
   }
 
-  render() {
-    const { data, onLoadMore, onRefresh } = this.props
-    return (
-      <FlatList
-        numColumns={2}
-        data={data}
-        keyExtractor={this.keyExtractor}
-        renderItem={this.renderCard}
-        refreshing={false}
-        onRefresh={() => onRefresh()}
-        onEndReached={() => onLoadMore()}
-      />
-    )
-  }
+  return (
+    <FlatList
+      numColumns={2}
+      data={data}
+      keyExtractor={keyExtractor}
+      renderItem={renderCard}
+      refreshing={false}
+      onRefresh={() => onRefresh()}
+      onEndReached={() => onLoadMore()}
+    />
+  )
 }

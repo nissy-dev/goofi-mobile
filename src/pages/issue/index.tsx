@@ -1,13 +1,16 @@
-import * as React from 'react'
-import styled from 'styled-components/native'
+import React, { useState } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
+import styled from 'styled-components/native'
+
 import { Container } from '../../atoms'
 import { IssueListItem } from '../../molecules'
 import { IssueHeader, WebViewModal } from '../../organisms'
-import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
-import { judgeIsFavItem, createIssueItems } from '../../utils'
-import { Query, Mutation, IssueItem } from '../../apollo'
+
+import { useQuery, useMutation } from '../../apollo'
+import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
+import { createIssueItems, judgeIsFavItem } from '../../utils'
+import { IssueItem } from '../../types'
 
 const IssueListPageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
@@ -29,11 +32,6 @@ interface Props {
   }
 }
 
-interface State {
-  modalVisible: boolean
-  selectedIssueItem: IssueItem
-}
-
 const initialIssueItem = {
   id: '',
   title: '',
@@ -41,66 +39,49 @@ const initialIssueItem = {
   avatarUrl: ''
 }
 
-export default class IssueListPage extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    this.state = {
-      modalVisible: false,
-      selectedIssueItem: initialIssueItem
-    }
+export default function IssueListPage(props: Props) {
+  const [modalVisible, setModalVisible] = useState(false)
+  const [selectedIssueItem, setSelectedIssueItem] = useState<IssueItem>(
+    initialIssueItem
+  )
+  const { data } = useQuery(GET_FAV_ITEMS)
+  const [addFavItem] = useMutation(ADD_FAV_ITEM)
+  const [deleteFavItem] = useMutation(DELETE_FAV_ITEM)
+
+  const onPressIssue = (item: IssueItem): void => {
+    setSelectedIssueItem(item)
+    setModalVisible(!modalVisible)
   }
 
-  setModalVisible = (visible: boolean): void => {
-    this.setState({ modalVisible: visible })
-  }
+  const { navigation } = props
+  const { nodes } = navigation.getParam('issues')
+  const issueItems = createIssueItems(nodes)
+  const { favItems } = data
+  const favStatus = favItems && judgeIsFavItem(selectedIssueItem, favItems)
+  return (
+    <IssueListPageContainer testID="issueListPage">
+      <IssueHeader navigation={navigation} />
+      <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
+        {issueItems.map((item, index) => (
+          <IssueListItem
+            key={`issue-${item.id}`}
+            index={index}
+            item={item}
+            onPress={onPressIssue}
+          />
+        ))}
+      </ScrollView>
+      <WebViewModal
+        favStatus={favStatus}
+        isVisible={modalVisible}
+        selectedIssueItem={selectedIssueItem}
+        onPressBackBtn={setModalVisible}
+        onPressFavBtn={favStatus ? deleteFavItem : addFavItem}
+      />
+    </IssueListPageContainer>
+  )
+}
 
-  onPressIssue = (item: IssueItem): void => {
-    this.setState({ selectedIssueItem: item })
-    this.setModalVisible(!this.state.modalVisible)
-  }
-
-  render() {
-    const { navigation } = this.props
-    const { selectedIssueItem, modalVisible } = this.state
-    const { nodes } = navigation.getParam('issues')
-    const issueItems = createIssueItems(nodes)
-    return (
-      <IssueListPageContainer testID="issueListPage">
-        <IssueHeader navigation={navigation} />
-        <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
-          {issueItems.map((item, index) => (
-            <IssueListItem
-              index={index}
-              key={`issue-${item.id}`}
-              item={item}
-              onPress={this.onPressIssue}
-            />
-          ))}
-        </ScrollView>
-        <Query query={GET_FAV_ITEMS}>
-          {({ data }) => {
-            const { favItems } = data
-            const favStatus =
-              favItems && judgeIsFavItem(selectedIssueItem, favItems)
-            return (
-              <Mutation
-                mutation={favStatus ? DELETE_FAV_ITEM : ADD_FAV_ITEM}
-                variables={{ ...selectedIssueItem }}
-              >
-                {mutate => (
-                  <WebViewModal
-                    favStatus={favStatus}
-                    isVisible={modalVisible}
-                    selectedIssueItem={selectedIssueItem}
-                    onPressBackBtn={this.setModalVisible}
-                    onPressFavBtn={mutate}
-                  />
-                )}
-              </Mutation>
-            )
-          }}
-        </Query>
-      </IssueListPageContainer>
-    )
-  }
+IssueListPage.navigationOptions = {
+  header: null
 }

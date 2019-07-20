@@ -2,10 +2,11 @@ import * as React from 'react'
 import { WebView } from 'react-native'
 import Modal from 'react-native-modal'
 import styled from 'styled-components/native'
-import { WebViewHeader } from '../header'
+
 import { Loading } from '../../molecules'
+import { WebViewHeader } from '../header'
 import { PAGE_BACK_GROUND } from '../../../assets'
-import { IssueItem } from '../../apollo'
+import { IssueItem } from '../../types'
 
 const StyledModal = styled(Modal)`
   flex: 1;
@@ -22,7 +23,7 @@ interface Props {
   onPressFavBtn: () => void
 }
 
-const WebViewModal = (props: Props) => {
+const WebViewModal: React.FC<Props> = props => {
   const {
     isVisible,
     onPressBackBtn,

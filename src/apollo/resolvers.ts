@@ -1,14 +1,7 @@
 import { ApolloCache } from 'apollo-cache'
 import { GET_FAV_ITEMS } from '../query'
 import { judgeIsFavItem } from '../utils'
-
-export interface IssueItem {
-  id: string
-  title: string
-  url: string
-  avatarUrl: string
-  __typename?: string // for favItem
-}
+import { IssueItem } from '../types'
 
 interface State {
   favItems: IssueItem[]
