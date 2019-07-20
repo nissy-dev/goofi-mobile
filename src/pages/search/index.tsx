@@ -6,8 +6,7 @@ import { Loading } from '../../molecules'
 import { SearchHeader, SearchFormModal, GridList } from '../../organisms'
 import { PAGE_BACK_GROUND } from '../../../assets'
 
-import { useQuery } from '../../apollo'
-import { GET_REPO_ALL_DATA } from '../../query'
+import { useQuery, GET_REPO_ALL_DATA } from '../../apollo'
 import { removeDuplicateItem } from '../../utils'
 
 const SearchPageContainer = styled(Container)`

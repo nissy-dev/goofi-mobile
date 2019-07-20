@@ -1,5 +1,5 @@
 import { ApolloCache } from 'apollo-cache'
-import { GET_FAV_ITEMS } from '../query'
+import { GET_FAV_ITEMS } from './query'
 import { judgeIsFavItem } from '../utils'
 import { IssueItem } from '../types'
 

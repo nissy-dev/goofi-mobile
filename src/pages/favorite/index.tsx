@@ -7,8 +7,13 @@ import { FavoriteListItem } from '../../molecules'
 import { FavoriteHeader, WebViewModal } from '../../organisms'
 import { PAGE_BACK_GROUND } from '../../../assets'
 
-import { useQuery, useMutation } from '../../apollo'
-import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
+import {
+  useQuery,
+  useMutation,
+  GET_FAV_ITEMS,
+  ADD_FAV_ITEM,
+  DELETE_FAV_ITEM
+} from '../../apollo'
 import { judgeIsFavItem } from '../../utils'
 import { IssueItem } from '../../types'
 
