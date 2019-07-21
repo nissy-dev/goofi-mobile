@@ -13,7 +13,7 @@ const SearchPageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
 `
 
-const updateQuery = (previousResult: any, fetchMoreResult: any): void => {
+const updateQuery = (previousResult: any, fetchMoreResult: any): any => {
   const prevRepoList = previousResult.search
   const newRepoList = fetchMoreResult.search
   // workaround: FlatlistのonEndReached Eventが発火しすぎる問題を回避する
@@ -52,10 +52,9 @@ export default function SearchPage(props: Props) {
 
   const languageQuery = language ? 'language:' + language : ''
   const query = `${keyword} ${languageQuery} good-first-issues:>1 stars:>500`
-  const { loading, data, error, fetchMore, refetch } = useQuery(
-    GET_REPO_ALL_DATA,
-    { variables: { query } }
-  )
+  const { loading, data, fetchMore, refetch } = useQuery(GET_REPO_ALL_DATA, {
+    variables: { query }
+  })
 
   const onPressSearchBtn = (): void => {
     setModalVisible(!modalVisible)

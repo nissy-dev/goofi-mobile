@@ -49,7 +49,7 @@ export default function IssueListPage(props: Props) {
   const [selectedIssueItem, setSelectedIssueItem] = useState<IssueItem>(
     initialIssueItem
   )
-  const { data } = useQuery(GET_FAV_ITEMS)
+  const { data } = useQuery<{ favItems: IssueItem[] }>(GET_FAV_ITEMS)
   const [addFavItem] = useMutation(ADD_FAV_ITEM, {
     variables: { ...selectedIssueItem }
   })
@@ -65,11 +65,10 @@ export default function IssueListPage(props: Props) {
   const { navigation } = props
   const { nodes } = navigation.getParam('issues')
   const issueItems = createIssueItems(nodes)
-  const { favItems } = data
-  const favStatus = favItems && judgeIsFavItem(selectedIssueItem, favItems)
+  const favStatus = judgeIsFavItem(selectedIssueItem, data)
   return (
     <IssueListPageContainer testID="issueListPage">
-      <IssueHeader navigation={navigation} />
+      <IssueHeader onPressGoBack={navigation.goBack} />
       <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
         {issueItems.map((item, index) => (
           <IssueListItem

@@ -42,7 +42,7 @@ export default function FavoritePage() {
   const [selectedFavItem, setSelectedFavItem] = useState<IssueItem>(
     initialIssueItem
   )
-  const { data } = useQuery(GET_FAV_ITEMS)
+  const { data } = useQuery<{ favItems: IssueItem[] }>(GET_FAV_ITEMS)
   const [addFavItem] = useMutation(ADD_FAV_ITEM, {
     variables: { ...selectedFavItem }
   })
@@ -55,21 +55,22 @@ export default function FavoritePage() {
     setModalVisible(!modalVisible)
   }
 
-  const { favItems } = data
-  const favStatus = favItems && judgeIsFavItem(selectedFavItem, favItems)
+  const favStatus = judgeIsFavItem(selectedFavItem, data)
   return (
     <FavoritePageContainer testID="favoritePage">
       <FavoriteHeader />
       <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
-        {favItems.map((item: IssueItem, index: number) => (
-          <FavoriteListItem
-            key={`fav-${index}`}
-            index={index}
-            item={item}
-            onPress={onPressIssue}
-            onPressDelteBtn={deleteFavItem}
-          />
-        ))}
+        {data
+          ? data.favItems.map((item: IssueItem, index: number) => (
+              <FavoriteListItem
+                key={`fav-${index}`}
+                index={index}
+                item={item}
+                onPress={onPressIssue}
+                onPressDelteBtn={deleteFavItem}
+              />
+            ))
+          : null}
       </ScrollView>
       <WebViewModal
         favStatus={favStatus}

@@ -30,7 +30,7 @@ describe('judgeIsFavItem', () => {
       url: 'url4',
       avatarUrl: 'avatarUrl4'
     }
-    expect(judgeIsFavItem(checkdItem, favItems)).toBe(false)
+    expect(judgeIsFavItem(checkdItem, { favItems })).toBe(false)
   })
   it('judge IsFavItem is true', () => {
     const checkdItem = {
@@ -39,6 +39,6 @@ describe('judgeIsFavItem', () => {
       url: 'url3',
       avatarUrl: 'avatarUrl3'
     }
-    expect(judgeIsFavItem(checkdItem, favItems)).toBe(true)
+    expect(judgeIsFavItem(checkdItem, { favItems })).toBe(true)
   })
 })

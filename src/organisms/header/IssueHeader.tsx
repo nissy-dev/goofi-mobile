@@ -30,9 +30,7 @@ const HeaderTitle = styled(Heading)`
   align-self: center;
 `
 interface Props {
-  navigation: {
-    goBack: () => void
-  }
+  onPressGoBack: () => void
 }
 
 // custom fontがstyled-componentではうまく読み込めないので一旦この方法でしのぐ
@@ -42,13 +40,13 @@ const styles = StyleSheet.create({
   }
 })
 
-const IssueHeader = (props: Props) => {
-  const { navigation } = props
+const IssueHeader: React.FC<Props> = (props) => {
+  const { onPressGoBack } = props
   return (
     <Header>
       <BackButton
         testID={'back-to-search-page-btn'}
-        onPress={() => navigation.goBack()}
+        onPress={() => onPressGoBack()}
       >
         <ArrowBackIcon size={32} color={WHITE} />
       </BackButton>
