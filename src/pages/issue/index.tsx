@@ -89,7 +89,3 @@ export default function IssueListPage(props: Props) {
     </IssueListPageContainer>
   )
 }
-
-IssueListPage.navigationOptions = {
-  header: null
-}

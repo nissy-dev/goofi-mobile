@@ -15,7 +15,11 @@ const SearchScreen = createStackNavigator(
     issueList: IssueListPage
   },
   {
-    initialRouteName: 'repoList'
+    initialRouteName: 'repoList',
+    defaultNavigationOptions: {
+      header: null,
+      gesturesEnabled: false
+    }
   }
 )
 
@@ -26,16 +30,14 @@ const Root = createBottomTabNavigator(
   },
   {
     initialRouteName: 'search',
-    navigationOptions: ({ navigation }: any) => ({
-      tabBarIcon: ({ focused, tintColor }: any) => {
+    defaultNavigationOptions: ({ navigation }: any) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }: any) => {
         const { routeName } = navigation.state
-        // tintColorとFontawsomeのcolor propertyの型が異なるための処理
-        const color = tintColor !== null ? tintColor : ''
         const iconSize = focused ? 25 : 20
         return routeName === 'search' ? (
-          <SearchIcon size={iconSize} color={color} />
+          <SearchIcon size={iconSize} color={tintColor} />
         ) : (
-          <StarOIcon size={iconSize} color={color} />
+          <StarOIcon size={iconSize} color={tintColor} />
         )
       },
       tabBarTestID:

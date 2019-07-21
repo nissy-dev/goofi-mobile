@@ -67,7 +67,6 @@ export default function FavoritePage() {
                 index={index}
                 item={item}
                 onPress={onPressIssue}
-                onPressDelteBtn={() => deleteFavItem()}
               />
             ))
           : null}

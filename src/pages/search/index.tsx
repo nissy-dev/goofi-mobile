@@ -98,7 +98,3 @@ export default function SearchPage(props: Props) {
     </SearchPageContainer>
   )
 }
-
-SearchPage.navigationOptions = {
-  header: null
-}

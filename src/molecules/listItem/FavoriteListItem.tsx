@@ -8,6 +8,7 @@ import { Heading } from '../../atoms'
 import IssueListItem from './IssueListItem'
 import { FAV_DELETE_BTN_COLOR, WHITE } from '../../../assets'
 
+import { useMutation, DELETE_FAV_ITEM } from '../../apollo'
 import { IssueItem } from '../../types'
 import I18n from '../../locale'
 
@@ -22,11 +23,13 @@ interface Props {
   index: number
   item: IssueItem
   onPress: (item: IssueItem) => void
-  onPressDelteBtn: () => void
 }
 
 export default function FavoriteListItem(props: Props) {
-  const { onPressDelteBtn, ...otherProps } = props
+  // ここだけはApolloの依存をRootにできなかったので許容する
+  const [deleteFavItem] = useMutation(DELETE_FAV_ITEM, {
+    variables: { ...props.item }
+  })
 
   const renderRightActions = (
     progressAnimatedValue: Animated.AnimatedInterpolation,
@@ -38,10 +41,9 @@ export default function FavoriteListItem(props: Props) {
       extrapolate: 'clamp'
     })
 
-    console.log(onPressDelteBtn)
     return (
       <Animated.View style={{ width: 120, transform: [{ translateX: trans }] }}>
-        <DeleteButton onPress={() => onPressDelteBtn()}>
+        <DeleteButton onPress={() => deleteFavItem()}>
           <Heading color={WHITE}>{I18n.t('delete')}</Heading>
         </DeleteButton>
       </Animated.View>
@@ -50,7 +52,7 @@ export default function FavoriteListItem(props: Props) {
 
   return (
     <Swipeable friction={1} renderRightActions={renderRightActions}>
-      <IssueListItem favorite {...otherProps} />
+      <IssueListItem favorite {...props} />
     </Swipeable>
   )
 }
