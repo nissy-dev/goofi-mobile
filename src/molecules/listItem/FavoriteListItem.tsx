@@ -6,9 +6,10 @@ import styled from 'styled-components/native'
 
 import { Heading } from '../../atoms'
 import IssueListItem from './IssueListItem'
+import { FAV_DELETE_BTN_COLOR, WHITE } from '../../../assets'
+
 import { IssueItem } from '../../types'
 import I18n from '../../locale'
-import { FAV_DELETE_BTN_COLOR, WHITE } from '../../../assets'
 
 const DeleteButton = styled(RectButton)`
   flex: 1;
@@ -24,32 +25,32 @@ interface Props {
   onPressDelteBtn: () => void
 }
 
-export default class FavoriteListItem extends React.Component<Props> {
-  renderRightActions = (progress: any) => {
-    const trans = progress.interpolate({
+export default function FavoriteListItem(props: Props) {
+  const { onPressDelteBtn, ...otherProps } = props
+
+  const renderRightActions = (
+    progressAnimatedValue: Animated.AnimatedInterpolation,
+    _: any
+  ) => {
+    const trans = progressAnimatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: [64, 1],
       extrapolate: 'clamp'
     })
-    const pressHandler = () => {
-      this.props.onPressDelteBtn()
-    }
 
+    console.log(onPressDelteBtn)
     return (
       <Animated.View style={{ width: 120, transform: [{ translateX: trans }] }}>
-        <DeleteButton onPress={() => pressHandler()}>
+        <DeleteButton onPress={() => onPressDelteBtn()}>
           <Heading color={WHITE}>{I18n.t('delete')}</Heading>
         </DeleteButton>
       </Animated.View>
     )
   }
 
-  render() {
-    const { onPressDelteBtn, ...otherProps } = this.props
-    return (
-      <Swipeable friction={1} renderRightActions={this.renderRightActions}>
-        <IssueListItem favorite {...otherProps} />
-      </Swipeable>
-    )
-  }
+  return (
+    <Swipeable friction={1} renderRightActions={renderRightActions}>
+      <IssueListItem favorite {...otherProps} />
+    </Swipeable>
+  )
 }

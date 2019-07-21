@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const IssueHeader: React.FC<Props> = (props) => {
+const IssueHeader: React.FC<Props> = props => {
   const { onPressGoBack } = props
   return (
     <Header>

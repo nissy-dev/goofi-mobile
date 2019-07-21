@@ -33,9 +33,9 @@ export const resolvers = {
     deleteFavItem: (_: any, variables: IssueItem, { cache }: Cache) => {
       const previous = cache.readQuery<State>({ query: GET_FAV_ITEMS })
       const data = {
-        favItems:
-          previous ?
-          previous.favItems.filter(favItem => favItem.id !== variables.id) : []
+        favItems: previous
+          ? previous.favItems.filter(favItem => favItem.id !== variables.id)
+          : []
       }
       cache.writeData({ data })
       return null
