@@ -13,12 +13,22 @@ Let's contribute OSS!!
 Please check the detail [Detox: Install dependencies](https://github.com/wix/Detox/blob/master/docs/Introduction.GettingStarted.md#step-1-install-dependencies) 
 ```
 $ brew tap wix/brew
-$ brew install applesimutils (or brew upgrade applesimutils)
+$ brew install applesimutils
 // create Exponentapp directory
 $ ./tool/e2e-setup.sh 2.11.1 (change the latest version)
 ```
 
 Please confirm the latest version [here](https://expo.io/tools#client)
+
+And, if you have already installed `applesimutils`, please update.
+
+```
+$ brew upgrade applesimutils
+or 
+$ brew untap wix/brew
+$ brew tap wix/brew
+$ brew install applesimutils
+```
 
 ### Bootstrap
 ```
