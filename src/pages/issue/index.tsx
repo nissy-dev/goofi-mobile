@@ -50,7 +50,9 @@ export default function IssueListPage(props: Props) {
     setModalVisible(!modalVisible)
   }
 
-  const { data, addFavItem, deleteFavItem } = useFavoriteOperation(selectedIssueItem)
+  const { data, addFavItem, deleteFavItem } = useFavoriteOperation(
+    selectedIssueItem
+  )
   const favStatus = judgeIsFavItem(selectedIssueItem, data)
   const { nodes } = navigation.getParam('issues')
   const issueItems = createIssueItems(nodes)

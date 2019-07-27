@@ -41,7 +41,9 @@ export default function FavoritePage() {
     setModalVisible(!modalVisible)
   }
 
-  const { data, addFavItem, deleteFavItem } = useFavoriteOperation(selectedFavItem)
+  const { data, addFavItem, deleteFavItem } = useFavoriteOperation(
+    selectedFavItem
+  )
   const favStatus = judgeIsFavItem(selectedFavItem, data)
   return (
     <FavoritePageContainer testID="favoritePage">

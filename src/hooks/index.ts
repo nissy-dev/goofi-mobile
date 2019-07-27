@@ -7,8 +7,7 @@ import {
 } from '../apollo'
 import { IssueItem } from '../types'
 
-
-export function useFavoriteOperation (selectedItem: IssueItem) {
+export function useFavoriteOperation(selectedItem: IssueItem) {
   const { data } = useQuery<{ favItems: IssueItem[] }>(GET_FAV_ITEMS)
   const [addFavItem] = useMutation(ADD_FAV_ITEM, {
     variables: { ...selectedItem }

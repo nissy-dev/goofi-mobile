@@ -1,24 +1,17 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
 
-import {
-  TouchableView,
-  Heading,
-  HeadingProps,
-  TouchableViewProps
-} from '../../atoms'
+import { TouchableView, Heading } from '../../atoms'
 import { WHITE, SELECTED_COLOR } from '../../../assets'
 
-interface Selected {
+interface CustomProps {
   selected?: boolean
 }
 
-// @ts-ignore
-const SelectiveItem = styled<HeadingProps & Selected>(Heading)`
-  ${props => (props.selected ? 'font-weight: bold;' : '')};
+const SelectiveItem = styled(Heading)`
+  ${(props: CustomProps) => (props.selected ? 'font-weight: bold;' : '')};
 `
-// @ts-ignore
-const SelectiveArea = styled<TouchableViewProps & Selected>(TouchableView)`
+const SelectiveArea = styled(TouchableView)`
   margin-vertical: 5;
   margin-horizontal: 5;
   padding-horizontal: 20;
@@ -26,7 +19,7 @@ const SelectiveArea = styled<TouchableViewProps & Selected>(TouchableView)`
   border-radius: 10;
   border-color: ${WHITE};
   border-width: 1;
-  ${props =>
+  ${(props: CustomProps) =>
     props.selected
       ? `background-color: ${SELECTED_COLOR}; border-width: 0;`
       : ''};
