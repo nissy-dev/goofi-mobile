@@ -7,13 +7,7 @@ import { FavoriteListItem } from '../../molecules'
 import { FavoriteHeader, WebViewModal } from '../../organisms'
 import { PAGE_BACK_GROUND } from '../../../assets'
 
-import {
-  useQuery,
-  useMutation,
-  GET_FAV_ITEMS,
-  ADD_FAV_ITEM,
-  DELETE_FAV_ITEM
-} from '../../apollo'
+import { useFavoriteOperation } from '../../hooks'
 import { judgeIsFavItem } from '../../utils'
 import { IssueItem } from '../../types'
 
@@ -42,19 +36,12 @@ export default function FavoritePage() {
   const [selectedFavItem, setSelectedFavItem] = useState<IssueItem>(
     initialIssueItem
   )
-  const { data } = useQuery<{ favItems: IssueItem[] }>(GET_FAV_ITEMS)
-  const [addFavItem] = useMutation(ADD_FAV_ITEM, {
-    variables: { ...selectedFavItem }
-  })
-  const [deleteFavItem] = useMutation(DELETE_FAV_ITEM, {
-    variables: { ...selectedFavItem }
-  })
-
   const onPressIssue = (item: IssueItem): void => {
     setSelectedFavItem(item)
     setModalVisible(!modalVisible)
   }
 
+  const { data, addFavItem, deleteFavItem } = useFavoriteOperation(selectedFavItem)
   const favStatus = judgeIsFavItem(selectedFavItem, data)
   return (
     <FavoritePageContainer testID="favoritePage">
