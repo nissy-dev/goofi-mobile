@@ -17,7 +17,7 @@ const StarCount = styled(View)`
   padding-horizontal: 10;
 `
 
-const StarInfo = (props: Props) => (
+const StarInfo: React.FC<Props> = props => (
   <StarContainer>
     <StarIcon color={STAR_COLOR} size={15} />
     <StarCount>

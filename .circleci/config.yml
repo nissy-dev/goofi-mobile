@@ -25,18 +25,17 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
       - run:
-          name: Jest Test
-          command: yarn test
+          name: ESLint
+          command: yarn lint
 
       - run:
           name: Type check
           command: yarn tsc
 
       - run:
-          name: TSLint
-          command: yarn lint
+          name: Jest Test
+          command: yarn test
 
   deploy:
     <<: *job_base

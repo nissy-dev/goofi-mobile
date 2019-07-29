@@ -8,7 +8,7 @@ const LoadingContainer = styled(Container)`
   justify-content: center;
 `
 
-const Loading = () => (
+const Loading: React.FC = () => (
   <LoadingContainer>
     <ActivityIndicator size="large" color={BASE_COLOR} />
   </LoadingContainer>

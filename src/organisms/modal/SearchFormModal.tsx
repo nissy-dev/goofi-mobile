@@ -2,11 +2,13 @@ import * as React from 'react'
 import { View } from 'react-native'
 import Modal from 'react-native-modal'
 import styled from 'styled-components/native'
+
 import { Container, InputBox, Heading } from '../../atoms'
 import { ModalCloseButton, SelectiveButton } from '../../molecules'
+import { BASE_COLOR, WHITE } from '../../../assets'
+
 import I18n from '../../locale'
 import { selectItems } from '../../utils'
-import { BASE_COLOR, WHITE } from '../../../assets'
 
 const SelectLanguageBox = styled(Container)`
   justify-content: flex-start;
@@ -46,7 +48,7 @@ interface Props {
   setKeyword: (value: string) => void
 }
 
-const SearchForm = (props: Props) => {
+const SearchForm: React.FC<Props> = props => {
   const {
     isVisible,
     keyword,
@@ -62,7 +64,7 @@ const SearchForm = (props: Props) => {
       backdropOpacity={0.7}
       isVisible={isVisible}
       swipeDirection={'up'}
-      onSwipe={() => switchModalVisible()}
+      onSwipeComplete={() => switchModalVisible()}
     >
       <FormFieldTitleBox>
         <Heading size={18} color={WHITE}>

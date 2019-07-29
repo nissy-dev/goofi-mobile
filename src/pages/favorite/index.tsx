@@ -1,13 +1,15 @@
-import * as React from 'react'
-import styled from 'styled-components/native'
+import React, { useState } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
+import styled from 'styled-components/native'
+
 import { Container } from '../../atoms'
 import { FavoriteListItem } from '../../molecules'
 import { FavoriteHeader, WebViewModal } from '../../organisms'
-import { GET_FAV_ITEMS, ADD_FAV_ITEM, DELETE_FAV_ITEM } from '../../query'
 import { PAGE_BACK_GROUND } from '../../../assets'
+
+import { useFavoriteOperation } from '../../hooks'
 import { judgeIsFavItem } from '../../utils'
-import { Query, Mutation, IssueItem } from '../../apollo'
+import { IssueItem } from '../../types'
 
 const FavoritePageContainer = styled(Container)`
   background-color: ${PAGE_BACK_GROUND};
@@ -22,11 +24,6 @@ const styles = StyleSheet.create({
   }
 })
 
-interface State {
-  modalVisible: boolean
-  selectedFavItem: IssueItem
-}
-
 const initialIssueItem = {
   id: '',
   title: '',
@@ -34,76 +31,42 @@ const initialIssueItem = {
   avatarUrl: ''
 }
 
-export default class FavoritePage extends React.Component<void, State> {
-  constructor() {
-    super()
-    this.state = {
-      modalVisible: false,
-      selectedFavItem: initialIssueItem
-    }
+export default function FavoritePage() {
+  const [modalVisible, setModalVisible] = useState(false)
+  const [selectedFavItem, setSelectedFavItem] = useState<IssueItem>(
+    initialIssueItem
+  )
+  const onPressIssue = (item: IssueItem): void => {
+    setSelectedFavItem(item)
+    setModalVisible(!modalVisible)
   }
 
-  setModalVisible = (visible: boolean): void => {
-    this.setState({ modalVisible: visible })
-  }
-
-  onPressIssue = (item: IssueItem): void => {
-    this.setState({ selectedFavItem: item })
-    this.setModalVisible(!this.state.modalVisible)
-  }
-
-  render() {
-    const { selectedFavItem, modalVisible } = this.state
-    return (
-      <FavoritePageContainer testID="favoritePage">
-        <FavoriteHeader />
-        <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
-          <Query query={GET_FAV_ITEMS}>
-            {({ data }) => {
-              const { favItems } = data
-              return favItems.map((item: IssueItem, index: number) => (
-                <Mutation
-                  key={`issue-${item.id}`}
-                  mutation={DELETE_FAV_ITEM}
-                  variables={{ ...item }}
-                >
-                  {mutate => (
-                    <FavoriteListItem
-                      index={index}
-                      item={item}
-                      onPress={this.onPressIssue}
-                      onPressDelteBtn={mutate}
-                    />
-                  )}
-                </Mutation>
-              ))
-            }}
-          </Query>
-        </ScrollView>
-        <Query query={GET_FAV_ITEMS}>
-          {({ data }) => {
-            const { favItems } = data
-            const favStatus =
-              favItems && judgeIsFavItem(selectedFavItem, favItems)
-            return (
-              <Mutation
-                mutation={favStatus ? DELETE_FAV_ITEM : ADD_FAV_ITEM}
-                variables={{ ...selectedFavItem }}
-              >
-                {mutate => (
-                  <WebViewModal
-                    favStatus={favStatus}
-                    isVisible={modalVisible}
-                    selectedIssueItem={selectedFavItem}
-                    onPressBackBtn={this.setModalVisible}
-                    onPressFavBtn={mutate}
-                  />
-                )}
-              </Mutation>
-            )
-          }}
-        </Query>
-      </FavoritePageContainer>
-    )
-  }
+  const { data, addFavItem, deleteFavItem } = useFavoriteOperation(
+    selectedFavItem
+  )
+  const favStatus = judgeIsFavItem(selectedFavItem, data)
+  return (
+    <FavoritePageContainer testID="favoritePage">
+      <FavoriteHeader />
+      <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
+        {data
+          ? data.favItems.map((item: IssueItem, index: number) => (
+              <FavoriteListItem
+                key={`fav-${index}`}
+                index={index}
+                item={item}
+                onPress={onPressIssue}
+              />
+            ))
+          : null}
+      </ScrollView>
+      <WebViewModal
+        favStatus={favStatus}
+        isVisible={modalVisible}
+        selectedIssueItem={selectedFavItem}
+        onPressBackBtn={setModalVisible}
+        onPressFavBtn={favStatus ? deleteFavItem : addFavItem}
+      />
+    </FavoritePageContainer>
+  )
 }

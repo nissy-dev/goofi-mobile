@@ -1,8 +1,10 @@
 import * as React from 'react'
 import {
+  createAppContainer,
   createBottomTabNavigator,
   createStackNavigator
 } from 'react-navigation'
+
 import { SearchIcon, StarOIcon } from '../atoms'
 import { SearchPage, FavoritePage, IssueListPage } from '../pages'
 import { BASE_COLOR } from '../../assets'
@@ -14,7 +16,7 @@ const SearchScreen = createStackNavigator(
   },
   {
     initialRouteName: 'repoList',
-    navigationOptions: {
+    defaultNavigationOptions: {
       header: null,
       gesturesEnabled: false
     }
@@ -28,16 +30,14 @@ const Root = createBottomTabNavigator(
   },
   {
     initialRouteName: 'search',
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
+    defaultNavigationOptions: ({ navigation }: any) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }: any) => {
         const { routeName } = navigation.state
-        // tintColorとFontawsomeのcolor propertyの型が異なるための処理
-        const color = tintColor !== null ? tintColor : ''
         const iconSize = focused ? 25 : 20
         return routeName === 'search' ? (
-          <SearchIcon size={iconSize} color={color} />
+          <SearchIcon size={iconSize} color={tintColor} />
         ) : (
-          <StarOIcon size={iconSize} color={color} />
+          <StarOIcon size={iconSize} color={tintColor} />
         )
       },
       tabBarTestID:
@@ -49,4 +49,4 @@ const Root = createBottomTabNavigator(
   }
 )
 
-export default Root
+export default createAppContainer(Root)

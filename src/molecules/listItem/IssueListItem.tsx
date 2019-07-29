@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
+
 import { TouchableView, Heading, Image } from '../../atoms'
 import { WHITE, PAGE_BACK_GROUND } from '../../../assets'
-import { IssueItem } from '../../apollo'
+import { IssueItem } from '../../types'
 
 const IssueTitle = styled(Heading)`
   width: 90%;
@@ -47,7 +48,7 @@ interface Props {
   onPress: (item: IssueItem) => void
 }
 
-const IssueListItem = (props: Props) => {
+const IssueListItem: React.FC<Props> = props => {
   const { index, onPress, item, favorite } = props
   return (
     <ListItem

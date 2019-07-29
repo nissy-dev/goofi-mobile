@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { BASE_COLOR } from '../../../assets'
 
-type Props = {
+interface Props {
   width?: number
   height?: number
   color?: string

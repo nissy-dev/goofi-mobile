@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
+
 import { Container } from '../../atoms'
 import { QueryWord, SearchButton } from '../../molecules'
 import { BASE_COLOR } from '../../../assets'
@@ -27,13 +28,13 @@ interface Props {
   onPressSearchBtn: () => void
 }
 
-const SearchHeader = (props: Props) => {
+const SearchHeader: React.FC<Props> = props => {
   const { language, keyword, onPressSearchBtn } = props
   return (
     <SearchHeaderContainer>
       <QueryBox row={true}>
-        {keyword && <QueryWord>{keyword}</QueryWord>}
-        {language && <QueryWord>{language}</QueryWord>}
+        {!!keyword && <QueryWord>{keyword}</QueryWord>}
+        {!!language && <QueryWord>{language}</QueryWord>}
       </QueryBox>
       <SearchButton onPress={() => onPressSearchBtn()} />
     </SearchHeaderContainer>

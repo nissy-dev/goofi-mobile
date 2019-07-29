@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
+
 import { ArrowUpIcon, TouchableView } from '../../atoms'
 import { WHITE } from '../../../assets'
 
@@ -14,7 +15,7 @@ interface Props {
   onPress: () => void
 }
 
-const ModalCloseButton = (props: Props) => {
+const ModalCloseButton: React.FC<Props> = props => {
   const { onPress } = props
   return (
     <TouchableArea testID={'search-modal-close-btn'} onPress={() => onPress()}>

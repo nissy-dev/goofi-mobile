@@ -1,5 +1,5 @@
 import { createIssueItems } from '../../src/utils'
-import { IssueNode } from '../../src/query'
+import { IssueNode } from '../../src/types'
 
 describe('createIssueItems', () => {
   it('convert from IssueNode to IssueItem', () => {
@@ -31,7 +31,7 @@ describe('createIssueItems', () => {
         },
         updatedAt: '2019/01/14'
       }
-    ] as Array<IssueNode>
+    ] as IssueNode[]
     const expected = [
       {
         id: '1',
