@@ -70,7 +70,7 @@ export default function SearchPage(props: Props) {
         <Loading />
       ) : (
         <GridList
-          data={data.search.nodes}
+          data={data.search.nodes || []}
           navigate={navigate}
           onRefresh={() => refetch({ query })}
           onLoadMore={() =>

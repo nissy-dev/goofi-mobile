@@ -5,6 +5,9 @@ import Root from './navigation'
 import { Loading } from './molecules'
 import I18n from './locale'
 
+// for e2e testing
+console.disableYellowBox = true
+
 export default function App() {
   const [isAssetsLoaded, setState] = useState(false)
 
