@@ -58,8 +58,12 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
+          name: install expo-cli
+          command: yarn add expo-cli
+
+      - run:
           name: expo login
-          command: ./node_modules/.bin/exp login -u "$EXPO_ACCOUNT" -p "$EXPO_PASSWORD"
+          command: yarn exp login -u "$EXPO_ACCOUNT" -p "$EXPO_PASSWORD"
 
       - run:
           name: create .env
@@ -67,7 +71,7 @@ jobs:
 
       - run:
           name: expo publish
-          command: ./node_modules/.bin/exp publish
+          command: yarn exp publish
 
 workflows:
   version: 2

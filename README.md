@@ -7,7 +7,7 @@ Let's contribute OSS!!
 
 [https://expo.io/@nd-02110114/goofi-mobile](https://expo.io/@nd-02110114/goofi-mobile)
 
-<img  src="https://raw.githubusercontent.com/nd-02110114/goofi-mobile/master/gif/demo.gif" width="220" height="450"/>
+<img  src="https://raw.githubusercontent.com/nd-02110114/goofi-mobile/master/gif/demo.gif" width="250" height="480"/>
 
 ## Development
 
