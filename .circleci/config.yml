@@ -63,7 +63,7 @@ jobs:
 
       - run:
           name: expo login
-          command: yarn exp login -u "$EXPO_ACCOUNT" -p "$EXPO_PASSWORD"
+          command: yarn expo login -u "$EXPO_ACCOUNT" -p "$EXPO_PASSWORD"
 
       - run:
           name: create .env
@@ -71,7 +71,7 @@ jobs:
 
       - run:
           name: expo publish
-          command: yarn exp publish
+          command: yarn expo publish
 
 workflows:
   version: 2
