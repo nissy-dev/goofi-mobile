@@ -44,15 +44,15 @@
     "apollo-client": "^2.6.3",
     "apollo-link-http": "^1.5.15",
     "ex-react-native-i18n": "0.0.6",
-    "expo": "^33.0.7",
+    "expo": "^34.0.1",
     "expo-font": "~5.0.1",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",
     "react": "16.8.3",
     "react-apollo": "^3.0.0-beta.3",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
     "react-native-modal": "^11.1.0",
-    "react-navigation": "^3.11.0",
+    "react-navigation": "^3.11.1",
     "styled-components": "^4.3.2"
   },
   "ex-react-native-i18n-ts": {
