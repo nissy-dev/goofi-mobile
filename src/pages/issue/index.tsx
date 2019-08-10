@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 interface Props {
   navigation: {
     getParam: (key: string) => any
-    goBack: () => any
+    goBack: () => void
   }
 }
 
