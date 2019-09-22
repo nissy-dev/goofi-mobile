@@ -1,9 +1,8 @@
 import * as React from 'react'
-import { WebView } from 'react-native'
+import { WebView } from 'react-native-webview'
 import Modal from 'react-native-modal'
 import styled from 'styled-components/native'
 
-import { Loading } from '../../molecules'
 import { WebViewHeader } from '../header'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { IssueItem } from '../../types'
@@ -45,7 +44,6 @@ const WebViewModal: React.FC<Props> = props => {
       />
       <WebView
         startInLoadingState
-        renderLoading={() => <Loading />}
         source={{ uri: selectedIssueItem.url }}
       />
     </StyledModal>

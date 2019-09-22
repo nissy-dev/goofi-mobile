@@ -17,6 +17,7 @@ module.exports = {
     // too noisy
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
     "react-hooks/rules-of-hooks": "error",
   },
   env: {

@@ -1,9 +1,7 @@
 import * as React from 'react'
-import {
-  createAppContainer,
-  createBottomTabNavigator,
-  createStackNavigator
-} from 'react-navigation'
+import { createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 
 import { SearchIcon, StarOIcon } from '../atoms'
 import { SearchPage, FavoritePage, IssueListPage } from '../pages'

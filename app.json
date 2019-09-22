@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "Goofi Mobile",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "privacy": "public",
-    "sdkVersion": "34.0.0",
+    "sdkVersion": "35.0.0",
     "orientation": "portrait",
     "description": "Mobile app for searching good first issues in OSS",
     "githubUrl": "https://github.com/nd-02110114/goofi-mobile",

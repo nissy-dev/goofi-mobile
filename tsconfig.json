@@ -11,5 +11,5 @@
     "target": "esnext",
     "typeRoots": ["./node_modules/@types", "./types"],
   },
-  "include": ["src", "test"],
+  "include": ["src", "test", "App.tsx"]
 }
