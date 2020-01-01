@@ -7,6 +7,7 @@ import { WebViewHeader } from '../header'
 import { PAGE_BACK_GROUND } from '../../../assets'
 import { IssueItem } from '../../types'
 
+// @ts-ignore No overload matches this call.
 const StyledModal = styled(Modal)`
   flex: 1;
   margin-horizontal: 0;
@@ -42,10 +43,7 @@ const WebViewModal: React.FC<Props> = props => {
         onPressBackBtn={() => onPressBackBtn(!isVisible)}
         onPressFavBtn={onPressFavBtn}
       />
-      <WebView
-        startInLoadingState
-        source={{ uri: selectedIssueItem.url }}
-      />
+      <WebView startInLoadingState source={{ uri: selectedIssueItem.url }} />
     </StyledModal>
   )
 }
