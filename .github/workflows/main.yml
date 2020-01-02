@@ -1,0 +1,26 @@
+name: main
+
+on: [push]
+
+jobs:
+  build:
+    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: [10.x]
+        os: [macOS-latest]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run tests with ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node_version }}
+    - name: Download dependencies
+      run: yarn install
+    - name: ESLint
+      run: yarn lint
+    - name: TypeScript build
+      run: yarn lint
+    - name: Unit test
+      run: yarn test
