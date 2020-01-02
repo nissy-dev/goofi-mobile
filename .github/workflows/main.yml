@@ -22,3 +22,20 @@ jobs:
       run: yarn lint
     - name: Unit test
       run: yarn test
+    - name: Detox setup
+      run: |
+        brew tap wix/brew
+        brew install applesimutils
+    - name: Install iPhone 7 simulater
+      run: xcrun simctl create iPhone7 ${DEVICE_ID} ${RUNTIME_ID}
+      env:
+        DEVICE_ID: com.apple.CoreSimulator.SimDeviceType.iPhone-7
+        RUNTIME_ID: com.apple.CoreSimulator.SimRuntime.iOS-13-1
+    - name: Install Expo client
+      run: ./tool/e2e-setup.sh 2.14.0
+    - name: E2E test
+      run: |
+        (xcrun simctl boot 3E511C97-6152-4B56-8062-E0ABC647C483 && yarn ios) &
+        sleep 180 && yarn e2e
+      env:
+        DEVELOPER_DIR: /Applications/Xcode_11.1.app/Contents/Developer
