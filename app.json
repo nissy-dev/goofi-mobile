@@ -3,7 +3,7 @@
     "name": "Goofi Mobile",
     "version": "2.0.2",
     "privacy": "public",
-    "sdkVersion": "35.0.0",
+    "sdkVersion": "36.0.0",
     "orientation": "portrait",
     "description": "Mobile app for searching good first issues in OSS",
     "githubUrl": "https://github.com/nd-02110114/goofi-mobile",
@@ -12,6 +12,11 @@
       "backgroundColor": "#F5F5F5",
       "resizeMode": "contain",
       "image": "./assets/image/splash.png"
-    }
+    },
+    "slug": "goofi-mobile",
+    "platforms": [
+      "android",
+      "ios"
+    ]
   }
 }

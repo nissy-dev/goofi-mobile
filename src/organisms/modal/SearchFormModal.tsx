@@ -26,6 +26,7 @@ const FormFieldTitleBox = styled(View)`
   padding-vertical: 10;
 `
 
+// @ts-ignore No overload matches this call.
 const StyledModal = styled(Modal)`
   flex-direction: column;
   justify-content: flex-start;

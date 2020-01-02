@@ -28,8 +28,8 @@ const Root = createBottomTabNavigator(
   },
   {
     initialRouteName: 'search',
-    defaultNavigationOptions: ({ navigation }: any) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }: any) => {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state
         const iconSize = focused ? 25 : 20
         return routeName === 'search' ? (

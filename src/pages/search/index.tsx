@@ -70,14 +70,14 @@ export default function SearchPage(props: Props) {
         <Loading />
       ) : (
         <GridList
-          data={data.search.nodes || []}
+          data={data.search.nodes ?? []}
           navigate={navigate}
           onRefresh={() => refetch({ query })}
           onLoadMore={() =>
             fetchMore({
               variables: {
                 query,
-                // @ts-ignore
+                // @ts-ignore The expected type comes from property 'variables'
                 cursor: data.search.pageInfo.endCursor
               },
               updateQuery: (previousResult, { fetchMoreResult }) => {
