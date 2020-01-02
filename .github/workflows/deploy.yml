@@ -20,12 +20,12 @@ jobs:
     - name: Download dependencies
       run: yarn install
     - name: Expo login
-      run: yarn expo login -u "$EXPO_ACCOUNT" -p "$EXPO_PASSWORD"
+      run: yarn expo login -u ${EXPO_ACCOUNT} -p ${EXPO_PASSWORD}
       env:
         EXPO_ACCOUNT: ${{ secrets.EXPO_ACCOUNT }}
         EXPO_PASSWORD: ${{ secrets.EXPO_PASSWORD }}
     - name: create .env
-      run: echo API_TOKEN=$API_TOKEN >> .env
+      run: echo API_TOKEN=${API_TOKEN} >> .env
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
     - name: ESLint
