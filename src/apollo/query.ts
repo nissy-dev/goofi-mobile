@@ -2,21 +2,18 @@ import gql from 'graphql-tag'
 
 export const typeDefs = gql`
   type Query {
-    getAllData(
-      language: String!
-      cursor: String
-    ): GoodFirstIssues!
+    getAllData(language: String!, cursor: String): GoodFirstIssues!
     getFavItems: [FavItem]!
   }
 
   type Mutation {
-    addFavItem (
+    addFavItem(
       id: ID!
       title: String!
       url: String!
       avatarUrl: String!
     ): FavItem
-    deleteFavItem (
+    deleteFavItem(
       id: ID!
       title: String!
       url: String!
@@ -70,10 +67,10 @@ export const typeDefs = gql`
     url: String!
     avatarUrl: String!
   }
-`;
+`
 
 export const GET_REPO_ALL_DATA = gql`
-  query getAllData ($query: String!, $cursor: String) {
+  query getAllData($query: String!, $cursor: String) {
     search(first: 10, query: $query, after: $cursor, type: REPOSITORY) {
       repositoryCount
       pageInfo {
