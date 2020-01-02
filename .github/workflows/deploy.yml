@@ -28,11 +28,5 @@ jobs:
       run: echo API_TOKEN=${API_TOKEN} >> .env
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
-    - name: ESLint
-      run: yarn lint
-    - name: TypeScript build
-      run: yarn lint
-    - name: Unit test
-      run: yarn test
     - name: expo publish
       run: yarn expo publish
