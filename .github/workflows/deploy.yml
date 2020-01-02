@@ -1,5 +1,8 @@
-name: main
-on: [push]
+name: deploy
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
@@ -16,9 +19,20 @@ jobs:
         node-version: ${{ matrix.node_version }}
     - name: Download dependencies
       run: yarn install
+    - name: Expo login
+      run: yarn expo login -u "$EXPO_ACCOUNT" -p "$EXPO_PASSWORD"
+      env:
+        EXPO_ACCOUNT: ${{ secrets.EXPO_ACCOUNT }}
+        EXPO_PASSWORD: ${{ secrets.EXPO_PASSWORD }}
+    - name: create .env
+      run: echo API_TOKEN=$API_TOKEN >> .env
+      env:
+        API_TOKEN: ${{ secrets.API_TOKEN }}
     - name: ESLint
       run: yarn lint
     - name: TypeScript build
       run: yarn lint
     - name: Unit test
-      run: yarn test
+        run: yarn test
+    - name: expo publish
+      run: yarn expo publish
