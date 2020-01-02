@@ -49,16 +49,14 @@ export default function FavoritePage() {
     <FavoritePageContainer testID="favoritePage">
       <FavoriteHeader />
       <ScrollView contentContainerStyle={styles.listViewContainerStyle}>
-        {data
-          ? data.favItems.map((item: IssueItem, index: number) => (
-              <FavoriteListItem
-                key={`fav-${index}`}
-                index={index}
-                item={item}
-                onPress={onPressIssue}
-              />
-            ))
-          : null}
+        {data?.favItems.map((item: IssueItem, index: number) => (
+          <FavoriteListItem
+            key={`fav-${index}`}
+            index={index}
+            item={item}
+            onPress={onPressIssue}
+          />
+        ))}
       </ScrollView>
       <WebViewModal
         favStatus={favStatus}

@@ -30,6 +30,7 @@ export default function FavoriteListItem(props: Props) {
   const [deleteFavItem] = useMutation(DELETE_FAV_ITEM, {
     variables: { ...props.item }
   })
+  const swipeRef = React.useRef<Swipeable | null>(null);
 
   const renderRightActions = (
     progressAnimatedValue: Animated.AnimatedInterpolation,
@@ -40,10 +41,14 @@ export default function FavoriteListItem(props: Props) {
       outputRange: [64, 1],
       extrapolate: 'clamp'
     })
+    const onPressDeleteBtn = () => {
+      deleteFavItem()
+      swipeRef.current?.close()
+    }
 
     return (
       <Animated.View style={{ width: 120, transform: [{ translateX: trans }] }}>
-        <DeleteButton onPress={() => deleteFavItem()}>
+        <DeleteButton onPress={() => onPressDeleteBtn()}>
           <Heading color={WHITE}>{I18n.t('delete')}</Heading>
         </DeleteButton>
       </Animated.View>
@@ -51,7 +56,7 @@ export default function FavoriteListItem(props: Props) {
   }
 
   return (
-    <Swipeable friction={1} renderRightActions={renderRightActions}>
+    <Swipeable ref={swipeRef} renderRightActions={renderRightActions}>
       <IssueListItem favorite {...props} />
     </Swipeable>
   )

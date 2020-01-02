@@ -6,6 +6,7 @@ import { HttpLink } from 'apollo-link-http'
 import { persistCache } from 'apollo-cache-persist'
 import { resolvers, initialState } from './resolvers'
 import {
+  typeDefs,
   GET_REPO_ALL_DATA,
   GET_FAV_ITEMS,
   ADD_FAV_ITEM,
@@ -13,7 +14,7 @@ import {
 } from './query'
 
 const cache = new InMemoryCache()
-// @ts-ignore
+// @ts-ignore The expected type comes from property 'storage'
 persistCache({ cache, storage: AsyncStorage })
 
 const link = new HttpLink({
@@ -23,7 +24,7 @@ const link = new HttpLink({
   }
 })
 
-const client = new ApolloClient({ cache, link, resolvers })
+const client = new ApolloClient({ cache, link, resolvers, typeDefs })
 // write default value
 cache.writeData({ data: { ...initialState, __typename: 'favItems' } })
 

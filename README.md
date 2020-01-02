@@ -75,11 +75,11 @@ $ yarn tsc
 
 |  |  |
 |:-----------|:------------|
-| Main Framework | Expo (React Native@0.59.8) |
+| Main Framework | Expo 36 (React Native@0.60~0.61) |
 | Type Annotation | TypeScript |
 | Client | React Apollo |
 | Server | Github API (GraphQL) |
 | Design | Atomic Design (styled-component) |
 | Test | Jest (unit test) |
 | Linter | ESLint, Prettier |
-| CI | Circle CI |
+| CI | Circle CI, Github Actions |
