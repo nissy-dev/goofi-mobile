@@ -33,6 +33,6 @@ jobs:
     - name: TypeScript build
       run: yarn lint
     - name: Unit test
-        run: yarn test
+      run: yarn test
     - name: expo publish
       run: yarn expo publish
