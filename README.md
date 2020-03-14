@@ -1,5 +1,6 @@
 # Goofi Mobile
-[![CircleCI](https://circleci.com/gh/nd-02110114/goofi-mobile/tree/master.svg?style=svg)](https://circleci.com/gh/nd-02110114/goofi-mobile/tree/master)
+[![](https://github.com/nd-02110114/goofi-mobile/workflows/main/badge.svg)](https://circleci.com/gh/nd-02110114/goofi-mobile/tree/master)
+[![](https://github.com/nd-02110114/goofi-mobile/workflows/deploy/badge.svg)](https://circleci.com/gh/nd-02110114/goofi-mobile/tree/master)
 [![License: MIT](https://img.shields.io/github/license/nd-02110114/goofi-mobile.svg)](https://opensource.org/licenses/MIT)
 
 Mobile app for searching good first issues in OSS.  
