@@ -43,7 +43,7 @@ $ yarn bootstrap
 ### Create `.env`
 
 create `.env` file in the root and write the following content.  
-**(Please don't forget to update the API_TOKEN in Circle CI)**
+**(Please don't forget to update the API_TOKEN in CI)**
 
 ```
 API_TOKEN=XXXXXXXXXXXXXX
@@ -83,4 +83,4 @@ $ yarn tsc
 | Design | Atomic Design (styled-component) |
 | Test | Jest (unit test) |
 | Linter | ESLint, Prettier |
-| CI | Circle CI, Github Actions |
+| CI | Github Actions |
